@@ -138,6 +138,7 @@ infsh app list --search "flux"
 
 ### Blog
 
+- [Agent Skills Overview](https://inference.sh/blog/skills/agent-skills-overview) - The open standard for AI capabilities
 - [Workflows vs Agents](https://inference.sh/blog/concepts/workflows-vs-agents) - When to use each
 - [Why Agent Runtimes Matter](https://inference.sh/blog/agent-runtime/why-runtimes-matter) - Runtime benefits
 - [Building a Research Agent](https://inference.sh/blog/guides/research-agent) - LLM + search integration

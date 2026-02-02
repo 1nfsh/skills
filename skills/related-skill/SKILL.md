@@ -116,6 +116,7 @@ npx skills remove inference-sh/skills@ai-image-generation
 
 ## Documentation
 
+- [Agent Skills Overview](https://inference.sh/blog/skills/agent-skills-overview) - The open standard for AI capabilities
 - [Getting Started](https://inference.sh/docs/getting-started/introduction) - Introduction to inference.sh
 - [Apps Overview](https://inference.sh/docs/apps/overview) - Understanding the app ecosystem
 - [CLI Setup](https://inference.sh/docs/extend/cli-setup) - Installing the CLI

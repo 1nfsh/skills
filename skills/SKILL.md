@@ -114,6 +114,7 @@ npx skills add inference-sh/skills@tools-ui      # Tool lifecycle UI
 
 ## Documentation
 
+- [Agent Skills Overview](https://inference.sh/blog/skills/agent-skills-overview) - The open standard for AI capabilities
 - [Getting Started](https://inference.sh/docs/getting-started/introduction) - Introduction to inference.sh
 - [What is inference.sh?](https://inference.sh/docs/getting-started/what-is-inference) - Platform overview
 - [Apps Overview](https://inference.sh/docs/apps/overview) - Understanding the app ecosystem
