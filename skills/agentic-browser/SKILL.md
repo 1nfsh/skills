@@ -103,6 +103,7 @@ Interact with elements using `@e` refs from snapshot.
 | `scroll` | Scroll page | `direction` (up/down) |
 | `back` | Go back in history | - |
 | `wait` | Wait milliseconds | `wait_ms` |
+| `goto` | Navigate to URL | `url` |
 
 ```bash
 # Click
@@ -123,6 +124,11 @@ infsh app run agentic-browser --function interact --session $SESSION_ID --input 
 # Scroll down
 infsh app run agentic-browser --function interact --session $SESSION_ID --input '{
   "action": "scroll", "direction": "down"
+}'
+
+# Navigate to different URL (same session)
+infsh app run agentic-browser --function interact --session $SESSION_ID --input '{
+  "action": "goto", "url": "https://example.com/other-page"
 }'
 ```
 
@@ -224,6 +230,27 @@ Browser state persists within a session. Always:
 1. Start with `--session new` on first call
 2. Use returned `session_id` for subsequent calls
 3. Close session when done
+
+### Navigating to Different URLs
+
+You can navigate to any URL within the same session using the `goto` action:
+
+```bash
+# Start on one site
+SESSION=$(infsh app run agentic-browser --function open --session new --input '{
+  "url": "https://site1.com"
+}' | jq -r '.session_id')
+
+# Navigate to a different site (same session, preserves cookies/state)
+infsh app run agentic-browser --function interact --session $SESSION --input '{
+  "action": "goto", "url": "https://site2.com"
+}'
+
+# Or click a link to navigate
+infsh app run agentic-browser --function interact --session $SESSION --input '{
+  "action": "click", "ref": "@e5"
+}'
+```
 
 ## Related Skills
 
