@@ -327,16 +327,16 @@ Avoid: [things to exclude]
 
 ```bash
 # Video prompting guide
-npx skills add inference-sh/agent-skills@video-prompting-guide
+npx skills add inference-sh/agent-skills-registry@video-prompting-guide
 
 # LLM models
-npx skills add inference-sh/agent-skills@llm-models
+npx skills add inference-sh/agent-skills-registry@llm-models
 
 # Image generation
-npx skills add inference-sh/agent-skills@ai-image-generation
+npx skills add inference-sh/agent-skills-registry@ai-image-generation
 
 # Full platform skill
-npx skills add inference-sh/agent-skills@inference-sh
+npx skills add inference-sh/agent-skills-registry@inference-sh
 ```
 
 Browse all apps: `infsh app list`

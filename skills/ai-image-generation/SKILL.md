@@ -115,22 +115,22 @@ infsh app run infsh/stitch-images --input '{
 
 ```bash
 # Full platform skill (all 150+ apps)
-npx skills add inference-sh/agent-skills@inference-sh
+npx skills add inference-sh/agent-skills-registry@inference-sh
 
 # FLUX-specific skill
-npx skills add inference-sh/agent-skills@flux-image
+npx skills add inference-sh/agent-skills-registry@flux-image
 
 # Upscaling & enhancement
-npx skills add inference-sh/agent-skills@image-upscaling
+npx skills add inference-sh/agent-skills-registry@image-upscaling
 
 # Background removal
-npx skills add inference-sh/agent-skills@background-removal
+npx skills add inference-sh/agent-skills-registry@background-removal
 
 # Video generation
-npx skills add inference-sh/agent-skills@ai-video-generation
+npx skills add inference-sh/agent-skills-registry@ai-video-generation
 
 # AI avatars from images
-npx skills add inference-sh/agent-skills@ai-avatar-video
+npx skills add inference-sh/agent-skills-registry@ai-avatar-video
 ```
 
 Browse all apps: `infsh app list`

@@ -274,19 +274,19 @@ Outro
 
 ```bash
 # Text-to-speech models
-npx skills add inference-sh/agent-skills@text-to-speech
+npx skills add inference-sh/agent-skills-registry@text-to-speech
 
 # AI music generation
-npx skills add inference-sh/agent-skills@ai-music-generation
+npx skills add inference-sh/agent-skills-registry@ai-music-generation
 
 # LLM for scripts
-npx skills add inference-sh/agent-skills@llm-models
+npx skills add inference-sh/agent-skills-registry@llm-models
 
 # Content pipelines
-npx skills add inference-sh/agent-skills@ai-content-pipeline
+npx skills add inference-sh/agent-skills-registry@ai-content-pipeline
 
 # Full platform skill
-npx skills add inference-sh/agent-skills@inference-sh
+npx skills add inference-sh/agent-skills-registry@inference-sh
 ```
 
 Browse all apps: `infsh app list --category audio`

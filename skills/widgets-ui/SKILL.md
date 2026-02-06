@@ -158,13 +158,13 @@ const handleAction = (action: WidgetAction, formData?: WidgetFormData) => {
 
 ```bash
 # Full agent component
-npx skills add inference-sh/agent-skills@agent-ui
+npx skills add inference-sh/agent-skills-registry@agent-ui
 
 # Chat UI blocks
-npx skills add inference-sh/agent-skills@chat-ui
+npx skills add inference-sh/agent-skills-registry@chat-ui
 
 # Tool UI
-npx skills add inference-sh/agent-skills@tools-ui
+npx skills add inference-sh/agent-skills-registry@tools-ui
 ```
 
 ## Documentation

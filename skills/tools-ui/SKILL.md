@@ -156,13 +156,13 @@ import { Agent } from "@/registry/blocks/agent/agent"
 
 ```bash
 # Full agent component (recommended)
-npx skills add inference-sh/agent-skills@agent-ui
+npx skills add inference-sh/agent-skills-registry@agent-ui
 
 # Chat UI blocks
-npx skills add inference-sh/agent-skills@chat-ui
+npx skills add inference-sh/agent-skills-registry@chat-ui
 
 # Widgets for tool results
-npx skills add inference-sh/agent-skills@widgets-ui
+npx skills add inference-sh/agent-skills-registry@widgets-ui
 ```
 
 ## Documentation

@@ -132,13 +132,13 @@ infsh app run openrouter/claude-haiku-45 --input '{
 
 ```bash
 # Full platform skill (all 150+ apps)
-npx skills add inference-sh/agent-skills@inference-sh
+npx skills add inference-sh/agent-skills-registry@inference-sh
 
 # LLM models (combine with search for RAG)
-npx skills add inference-sh/agent-skills@llm-models
+npx skills add inference-sh/agent-skills-registry@llm-models
 
 # Image generation
-npx skills add inference-sh/agent-skills@ai-image-generation
+npx skills add inference-sh/agent-skills-registry@ai-image-generation
 ```
 
 Browse all apps: `infsh app list`
