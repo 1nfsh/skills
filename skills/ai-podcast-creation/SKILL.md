@@ -13,9 +13,9 @@ allowed-tools: Bash(infsh *)
 
 # AI Podcast Creation
 
-![AI Podcast Creation](https://cloud.inference.sh/u/4mg21r6ta37mpaz6ktzwtt8krr/01jz00krptarq4bwm89g539aea.png)
-
 Create AI-powered podcasts and audio content via [inference.sh](https://inference.sh) CLI.
+
+![AI Podcast Creation](https://cloud.inference.sh/u/4mg21r6ta37mpaz6ktzwtt8krr/01jz00krptarq4bwm89g539aea.png)
 
 ## Quick Start
 

@@ -13,9 +13,9 @@ allowed-tools: Bash(infsh *)
 
 # AI RAG Pipeline
 
-![AI RAG Pipeline](https://cloud.inference.sh/app/files/u/4mg21r6ta37mpaz6ktzwtt8krr/01kgndqjxd780zm2j3rmada6y8.jpeg)
-
 Build RAG (Retrieval Augmented Generation) pipelines via [inference.sh](https://inference.sh) CLI.
+
+![AI RAG Pipeline](https://cloud.inference.sh/app/files/u/4mg21r6ta37mpaz6ktzwtt8krr/01kgndqjxd780zm2j3rmada6y8.jpeg)
 
 ## Quick Start
 

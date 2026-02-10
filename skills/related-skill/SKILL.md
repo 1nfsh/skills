@@ -11,9 +11,9 @@ allowed-tools: Bash(npx skills *)
 
 # Related Skills Discovery
 
-![Related Skills Discovery](https://cloud.inference.sh/app/files/u/4mg21r6ta37mpaz6ktzwtt8krr/01kgvftjwhby36trvaj66bwzcf.jpeg)
-
 Find and install complementary skills to expand your AI agent's capabilities.
+
+![Related Skills Discovery](https://cloud.inference.sh/app/files/u/4mg21r6ta37mpaz6ktzwtt8krr/01kgvftjwhby36trvaj66bwzcf.jpeg)
 
 ## Quick Start
 

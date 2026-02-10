@@ -11,9 +11,9 @@ description: |
 
 # Agent Component
 
-![Agent Component](https://cloud.inference.sh/app/files/u/4mg21r6ta37mpaz6ktzwtt8krr/01kgvftp7hb8wby7z66fvs9asd.jpeg)
-
 Batteries-included agent component from [ui.inference.sh](https://ui.inference.sh).
+
+![Agent Component](https://cloud.inference.sh/app/files/u/4mg21r6ta37mpaz6ktzwtt8krr/01kgvftp7hb8wby7z66fvs9asd.jpeg)
 
 ## Quick Start
 
