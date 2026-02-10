@@ -1,12 +1,6 @@
 ---
 name: pitch-deck-visuals
-description: |
-  Investor pitch deck structure with slide-by-slide framework, visual design rules, and data presentation.
-  Covers the 12-slide framework, chart types, team slides, and common investor turn-offs.
-  Use for: fundraising decks, investor presentations, startup pitch, demo day, grant proposals.
-  Triggers: pitch deck, investor deck, startup pitch, fundraising deck, demo day,
-  pitch presentation, investor presentation, seed deck, series a deck, pitch slides,
-  startup presentation, vc pitch, investor meeting
+description: "Investor pitch deck structure with slide-by-slide framework, visual design rules, and data presentation. Covers the 12-slide framework, chart types, team slides, and common investor turn-offs. Use for: fundraising decks, investor presentations, startup pitch, demo day, grant proposals. Triggers: pitch deck, investor deck, startup pitch, fundraising deck, demo day, pitch presentation, investor presentation, seed deck, series a deck, pitch slides, startup presentation, vc pitch, investor meeting"
 allowed-tools: Bash(infsh *)
 ---
 
