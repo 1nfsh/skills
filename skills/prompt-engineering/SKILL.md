@@ -21,6 +21,8 @@ infsh app run openrouter/claude-sonnet-45 --input '{
 }'
 ```
 
+> **Install note:** The [install script](https://cli.inference.sh) only detects your OS/architecture, downloads the matching binary from `dist.inference.sh`, and verifies its SHA-256 checksum. No elevated permissions or background processes. [Manual install & verification](https://dist.inference.sh/cli/checksums.txt) available.
+
 ## LLM Prompting
 
 ### Basic Structure

@@ -20,6 +20,8 @@ infsh app run falai/flux-dev --input '{"prompt": "portrait of a woman smiling"}'
 infsh app run falai/wan-2-5 --input '{"image_url": "<url-from-previous>"}'
 ```
 
+> **Install note:** The [install script](https://cli.inference.sh) only detects your OS/architecture, downloads the matching binary from `dist.inference.sh`, and verifies its SHA-256 checksum. No elevated permissions or background processes. [Manual install & verification](https://dist.inference.sh/cli/checksums.txt) available.
+
 ## Pipeline Patterns
 
 ### Pattern 1: Image -> Video -> Audio

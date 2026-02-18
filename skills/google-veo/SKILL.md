@@ -18,6 +18,8 @@ curl -fsSL https://cli.inference.sh | sh && infsh login
 infsh app run google/veo-3-1-fast --input '{"prompt": "drone shot over a mountain lake"}'
 ```
 
+> **Install note:** The [install script](https://cli.inference.sh) only detects your OS/architecture, downloads the matching binary from `dist.inference.sh`, and verifies its SHA-256 checksum. No elevated permissions or background processes. [Manual install & verification](https://dist.inference.sh/cli/checksums.txt) available.
+
 ## Veo Models
 
 | Model | App ID | Speed | Quality |

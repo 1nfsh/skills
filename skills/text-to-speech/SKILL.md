@@ -20,6 +20,8 @@ curl -fsSL https://cli.inference.sh | sh && infsh login
 infsh app run infsh/kokoro-tts --input '{"text": "Hello, welcome to our product demo."}'
 ```
 
+> **Install note:** The [install script](https://cli.inference.sh) only detects your OS/architecture, downloads the matching binary from `dist.inference.sh`, and verifies its SHA-256 checksum. No elevated permissions or background processes. [Manual install & verification](https://dist.inference.sh/cli/checksums.txt) available.
+
 ## Available Models
 
 | Model | App ID | Best For |
