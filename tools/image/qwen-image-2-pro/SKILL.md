@@ -8,6 +8,8 @@ allowed-tools: Bash(infsh *)
 
 Generate images with Alibaba Qwen-Image-2.0-Pro via [inference.sh](https://inference.sh) CLI. Best for professional text rendering and complex designs.
 
+![Qwen-Image-2.0-Pro](https://cloud.inference.sh/app/files/u/4mg21r6ta37mpaz6ktzwtt8krr/01kjtkdzbxw3ma6wx4j1e42yry.jpeg)
+
 ## Quick Start
 
 ```bash

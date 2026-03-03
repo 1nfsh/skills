@@ -8,6 +8,8 @@ allowed-tools: Bash(infsh *)
 
 Generate and edit images with Alibaba Qwen-Image-2.0 models via [inference.sh](https://inference.sh) CLI.
 
+![Qwen-Image-2.0](https://cloud.inference.sh/app/files/u/4mg21r6ta37mpaz6ktzwtt8krr/01kjtcbmde0jccmb4t36q04ctx.jpeg)
+
 ## Quick Start
 
 ```bash
