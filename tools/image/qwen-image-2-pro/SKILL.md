@@ -12,13 +12,14 @@ Generate images with Alibaba Qwen-Image-2.0-Pro via [inference.sh](https://infer
 
 ## Quick Start
 
+> Requires inference.sh CLI (`infsh`). Get installation instructions: `npx skills add inference-sh/skills@agent-tools`
+
 ```bash
-curl -fsSL https://cli.inference.sh | sh && infsh login
+infsh login
 
 infsh app run alibaba/qwen-image-2-pro --input '{"prompt": "Poster with title \"Welcome!\" in bold blue text"}'
 ```
 
-> **Install note:** The [install script](https://cli.inference.sh) only detects your OS/architecture, downloads the matching binary from `dist.inference.sh`, and verifies its SHA-256 checksum. No elevated permissions or background processes. [Manual install & verification](https://dist.inference.sh/cli/checksums.txt) available.
 
 ## Pro Model Capabilities
 
@@ -189,7 +190,7 @@ for update in client.run({
 npx skills add inference-sh/skills@qwen-image
 
 # Full platform skill (all 150+ apps)
-npx skills add inference-sh/skills@inference-sh
+npx skills add inference-sh/skills@agent-tools
 
 # All image generation models
 npx skills add inference-sh/skills@ai-image-generation

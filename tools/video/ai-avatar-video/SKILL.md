@@ -12,8 +12,10 @@ Create AI avatars and talking head videos via [inference.sh](https://inference.s
 
 ## Quick Start
 
+> Requires inference.sh CLI (`infsh`). Get installation instructions: `npx skills add inference-sh/skills@agent-tools`
+
 ```bash
-curl -fsSL https://cli.inference.sh | sh && infsh login
+infsh login
 
 # Create avatar video from image + audio
 infsh app run bytedance/omnihuman-1-5 --input '{
@@ -22,7 +24,6 @@ infsh app run bytedance/omnihuman-1-5 --input '{
 }'
 ```
 
-> **Install note:** The [install script](https://cli.inference.sh) only detects your OS/architecture, downloads the matching binary from `dist.inference.sh`, and verifies its SHA-256 checksum. No elevated permissions or background processes. [Manual install & verification](https://dist.inference.sh/cli/checksums.txt) available.
 
 ## Available Models
 
@@ -126,7 +127,7 @@ infsh app run infsh/latentsync-1-6 --input '{
 
 ```bash
 # Full platform skill (all 150+ apps)
-npx skills add inference-sh/skills@inference-sh
+npx skills add inference-sh/skills@agent-tools
 
 # Text-to-speech (generate audio for avatars)
 npx skills add inference-sh/skills@text-to-speech

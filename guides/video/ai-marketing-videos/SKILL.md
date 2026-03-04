@@ -12,8 +12,10 @@ Create professional marketing videos via [inference.sh](https://inference.sh) CL
 
 ## Quick Start
 
+> Requires inference.sh CLI (`infsh`). Get installation instructions: `npx skills add inference-sh/skills@agent-tools`
+
 ```bash
-curl -fsSL https://cli.inference.sh | sh && infsh login
+infsh login
 
 # Generate a product promo video
 infsh app run google/veo-3-1-fast --input '{
@@ -21,7 +23,6 @@ infsh app run google/veo-3-1-fast --input '{
 }'
 ```
 
-> **Install note:** The [install script](https://cli.inference.sh) only detects your OS/architecture, downloads the matching binary from `dist.inference.sh`, and verifies its SHA-256 checksum. No elevated permissions or background processes. [Manual install & verification](https://dist.inference.sh/cli/checksums.txt) available.
 
 ## Video Ad Types
 
@@ -286,7 +287,7 @@ npx skills add inference-sh/skills@text-to-speech
 npx skills add inference-sh/skills@ai-social-media-content
 
 # Full platform skill
-npx skills add inference-sh/skills@inference-sh
+npx skills add inference-sh/skills@agent-tools
 ```
 
 Browse all apps: `infsh app list`

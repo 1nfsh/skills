@@ -10,8 +10,10 @@ Create realistic multi-speaker dialogue with Dia TTS via [inference.sh](https://
 
 ## Quick Start
 
+> Requires inference.sh CLI (`infsh`). Get installation instructions: `npx skills add inference-sh/skills@agent-tools`
+
 ```bash
-curl -fsSL https://cli.inference.sh | sh && infsh login
+infsh login
 
 # Two-speaker conversation
 infsh app run falai/dia-tts --input '{
@@ -19,7 +21,6 @@ infsh app run falai/dia-tts --input '{
 }'
 ```
 
-> **Install note:** The [install script](https://cli.inference.sh) only detects your OS/architecture, downloads the matching binary from `dist.inference.sh`, and verifies its SHA-256 checksum. No elevated permissions or background processes. [Manual install & verification](https://dist.inference.sh/cli/checksums.txt) available.
 
 ## Speaker Tags
 

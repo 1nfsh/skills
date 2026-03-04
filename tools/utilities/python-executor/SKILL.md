@@ -12,8 +12,10 @@ Execute Python code in a safe, sandboxed environment with 100+ pre-installed lib
 
 ## Quick Start
 
+> Requires inference.sh CLI (`infsh`). Get installation instructions: `npx skills add inference-sh/skills@agent-tools`
+
 ```bash
-curl -fsSL https://cli.inference.sh | sh && infsh login
+infsh login
 
 # Run Python code
 infsh app run infsh/python-executor --input '{
@@ -21,7 +23,6 @@ infsh app run infsh/python-executor --input '{
 }'
 ```
 
-> **Install note:** The [install script](https://cli.inference.sh) only detects your OS/architecture, downloads the matching binary from `dist.inference.sh`, and verifies its SHA-256 checksum. No elevated permissions or background processes. [Manual install & verification](https://dist.inference.sh/cli/checksums.txt) available.
 
 ## App Details
 

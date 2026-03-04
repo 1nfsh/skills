@@ -12,14 +12,15 @@ Access 100+ language models via [inference.sh](https://inference.sh) CLI.
 
 ## Quick Start
 
+> Requires inference.sh CLI (`infsh`). Get installation instructions: `npx skills add inference-sh/skills@agent-tools`
+
 ```bash
-curl -fsSL https://cli.inference.sh | sh && infsh login
+infsh login
 
 # Call Claude Sonnet
 infsh app run openrouter/claude-sonnet-45 --input '{"prompt": "Explain quantum computing"}'
 ```
 
-> **Install note:** The [install script](https://cli.inference.sh) only detects your OS/architecture, downloads the matching binary from `dist.inference.sh`, and verifies its SHA-256 checksum. No elevated permissions or background processes. [Manual install & verification](https://dist.inference.sh/cli/checksums.txt) available.
 
 ## Available Models
 
@@ -110,7 +111,7 @@ infsh app run openrouter/claude-sonnet-45 --input input.json
 
 ```bash
 # Full platform skill (all 150+ apps)
-npx skills add inference-sh/skills@inference-sh
+npx skills add inference-sh/skills@agent-tools
 
 # Web search (combine with LLMs for RAG)
 npx skills add inference-sh/skills@web-search

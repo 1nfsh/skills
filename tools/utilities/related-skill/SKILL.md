@@ -73,7 +73,7 @@ npx skills add inference-sh/skills@twitter-automation
 ### Everything at Once
 ```bash
 # Install the full platform skill with all 150+ apps
-npx skills add inference-sh/skills@inference-sh
+npx skills add inference-sh/skills@agent-tools
 ```
 
 ## Skill Combinations

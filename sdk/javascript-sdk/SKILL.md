@@ -515,7 +515,7 @@ const result = await client.run({...});
 npx skills add inference-sh/skills@python-sdk
 
 # Full platform skill (all 150+ apps via CLI)
-npx skills add inference-sh/skills@inference-sh
+npx skills add inference-sh/skills@agent-tools
 
 # LLM models
 npx skills add inference-sh/skills@llm-models

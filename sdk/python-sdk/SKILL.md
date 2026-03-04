@@ -464,7 +464,7 @@ response = agent.send_message(
 npx skills add inference-sh/skills@javascript-sdk
 
 # Full platform skill (all 150+ apps via CLI)
-npx skills add inference-sh/skills@inference-sh
+npx skills add inference-sh/skills@agent-tools
 
 # LLM models
 npx skills add inference-sh/skills@llm-models

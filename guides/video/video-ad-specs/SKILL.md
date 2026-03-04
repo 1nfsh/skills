@@ -10,8 +10,10 @@ Create platform-specific video ads via [inference.sh](https://inference.sh) CLI.
 
 ## Quick Start
 
+> Requires inference.sh CLI (`infsh`). Get installation instructions: `npx skills add inference-sh/skills@agent-tools`
+
 ```bash
-curl -fsSL https://cli.inference.sh | sh && infsh login
+infsh login
 
 # Generate a vertical video ad scene
 infsh app run bytedance/seedance-1-5-pro --input '{
@@ -19,7 +21,6 @@ infsh app run bytedance/seedance-1-5-pro --input '{
 }'
 ```
 
-> **Install note:** The [install script](https://cli.inference.sh) only detects your OS/architecture, downloads the matching binary from `dist.inference.sh`, and verifies its SHA-256 checksum. No elevated permissions or background processes. [Manual install & verification](https://dist.inference.sh/cli/checksums.txt) available.
 
 ## Platform Specifications
 

@@ -12,8 +12,10 @@ Create AI-powered podcasts and audio content via [inference.sh](https://inferenc
 
 ## Quick Start
 
+> Requires inference.sh CLI (`infsh`). Get installation instructions: `npx skills add inference-sh/skills@agent-tools`
+
 ```bash
-curl -fsSL https://cli.inference.sh | sh && infsh login
+infsh login
 
 # Generate podcast segment
 infsh app run infsh/kokoro-tts --input '{
@@ -22,7 +24,6 @@ infsh app run infsh/kokoro-tts --input '{
 }'
 ```
 
-> **Install note:** The [install script](https://cli.inference.sh) only detects your OS/architecture, downloads the matching binary from `dist.inference.sh`, and verifies its SHA-256 checksum. No elevated permissions or background processes. [Manual install & verification](https://dist.inference.sh/cli/checksums.txt) available.
 
 ## Available Voices
 
@@ -283,7 +284,7 @@ npx skills add inference-sh/skills@llm-models
 npx skills add inference-sh/skills@ai-content-pipeline
 
 # Full platform skill
-npx skills add inference-sh/skills@inference-sh
+npx skills add inference-sh/skills@agent-tools
 ```
 
 Browse all apps: `infsh app list --category audio`

@@ -12,8 +12,10 @@ Generate professional product photography via [inference.sh](https://inference.s
 
 ## Quick Start
 
+> Requires inference.sh CLI (`infsh`). Get installation instructions: `npx skills add inference-sh/skills@agent-tools`
+
 ```bash
-curl -fsSL https://cli.inference.sh | sh && infsh login
+infsh login
 
 # Generate product shot
 infsh app run falai/flux-dev --input '{
@@ -21,7 +23,6 @@ infsh app run falai/flux-dev --input '{
 }'
 ```
 
-> **Install note:** The [install script](https://cli.inference.sh) only detects your OS/architecture, downloads the matching binary from `dist.inference.sh`, and verifies its SHA-256 checksum. No elevated permissions or background processes. [Manual install & verification](https://dist.inference.sh/cli/checksums.txt) available.
 
 ## Available Models
 
@@ -260,7 +261,7 @@ npx skills add inference-sh/skills@image-upscaling
 npx skills add inference-sh/skills@background-removal
 
 # Full platform skill
-npx skills add inference-sh/skills@inference-sh
+npx skills add inference-sh/skills@agent-tools
 ```
 
 Browse all image apps: `infsh app list --category image`

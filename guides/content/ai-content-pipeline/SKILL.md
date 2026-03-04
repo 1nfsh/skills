@@ -12,15 +12,16 @@ Build multi-step content creation pipelines via [inference.sh](https://inference
 
 ## Quick Start
 
+> Requires inference.sh CLI (`infsh`). Get installation instructions: `npx skills add inference-sh/skills@agent-tools`
+
 ```bash
-curl -fsSL https://cli.inference.sh | sh && infsh login
+infsh login
 
 # Simple pipeline: Generate image -> Animate to video
 infsh app run falai/flux-dev --input '{"prompt": "portrait of a woman smiling"}' > image.json
 infsh app run falai/wan-2-5 --input '{"image_url": "<url-from-previous>"}'
 ```
 
-> **Install note:** The [install script](https://cli.inference.sh) only detects your OS/architecture, downloads the matching binary from `dist.inference.sh`, and verifies its SHA-256 checksum. No elevated permissions or background processes. [Manual install & verification](https://dist.inference.sh/cli/checksums.txt) available.
 
 ## Pipeline Patterns
 
@@ -241,7 +242,7 @@ npx skills add inference-sh/skills@text-to-speech
 npx skills add inference-sh/skills@llm-models
 
 # Full platform skill
-npx skills add inference-sh/skills@inference-sh
+npx skills add inference-sh/skills@agent-tools
 ```
 
 Browse all apps: `infsh app list`
