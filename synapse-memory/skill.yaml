@@ -1,0 +1,135 @@
+name: synapse-memory
+id: org.synapselayer.memory
+version: 1.0.2
+description: "Universal Neural Memory Layer for AI Agents. Persistent, Private, and Model-Agnostic."
+author: "Synapse Layer (Ismael Marchi)"
+license: "Apache-2.0"
+homepage: "https://synapselayer.org"
+repository: "https://github.com/SynapseLayer/essencial"
+
+# Entrypoint: MCP Server rodando no Supabase Edge Functions
+entrypoint:
+  type: mcp
+  url: "https://rbeycxzizrrdmxpilepc.supabase.co/functions/v1/mcp-server"
+  runtime: "edge-function"
+  protocol: "json-rpc-2.0"
+
+# Capacidades indexadas pelo Marketplace
+capabilities:
+  - name: store_memory
+    description: "Saves agent context with Zero-Knowledge AES-256-GCM encryption. Returns memory_id and TQ score."
+    input_schema:
+      user_id: string
+      content: string
+      source_type: string
+      confidence: number
+    output_schema:
+      task_id: string
+      tq_score: number
+
+  - name: recall_context
+    description: "Semantic search over persistent memories using pgvector HNSW. Supports Neural Handover(TM)."
+    input_schema:
+      user_id: string
+      query: string
+      limit: number
+    output_schema:
+      memories: array
+      total: number
+
+  - name: resolve_conflict
+    description: "Calculates Trust Quotient (TQ) for conflicting memories and promotes the canonical version."
+    input_schema:
+      conflict_group_id: string
+    output_schema:
+      winner_memory_id: string
+      tq_score: number
+      resolved: boolean
+
+  - name: neural_handover
+    description: "HMAC-SHA256 signed context transfer between different AI models. Zero context loss."
+    input_schema:
+      user_id: string
+      target_model: string
+      summary: string
+    output_schema:
+      handover_id: string
+      token: string
+      expires_at: string
+
+  - name: forget_memory
+    description: "GDPR/LGPD compliant soft-delete with audit trail. Sets deleted_at timestamp."
+    input_schema:
+      memory_id: string
+      user_id: string
+    output_schema:
+      deleted: boolean
+      audit_id: string
+
+# Tags para indexacao no Marketplace
+tags:
+  - memory
+  - long-term-memory
+  - mcp
+  - privacy
+  - zero-knowledge
+  - neural-handover
+  - context-window-optimization
+  - langchain
+  - crewai
+  - a2a-protocol
+  - trust-quotient
+  - conflict-resolution
+  - gdpr
+  - lgpd
+  - pgvector
+
+# Configuracoes obrigatorias para o agente que usar esta Skill
+settings:
+  - name: SYNAPSE_API_KEY
+    type: string
+    required: true
+    description: "Your Synapse Layer API key. Get it at https://synapselayer.org/dashboard"
+
+  - name: SYNAPSE_ENCRYPTION_KEY
+    type: string
+    required: true
+    description: "Your private AES-256 key for Zero-Knowledge privacy. Never sent to the server."
+
+  - name: SYNAPSE_USER_ID
+    type: string
+    required: false
+    description: "Default user_id for memory isolation. Can be overridden per-call."
+
+# Compatibilidade com frameworks
+integrations:
+  - name: langchain
+    package: "synapse-layer[langchain]"
+    class: "SynapseMemory"
+    docs: "https://synapselayer.org/docs/sdk/python"
+
+  - name: crewai
+    package: "synapse-layer[crewai]"
+    tools:
+      - "SynapseStoreMemoryTool"
+      - "SynapseRecallMemoryTool"
+      - "SynapseHandoverTool"
+    docs: "https://synapselayer.org/docs/sdk/python"
+
+  - name: python-sdk
+    package: "synapse-layer"
+    class: "SynapseA2AClient"
+    docs: "https://synapselayer.org/docs/sdk/python"
+
+# Metricas de qualidade (para o Marketplace exibir)
+quality:
+  test_coverage: "95%"
+  latency_p50_ms: 120
+  latency_p99_ms: 450
+  uptime_sla: "99.9%"
+  region: "sa-east-1 (Sao Paulo)"
+  encryption: "AES-256-GCM"
+  compliance:
+    - "GDPR"
+    - "LGPD"
+    - "Apache-2.0"
