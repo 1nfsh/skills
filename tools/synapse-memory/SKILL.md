@@ -42,15 +42,21 @@ npx @smithery/cli install @synapselayer/synapse-protocol
 
 ```python
 from synapse_layer import SynapseMemory
+import asyncio
 
-memory = SynapseMemory(agent_id="agent-1")
+async def main():
+    memory = SynapseMemory(agent_id="agent-1")
 
-# Store — encryption, PII redaction, and privacy noise applied automatically
-await memory.store("User prefers secure systems", confidence=0.95)
+    # Store — encryption, PII redaction, and privacy noise applied automatically
+    await memory.store("User prefers secure systems")
 
-# Recall — ranked by Trust Quotient (TQ)
-results = await memory.recall("user preferences")
-# Each result includes a TQ score based on: Recency, Frequency, Source Authority
+    # Recall — ranked by Trust Quotient (TQ)
+    results = await memory.recall("user preferences")
+    for r in results:
+        print(f"{r.content} (TQ: {r.trust_quotient:.3f})")
+    # Each TQ score is based on: Recency, Frequency, Source Authority
+
+asyncio.run(main())
 ```
 
 ## MCP Tools
