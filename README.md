@@ -50,6 +50,7 @@ npx skills add inference-sh/skills@flux-image
 npx skills add inference-sh/skills@google-veo
 npx skills add inference-sh/skills@llm-models
 npx skills add inference-sh/skills@web-search
+npx skills add inference-sh/skills@prospect-360-b2b
 ```
 
 ### Manual
@@ -81,6 +82,7 @@ Browse apps: `infsh app list`
 | [ai-image-generation](tools/image/) | 50+ image models (FLUX, Gemini, Reve, etc.) |
 | [ai-video-generation](tools/video/) | 40+ video models (Veo, Seedance, Wan, etc.) |
 | [llm-models](tools/llm/) | Claude, Gemini, Kimi, GLM |
+| [prospect-360-b2b](tools/llm/prospect-360-b2b/) | B2B prospect research & sales meeting prep |
 | [web-search](tools/llm/) | Tavily, Exa search |
 | [twitter-automation](tools/social/) | X/Twitter API |
 
