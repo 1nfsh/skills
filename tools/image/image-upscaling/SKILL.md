@@ -1,7 +1,7 @@
 ---
 name: image-upscaling
 description: "Upscale and enhance images with Real-ESRGAN, Thera, Topaz, FLUX Upscaler via inference.sh CLI. Models: Real-ESRGAN, Thera (any size), FLUX Dev Upscaler, Topaz Image Upscaler. Use for: enhance low-res images, upscale AI art, restore old photos, increase resolution. Triggers: upscale image, image upscaler, enhance image, increase resolution, real esrgan, ai upscale, super resolution, image enhancement, upscaling, enlarge image, higher resolution, 4k upscale, hd upscale"
-allowed-tools: Bash(infsh *)
+allowed-tools: Bash(belt *)
 ---
 
 # Image Upscaling
@@ -12,12 +12,12 @@ Upscale and enhance images via [inference.sh](https://inference.sh) CLI.
 
 ## Quick Start
 
-> Requires inference.sh CLI (`infsh`). [Install instructions](https://raw.githubusercontent.com/inference-sh/skills/refs/heads/main/cli-install.md)
+> Requires inference.sh CLI (`belt`). [Install instructions](https://raw.githubusercontent.com/inference-sh/skills/refs/heads/main/cli-install.md)
 
 ```bash
-infsh login
+belt login
 
-infsh app run infsh/real-esrgan --input '{"image_url": "https://your-image.jpg"}'
+belt app run infsh/real-esrgan --input '{"image_url": "https://your-image.jpg"}'
 ```
 
 
@@ -32,17 +32,17 @@ infsh app run infsh/real-esrgan --input '{"image_url": "https://your-image.jpg"}
 ### Upscale Any Image
 
 ```bash
-infsh app run falai/topaz-image-upscaler --input '{"image_url": "https://low-res-image.jpg"}'
+belt app run falai/topaz-image-upscaler --input '{"image_url": "https://low-res-image.jpg"}'
 ```
 
 ### Workflow: Generate and Upscale
 
 ```bash
 # 1. Generate image with FLUX Klein (fast)
-infsh app run falai/flux-2-klein-lora --input '{"prompt": "landscape painting"}' > image.json
+belt app run falai/flux-2-klein-lora --input '{"prompt": "landscape painting"}' > image.json
 
 # 2. Upscale the result
-infsh app run falai/topaz-image-upscaler --input '{"image_url": "<url-from-step-1>"}'
+belt app run falai/topaz-image-upscaler --input '{"image_url": "<url-from-step-1>"}'
 ```
 
 ## Use Cases
@@ -69,7 +69,7 @@ npx skills add inference-sh/skills@flux-image
 npx skills add inference-sh/skills@background-removal
 ```
 
-Browse all image apps: `infsh app list --category image`
+Browse all image apps: `belt app list --category image`
 
 ## Documentation
 

@@ -1,7 +1,7 @@
 ---
 name: video-prompting-guide
 description: "Best practices and techniques for writing effective AI video generation prompts. Covers: Veo, Seedance, Wan, Grok, Kling, Runway, Pika, Sora prompting strategies. Learn: shot types, camera movements, lighting, pacing, style keywords, negative prompts. Use for: improving video quality, getting consistent results, professional video prompts. Triggers: video prompt, how to prompt video, veo prompts, video generation tips, better ai video, video prompt engineering, video prompt guide, video prompt template, ai video tips, video prompt best practices, video prompt examples, cinematography prompts"
-allowed-tools: Bash(infsh *)
+allowed-tools: Bash(belt *)
 ---
 
 # Video Prompting Guide
@@ -12,13 +12,13 @@ Best practices for writing effective AI video generation prompts via [inference.
 
 ## Quick Start
 
-> Requires inference.sh CLI (`infsh`). [Install instructions](https://raw.githubusercontent.com/inference-sh/skills/refs/heads/main/cli-install.md)
+> Requires inference.sh CLI (`belt`). [Install instructions](https://raw.githubusercontent.com/inference-sh/skills/refs/heads/main/cli-install.md)
 
 ```bash
-infsh login
+belt login
 
 # Well-structured video prompt
-infsh app run google/veo-3-1-fast --input '{
+belt app run google/veo-3-1-fast --input '{
   "prompt": "Cinematic tracking shot of a red sports car driving through Tokyo at night, neon lights reflecting on wet streets, rain falling, 4K, shallow depth of field"
 }'
 ```
@@ -120,7 +120,7 @@ broadcast quality, HDR
 ### Product Demo
 
 ```bash
-infsh app run google/veo-3-1-fast --input '{
+belt app run google/veo-3-1-fast --input '{
   "prompt": "Smooth tracking shot around a sleek smartphone on a white pedestal, soft studio lighting, product photography style, reflections on surface, 4K, shallow depth of field"
 }'
 ```
@@ -128,7 +128,7 @@ infsh app run google/veo-3-1-fast --input '{
 ### Nature Documentary
 
 ```bash
-infsh app run google/veo-3-1 --input '{
+belt app run google/veo-3-1 --input '{
   "prompt": "Slow motion extreme close-up of a hummingbird hovering at a red flower, wings in motion blur, shallow depth of field, golden hour lighting, National Geographic style"
 }'
 ```
@@ -136,7 +136,7 @@ infsh app run google/veo-3-1 --input '{
 ### Urban Lifestyle
 
 ```bash
-infsh app run google/veo-3 --input '{
+belt app run google/veo-3 --input '{
   "prompt": "Tracking shot following a cyclist through busy city streets, morning rush hour, natural lighting, handheld camera feel, documentary style, authentic and candid"
 }'
 ```
@@ -144,7 +144,7 @@ infsh app run google/veo-3 --input '{
 ### Food Content
 
 ```bash
-infsh app run bytedance/seedance-1-5-pro --input '{
+belt app run bytedance/seedance-1-5-pro --input '{
   "prompt": "Close-up of chocolate sauce being drizzled over ice cream, slow motion, steam rising, soft lighting, food photography style, appetizing, commercial quality"
 }'
 ```
@@ -152,7 +152,7 @@ infsh app run bytedance/seedance-1-5-pro --input '{
 ### Tech/Futuristic
 
 ```bash
-infsh app run xai/grok-imagine-video --input '{
+belt app run xai/grok-imagine-video --input '{
   "prompt": "Futuristic control room with holographic displays, camera slowly pans across the space, blue and cyan lighting, sci-fi atmosphere, Blade Runner aesthetic, 4K",
   "duration": 5
 }'
@@ -202,17 +202,17 @@ infsh app run xai/grok-imagine-video --input '{
 
 ```bash
 # 1. Start with basic prompt
-infsh app run google/veo-3-1-fast --input '{
+belt app run google/veo-3-1-fast --input '{
   "prompt": "A woman walking through a forest"
 }'
 
 # 2. Add specificity
-infsh app run google/veo-3-1-fast --input '{
+belt app run google/veo-3-1-fast --input '{
   "prompt": "Medium tracking shot of a woman in a red dress walking through an autumn forest"
 }'
 
 # 3. Add style and technical details
-infsh app run google/veo-3-1-fast --input '{
+belt app run google/veo-3-1-fast --input '{
   "prompt": "Cinematic medium tracking shot of a woman in a flowing red dress walking through an autumn forest, golden hour sunlight filtering through leaves, shallow depth of field, film grain, 4K"
 }'
 ```
@@ -236,7 +236,7 @@ npx skills add inference-sh/skills@prompt-engineering
 npx skills add inference-sh/skills@infsh-cli
 ```
 
-Browse all video apps: `infsh app list --category video`
+Browse all video apps: `belt app list --category video`
 
 ## Documentation
 

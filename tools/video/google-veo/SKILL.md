@@ -1,7 +1,7 @@
 ---
 name: google-veo
 description: "Generate videos with Google Veo models via inference.sh CLI. Models: Veo 3.1, Veo 3.1 Fast, Veo 3, Veo 3 Fast, Veo 2. Capabilities: text-to-video, cinematic output, high quality video generation. Triggers: veo, google veo, veo 3, veo 2, veo 3.1, vertex ai video, google video generation, google video ai, veo model, veo video"
-allowed-tools: Bash(infsh *)
+allowed-tools: Bash(belt *)
 ---
 
 # Google Veo Video Generation
@@ -12,12 +12,12 @@ Generate videos with Google Veo models via [inference.sh](https://inference.sh) 
 
 ## Quick Start
 
-> Requires inference.sh CLI (`infsh`). [Install instructions](https://raw.githubusercontent.com/inference-sh/skills/refs/heads/main/cli-install.md)
+> Requires inference.sh CLI (`belt`). [Install instructions](https://raw.githubusercontent.com/inference-sh/skills/refs/heads/main/cli-install.md)
 
 ```bash
-infsh login
+belt login
 
-infsh app run google/veo-3-1-fast --input '{"prompt": "drone shot over a mountain lake"}'
+belt app run google/veo-3-1-fast --input '{"prompt": "drone shot over a mountain lake"}'
 ```
 
 
@@ -34,7 +34,7 @@ infsh app run google/veo-3-1-fast --input '{"prompt": "drone shot over a mountai
 ## Search Veo Apps
 
 ```bash
-infsh app list --search "veo"
+belt app list --search "veo"
 ```
 
 ## Examples
@@ -42,7 +42,7 @@ infsh app list --search "veo"
 ### Cinematic Shot
 
 ```bash
-infsh app run google/veo-3-1-fast --input '{
+belt app run google/veo-3-1-fast --input '{
   "prompt": "Cinematic drone shot flying through a misty forest at sunrise, volumetric lighting"
 }'
 ```
@@ -50,7 +50,7 @@ infsh app run google/veo-3-1-fast --input '{
 ### Product Demo
 
 ```bash
-infsh app run google/veo-3 --input '{
+belt app run google/veo-3 --input '{
   "prompt": "Sleek smartphone rotating on a dark reflective surface, studio lighting"
 }'
 ```
@@ -58,7 +58,7 @@ infsh app run google/veo-3 --input '{
 ### Nature Scene
 
 ```bash
-infsh app run google/veo-3-1-fast --input '{
+belt app run google/veo-3-1-fast --input '{
   "prompt": "Timelapse of clouds moving over a mountain range, golden hour"
 }'
 ```
@@ -66,7 +66,7 @@ infsh app run google/veo-3-1-fast --input '{
 ### Action Shot
 
 ```bash
-infsh app run google/veo-3 --input '{
+belt app run google/veo-3 --input '{
   "prompt": "Slow motion water droplet splashing into a pool, macro shot"
 }'
 ```
@@ -74,7 +74,7 @@ infsh app run google/veo-3 --input '{
 ### Urban Scene
 
 ```bash
-infsh app run google/veo-3-1-fast --input '{
+belt app run google/veo-3-1-fast --input '{
   "prompt": "Busy city street at night with neon signs and rain reflections, Tokyo style"
 }'
 ```
@@ -93,11 +93,11 @@ infsh app run google/veo-3-1-fast --input '{
 
 ```bash
 # 1. Generate sample input to see all options
-infsh app sample google/veo-3-1-fast --save input.json
+belt app sample google/veo-3-1-fast --save input.json
 
 # 2. Edit the prompt
 # 3. Run
-infsh app run google/veo-3-1-fast --input input.json
+belt app run google/veo-3-1-fast --input input.json
 ```
 
 ## Related Skills
@@ -116,7 +116,7 @@ npx skills add inference-sh/skills@ai-avatar-video
 npx skills add inference-sh/skills@ai-image-generation
 ```
 
-Browse all video apps: `infsh app list --category video`
+Browse all video apps: `belt app list --category video`
 
 ## Documentation
 

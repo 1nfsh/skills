@@ -1,7 +1,7 @@
 ---
 name: product-changelog
 description: "Product changelog and release notes that users actually read. Covers categorization, user-facing language, visuals, and distribution. Use for: release notes, changelogs, product updates, feature announcements, versioning. Triggers: changelog, release notes, product update, version notes, what's new, feature announcement, product changelog, update log, release announcement, version release, product release, ship notes"
-allowed-tools: Bash(infsh *)
+allowed-tools: Bash(belt *)
 ---
 
 # Product Changelog
@@ -10,13 +10,13 @@ Write changelogs and release notes that users read and care about via [inference
 
 ## Quick Start
 
-> Requires inference.sh CLI (`infsh`). [Install instructions](https://raw.githubusercontent.com/inference-sh/skills/refs/heads/main/cli-install.md)
+> Requires inference.sh CLI (`belt`). [Install instructions](https://raw.githubusercontent.com/inference-sh/skills/refs/heads/main/cli-install.md)
 
 ```bash
-infsh login
+belt login
 
 # Generate a feature announcement visual
-infsh app run falai/flux-dev-lora --input '{
+belt app run falai/flux-dev-lora --input '{
   "prompt": "clean product UI screenshot mockup, modern dashboard interface showing a new analytics chart feature, light mode, minimal design, professional SaaS product",
   "width": 1248,
   "height": 832
@@ -149,25 +149,25 @@ Best for SaaS products with continuous deployment.
 
 ```bash
 # Feature screenshot (if you have the app running, use agent browser)
-infsh app run infsh/agent-browser --input '{
+belt app run infsh/agent-browser --input '{
   "url": "https://your-app.com/new-feature",
   "action": "screenshot"
 }'
 
 # Before/after comparison
-infsh app run infsh/stitch-images --input '{
+belt app run infsh/stitch-images --input '{
   "images": ["before-screenshot.png", "after-screenshot.png"],
   "direction": "horizontal"
 }'
 
 # Annotated screenshot with callout
-infsh app run bytedance/seededit-3-0-i2i --input '{
+belt app run bytedance/seededit-3-0-i2i --input '{
   "prompt": "add a red circle highlight around the export button in the top right area",
   "image": "screenshot.png"
 }'
 
 # Feature announcement banner
-infsh app run falai/flux-dev-lora --input '{
+belt app run falai/flux-dev-lora --input '{
   "prompt": "clean modern product announcement banner, gradient blue to purple background, abstract geometric shapes, professional SaaS aesthetic, wide format",
   "width": 1248,
   "height": 832
@@ -266,5 +266,5 @@ npx skills add inference-sh/skills@ai-image-generation
 npx skills add inference-sh/skills@prompt-engineering
 ```
 
-Browse all apps: `infsh app list`
+Browse all apps: `belt app list`
 

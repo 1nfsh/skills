@@ -1,7 +1,7 @@
 ---
 name: ai-podcast-creation
 description: "Create AI-powered podcasts with text-to-speech, music, and audio editing. Tools: Kokoro TTS, DIA TTS, Chatterbox, AI music generation, media merger. Capabilities: multi-voice conversations, background music, intro/outro, full episodes. Use for: podcast production, audiobooks, voice content, audio newsletters. Triggers: podcast, ai podcast, text to speech podcast, audio content, voice over, ai audiobook, multi voice, conversation ai, notebooklm alternative, audio generation, podcast automation, ai narrator, voice content, audio newsletter, podcast maker"
-allowed-tools: Bash(infsh *)
+allowed-tools: Bash(belt *)
 ---
 
 # AI Podcast Creation
@@ -12,13 +12,13 @@ Create AI-powered podcasts and audio content via [inference.sh](https://inferenc
 
 ## Quick Start
 
-> Requires inference.sh CLI (`infsh`). [Install instructions](https://raw.githubusercontent.com/inference-sh/skills/refs/heads/main/cli-install.md)
+> Requires inference.sh CLI (`belt`). [Install instructions](https://raw.githubusercontent.com/inference-sh/skills/refs/heads/main/cli-install.md)
 
 ```bash
-infsh login
+belt login
 
 # Generate podcast segment
-infsh app run infsh/kokoro-tts --input '{
+belt app run infsh/kokoro-tts --input '{
   "prompt": "Welcome to the AI Frontiers podcast. Today we explore the latest developments in generative AI.",
   "voice": "am_michael"
 }'
@@ -56,7 +56,7 @@ infsh app run infsh/kokoro-tts --input '{
 
 ```bash
 # Single voice podcast segment
-infsh app run infsh/kokoro-tts --input '{
+belt app run infsh/kokoro-tts --input '{
   "prompt": "Your podcast script here. Make it conversational and engaging. Add natural pauses with punctuation.",
   "voice": "am_michael"
 }'
@@ -66,19 +66,19 @@ infsh app run infsh/kokoro-tts --input '{
 
 ```bash
 # Host introduction
-infsh app run infsh/kokoro-tts --input '{
+belt app run infsh/kokoro-tts --input '{
   "prompt": "Welcome back to Tech Talk. Today I have a special guest to discuss AI developments.",
   "voice": "am_michael"
 }' > host_intro.json
 
 # Guest response
-infsh app run infsh/kokoro-tts --input '{
+belt app run infsh/kokoro-tts --input '{
   "prompt": "Thanks for having me. I am excited to share what we have been working on.",
   "voice": "af_sarah"
 }' > guest_response.json
 
 # Merge into conversation
-infsh app run infsh/media-merger --input '{
+belt app run infsh/media-merger --input '{
   "audio_files": ["<host-url>", "<guest-url>"],
   "crossfade_ms": 500
 }'
@@ -88,34 +88,34 @@ infsh app run infsh/media-merger --input '{
 
 ```bash
 # 1. Generate script with Claude
-infsh app run openrouter/claude-sonnet-45 --input '{
+belt app run openrouter/claude-sonnet-45 --input '{
   "prompt": "Write a 5-minute podcast script about the impact of AI on creative work. Format as a two-person dialogue between HOST and GUEST. Include natural conversation, questions, and insights."
 }' > script.json
 
 # 2. Generate intro music
-infsh app run infsh/ai-music --input '{
+belt app run infsh/ai-music --input '{
   "prompt": "Podcast intro music, upbeat, modern, tech feel, 15 seconds"
 }' > intro_music.json
 
 # 3. Generate host segments
-infsh app run infsh/kokoro-tts --input '{
+belt app run infsh/kokoro-tts --input '{
   "prompt": "<host-lines>",
   "voice": "am_michael"
 }' > host.json
 
 # 4. Generate guest segments
-infsh app run infsh/kokoro-tts --input '{
+belt app run infsh/kokoro-tts --input '{
   "prompt": "<guest-lines>",
   "voice": "af_sarah"
 }' > guest.json
 
 # 5. Generate outro music
-infsh app run infsh/ai-music --input '{
+belt app run infsh/ai-music --input '{
   "prompt": "Podcast outro music, matching intro style, fade out, 10 seconds"
 }' > outro_music.json
 
 # 6. Merge everything
-infsh app run infsh/media-merger --input '{
+belt app run infsh/media-merger --input '{
   "audio_files": [
     "<intro-music>",
     "<host>",
@@ -132,24 +132,24 @@ Generate podcast-style discussions from documents.
 
 ```bash
 # 1. Extract key points
-infsh app run openrouter/claude-sonnet-45 --input '{
+belt app run openrouter/claude-sonnet-45 --input '{
   "prompt": "Read this document and create a podcast script where two hosts discuss the key points in an engaging, conversational way. Include questions, insights, and natural dialogue.\n\nDocument:\n<your-document-content>"
 }' > discussion_script.json
 
 # 2. Generate Host A
-infsh app run infsh/kokoro-tts --input '{
+belt app run infsh/kokoro-tts --input '{
   "prompt": "<host-a-lines>",
   "voice": "am_michael"
 }' > host_a.json
 
 # 3. Generate Host B
-infsh app run infsh/kokoro-tts --input '{
+belt app run infsh/kokoro-tts --input '{
   "prompt": "<host-b-lines>",
   "voice": "af_sarah"
 }' > host_b.json
 
 # 4. Interleave and merge
-infsh app run infsh/media-merger --input '{
+belt app run infsh/media-merger --input '{
   "audio_files": ["<host-a-1>", "<host-b-1>", "<host-a-2>", "<host-b-2>"],
   "crossfade_ms": 300
 }'
@@ -159,7 +159,7 @@ infsh app run infsh/media-merger --input '{
 
 ```bash
 # Long-form narration
-infsh app run infsh/kokoro-tts --input '{
+belt app run infsh/kokoro-tts --input '{
   "prompt": "Chapter One. It was a dark and stormy night when the first AI achieved consciousness...",
   "voice": "bf_emma",
   "speed": 0.9
@@ -172,18 +172,18 @@ infsh app run infsh/kokoro-tts --input '{
 
 ```bash
 # 1. Generate podcast audio
-infsh app run infsh/kokoro-tts --input '{
+belt app run infsh/kokoro-tts --input '{
   "prompt": "<podcast-script>",
   "voice": "am_michael"
 }' > podcast.json
 
 # 2. Generate ambient music
-infsh app run infsh/ai-music --input '{
+belt app run infsh/ai-music --input '{
   "prompt": "Soft ambient background music for podcast, subtle, non-distracting, loopable"
 }' > background.json
 
 # 3. Mix with lower background volume
-infsh app run infsh/media-merger --input '{
+belt app run infsh/media-merger --input '{
   "audio_files": ["<podcast-url>"],
   "background_audio": "<background-url>",
   "background_volume": 0.15
@@ -194,7 +194,7 @@ infsh app run infsh/media-merger --input '{
 
 ```bash
 # Transition sounds between segments
-infsh app run infsh/ai-music --input '{
+belt app run infsh/ai-music --input '{
   "prompt": "Short podcast transition sound, whoosh, 2 seconds"
 }' > transition.json
 ```
@@ -204,7 +204,7 @@ infsh app run infsh/ai-music --input '{
 ### Prompt for Claude
 
 ```bash
-infsh app run openrouter/claude-sonnet-45 --input '{
+belt app run openrouter/claude-sonnet-45 --input '{
   "prompt": "Write a podcast script with these requirements:
   - Topic: [YOUR TOPIC]
   - Duration: 5 minutes (about 750 words)
@@ -287,5 +287,5 @@ npx skills add inference-sh/skills@ai-content-pipeline
 npx skills add inference-sh/skills@infsh-cli
 ```
 
-Browse all apps: `infsh app list --category audio`
+Browse all apps: `belt app list --category audio`
 

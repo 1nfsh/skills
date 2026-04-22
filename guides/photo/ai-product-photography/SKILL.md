@@ -1,7 +1,7 @@
 ---
 name: ai-product-photography
 description: "Generate professional AI product photography and commercial images. Models: FLUX, Imagen 3, Grok, Seedream for product shots, lifestyle images, mockups. Capabilities: studio lighting, lifestyle scenes, packaging, e-commerce photos. Use for: e-commerce, Amazon listings, Shopify, marketing, advertising, mockups. Triggers: product photography, product shot, commercial photography, e-commerce images, amazon product photo, shopify images, product mockup, studio product shot, lifestyle product image, advertising photo, packshot, product render, product image ai"
-allowed-tools: Bash(infsh *)
+allowed-tools: Bash(belt *)
 ---
 
 # AI Product Photography
@@ -12,13 +12,13 @@ Generate professional product photography via [inference.sh](https://inference.s
 
 ## Quick Start
 
-> Requires inference.sh CLI (`infsh`). [Install instructions](https://raw.githubusercontent.com/inference-sh/skills/refs/heads/main/cli-install.md)
+> Requires inference.sh CLI (`belt`). [Install instructions](https://raw.githubusercontent.com/inference-sh/skills/refs/heads/main/cli-install.md)
 
 ```bash
-infsh login
+belt login
 
 # Generate product shot
-infsh app run falai/flux-dev --input '{
+belt app run falai/flux-dev --input '{
   "prompt": "Professional product photo of wireless earbuds on white surface, soft studio lighting, commercial photography, high detail"
 }'
 ```
@@ -39,7 +39,7 @@ infsh app run falai/flux-dev --input '{
 ### Studio White Background
 
 ```bash
-infsh app run falai/flux-dev --input '{
+belt app run falai/flux-dev --input '{
   "prompt": "Product photography of a luxury watch on pure white background, professional studio lighting, sharp focus, e-commerce style, high resolution"
 }'
 ```
@@ -47,7 +47,7 @@ infsh app run falai/flux-dev --input '{
 ### Lifestyle Context
 
 ```bash
-infsh app run falai/flux-dev --input '{
+belt app run falai/flux-dev --input '{
   "prompt": "Lifestyle product photo of coffee mug on wooden desk, morning sunlight through window, cozy home office setting, Instagram aesthetic"
 }'
 ```
@@ -55,7 +55,7 @@ infsh app run falai/flux-dev --input '{
 ### Hero Shot
 
 ```bash
-infsh app run falai/flux-dev --input '{
+belt app run falai/flux-dev --input '{
   "prompt": "Hero product shot of smartphone floating at angle, dramatic lighting, gradient background, tech advertising style, premium feel"
 }'
 ```
@@ -63,7 +63,7 @@ infsh app run falai/flux-dev --input '{
 ### Flat Lay
 
 ```bash
-infsh app run falai/flux-dev --input '{
+belt app run falai/flux-dev --input '{
   "prompt": "Flat lay product photography of skincare products arranged aesthetically, marble surface, eucalyptus leaves as props, beauty brand style"
 }'
 ```
@@ -71,7 +71,7 @@ infsh app run falai/flux-dev --input '{
 ### In-Use / Action
 
 ```bash
-infsh app run falai/flux-dev --input '{
+belt app run falai/flux-dev --input '{
   "prompt": "Action shot of running shoes mid-stride, motion blur background, athletic lifestyle, Nike advertisement style"
 }'
 ```
@@ -81,7 +81,7 @@ infsh app run falai/flux-dev --input '{
 ### Electronics
 
 ```bash
-infsh app run falai/flux-dev --input '{
+belt app run falai/flux-dev --input '{
   "prompt": "Professional product photo of wireless headphones, matte black finish, floating on dark gradient background, rim lighting, tech product photography"
 }'
 ```
@@ -89,7 +89,7 @@ infsh app run falai/flux-dev --input '{
 ### Fashion / Apparel
 
 ```bash
-infsh app run falai/flux-dev --input '{
+belt app run falai/flux-dev --input '{
   "prompt": "Fashion product photography of leather handbag, studio setting, soft shadows, luxury brand aesthetic, Vogue style"
 }'
 ```
@@ -97,7 +97,7 @@ infsh app run falai/flux-dev --input '{
 ### Beauty / Cosmetics
 
 ```bash
-infsh app run falai/flux-dev --input '{
+belt app run falai/flux-dev --input '{
   "prompt": "Beauty product photography of lipstick with color swatches, clean white background, soft lighting, high-end cosmetics advertising"
 }'
 ```
@@ -105,7 +105,7 @@ infsh app run falai/flux-dev --input '{
 ### Food & Beverage
 
 ```bash
-infsh app run falai/flux-dev --input '{
+belt app run falai/flux-dev --input '{
   "prompt": "Food photography of craft beer bottle with condensation, rustic wooden table, warm lighting, artisanal brand aesthetic"
 }'
 ```
@@ -113,7 +113,7 @@ infsh app run falai/flux-dev --input '{
 ### Home & Furniture
 
 ```bash
-infsh app run falai/flux-dev --input '{
+belt app run falai/flux-dev --input '{
   "prompt": "Interior product photo of modern armchair in minimalist living room, natural lighting, Scandinavian design style, lifestyle context"
 }'
 ```
@@ -121,7 +121,7 @@ infsh app run falai/flux-dev --input '{
 ### Jewelry
 
 ```bash
-infsh app run falai/flux-dev --input '{
+belt app run falai/flux-dev --input '{
   "prompt": "Jewelry product photography of diamond ring, black velvet surface, dramatic spotlight, sparkle and reflection, luxury advertising"
 }'
 ```
@@ -131,7 +131,7 @@ infsh app run falai/flux-dev --input '{
 ### Soft Studio Light
 
 ```bash
-infsh app run falai/flux-dev --input '{
+belt app run falai/flux-dev --input '{
   "prompt": "Product photo with soft diffused studio lighting, minimal shadows, clean and professional, commercial photography"
 }'
 ```
@@ -139,7 +139,7 @@ infsh app run falai/flux-dev --input '{
 ### Dramatic / Rim Light
 
 ```bash
-infsh app run falai/flux-dev --input '{
+belt app run falai/flux-dev --input '{
   "prompt": "Product photo with dramatic rim lighting, dark background, glowing edges, premium tech aesthetic"
 }'
 ```
@@ -147,7 +147,7 @@ infsh app run falai/flux-dev --input '{
 ### Natural Window Light
 
 ```bash
-infsh app run falai/flux-dev --input '{
+belt app run falai/flux-dev --input '{
   "prompt": "Product photo with natural window light, soft shadows, lifestyle setting, warm and inviting"
 }'
 ```
@@ -155,7 +155,7 @@ infsh app run falai/flux-dev --input '{
 ### Hard Light / High Contrast
 
 ```bash
-infsh app run falai/flux-dev --input '{
+belt app run falai/flux-dev --input '{
   "prompt": "Product photo with hard directional lighting, strong shadows, bold contrast, editorial style"
 }'
 ```
@@ -165,7 +165,7 @@ infsh app run falai/flux-dev --input '{
 ### Amazon Main Image
 
 ```bash
-infsh app run falai/flux-dev --input '{
+belt app run falai/flux-dev --input '{
   "prompt": "Amazon product listing main image, pure white background RGB 255 255 255, product fills 85% of frame, professional studio lighting, no text or graphics"
 }'
 ```
@@ -173,7 +173,7 @@ infsh app run falai/flux-dev --input '{
 ### Amazon Lifestyle Image
 
 ```bash
-infsh app run falai/flux-dev --input '{
+belt app run falai/flux-dev --input '{
   "prompt": "Amazon lifestyle product image, product in natural use context, relatable setting, shows scale and use case"
 }'
 ```
@@ -181,7 +181,7 @@ infsh app run falai/flux-dev --input '{
 ### Shopify Hero
 
 ```bash
-infsh app run falai/flux-dev --input '{
+belt app run falai/flux-dev --input '{
   "prompt": "Shopify hero banner product image, lifestyle context, space for text overlay on left, premium brand aesthetic"
 }'
 ```
@@ -194,7 +194,7 @@ PRODUCT="luxury watch"
 ANGLES=("front view" "45 degree angle" "side profile" "detail shot of face")
 
 for angle in "${ANGLES[@]}"; do
-  infsh app run falai/flux-dev --input "{
+  belt app run falai/flux-dev --input "{
     \"prompt\": \"Professional product photography of $PRODUCT, $angle, white background, studio lighting\"
   }" > "product_${angle// /_}.json"
 done
@@ -204,18 +204,18 @@ done
 
 ```bash
 # 1. Generate base product image
-infsh app run falai/flux-dev --input '{
+belt app run falai/flux-dev --input '{
   "prompt": "Product photo of headphones..."
 }' > product.json
 
 # 2. Upscale for high resolution
-infsh app run falai/topaz-image-upscaler --input '{
+belt app run falai/topaz-image-upscaler --input '{
   "image_url": "<product-url>",
   "scale": 2
 }' > upscaled.json
 
 # 3. Remove background if needed
-infsh app run falai/birefnet --input '{
+belt app run falai/birefnet --input '{
   "image_url": "<upscaled-url>"
 }' > cutout.json
 ```
@@ -264,5 +264,5 @@ npx skills add inference-sh/skills@background-removal
 npx skills add inference-sh/skills@infsh-cli
 ```
 
-Browse all image apps: `infsh app list --category image`
+Browse all image apps: `belt app list --category image`
 

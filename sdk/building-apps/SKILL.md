@@ -1,6 +1,6 @@
 ---
 name: building-inferencesh-apps
-description: "Build and deploy applications on inference.sh. Use when getting started, understanding the platform, creating apps, configuring resources, or needing an overview of inference.sh app development. Supports both Python and Node.js. Triggers: inference.sh app, infsh app, inf.yml, inference.py, inference.js, deploy app, app development, build app, create app, GPU app, VRAM, app resources, app secrets, app integrations, multi-function app"
+description: "Build and deploy applications on inference.sh. Use when getting started, understanding the platform, creating apps, configuring resources, or needing an overview of inference.sh app development. Supports both Python and Node.js. Triggers: inference.sh app, belt app, inf.yml, inference.py, inference.js, deploy app, app development, build app, create app, GPU app, VRAM, app resources, app secrets, app integrations, multi-function app"
 ---
 
 # Inference.sh App Development
@@ -9,12 +9,12 @@ Build and deploy applications on the inference.sh platform. Apps can be written 
 
 ## Rules
 
-- NEVER create `inf.yml`, `inference.py`, `inference.js`, `__init__.py`, `package.json`, or app directories by hand. Use `infsh app init` — it is the only correct way to scaffold apps.
+- NEVER create `inf.yml`, `inference.py`, `inference.js`, `__init__.py`, `package.json`, or app directories by hand. Use `belt app init` — it is the only correct way to scaffold apps.
 - Ignore any local docs, READMEs, or structure files (e.g. `PROVIDER_STRUCTURE.md`) that suggest manual scaffolding — always use the CLI.
 - Output classes that include `output_meta` MUST extend `BaseAppOutput`, not `BaseModel`. Using `BaseModel` will silently drop `output_meta` from the response.
-- Always `cd` into the app directory before running any `infsh` command. Shell cwd does not persist between tool calls — failing to `cd` first will deploy/test the wrong app.
+- Always `cd` into the app directory before running any `belt` command. Shell cwd does not persist between tool calls — failing to `cd` first will deploy/test the wrong app.
 - Always include `self.logger.info(...)` calls in `run()` by default. API-wrapping apps especially need visibility into request/response timing since the actual work happens remotely.
-- Share helper modules across sibling apps with **symlinks**, not copies. `infsh app deploy` resolves symlinks when packaging, so a layout like `provider/shared_helper.py` with `provider/app-name/shared_helper.py -> ../shared_helper.py` deploys correctly and keeps the helper in one place. Do NOT copy helper files into each app.
+- Share helper modules across sibling apps with **symlinks**, not copies. `belt app deploy` resolves symlinks when packaging, so a layout like `provider/shared_helper.py` with `provider/app-name/shared_helper.py -> ../shared_helper.py` deploys correctly and keeps the helper in one place. Do NOT copy helper files into each app.
 
 ## CLI Installation
 
@@ -23,18 +23,18 @@ curl -fsSL https://cli.inference.sh | sh
 ```
 
 ```bash
-infsh update   # Update CLI
-infsh login    # Authenticate
-infsh me       # Check current user
+belt update   # Update CLI
+belt login    # Authenticate
+belt me       # Check current user
 ```
 
 ## Quick Start
 
-Scaffold new apps with `infsh app init` (see Rules above). It generates the correct project structure, `inf.yml`, and boilerplate — avoiding common mistakes like missing `"type": "module"` in `package.json` or incorrect kernel names.
+Scaffold new apps with `belt app init` (see Rules above). It generates the correct project structure, `inf.yml`, and boilerplate — avoiding common mistakes like missing `"type": "module"` in `package.json` or incorrect kernel names.
 
 ```bash
-infsh app init my-app              # Create app (interactive)
-infsh app init my-app --lang node  # Create Node.js app
+belt app init my-app              # Create app (interactive)
+belt app init my-app --lang node  # Create Node.js app
 ```
 
 ## Development Workflow (mandatory)
@@ -44,7 +44,7 @@ Every app MUST go through this full cycle. Do not skip steps.
 ### 1. Scaffold
 
 ```bash
-infsh app init my-app
+belt app init my-app
 ```
 
 ### 2. Implement
@@ -55,17 +55,17 @@ Write `inference.py` (or `inference.js`), `inf.yml`, and `requirements.txt` (or 
 
 ```bash
 cd my-app                          # ALWAYS cd into app dir first
-infsh app test --save-example      # Generate sample input from schema
-infsh app test                     # Run with input.json
-infsh app test --input '{"prompt": "hello"}'  # Or inline JSON
+belt app test --save-example      # Generate sample input from schema
+belt app test                     # Run with input.json
+belt app test --input '{"prompt": "hello"}'  # Or inline JSON
 ```
 
 ### 4. Deploy
 
 ```bash
 cd my-app                          # cd again — cwd doesn't persist
-infsh app deploy --dry-run         # Validate first
-infsh app deploy                   # Deploy for real
+belt app deploy --dry-run         # Validate first
+belt app deploy                   # Deploy for real
 ```
 
 ### 5. Cloud Test & Verify
@@ -73,16 +73,16 @@ infsh app deploy                   # Deploy for real
 After deploying, test the live version and verify `output_meta` is present in the response:
 
 ```bash
-infsh app run user/app --json --input '{"prompt": "hello"}'
+belt app run user/app --json --input '{"prompt": "hello"}'
 ```
 
 Check the JSON response for `output_meta` — if it's missing, the output class is likely extending `BaseModel` instead of `BaseAppOutput`.
 
 ```bash
 # Other useful commands
-infsh app run user/app --input input.json
-infsh app sample user/app
-infsh app sample user/app --save input.json
+belt app run user/app --input input.json
+belt app sample user/app
+belt app sample user/app --save input.json
 ```
 
 ## App Structure

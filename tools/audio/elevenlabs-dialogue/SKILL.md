@@ -1,7 +1,7 @@
 ---
 name: elevenlabs-dialogue
 description: "ElevenLabs multi-speaker dialogue generation - create conversations with different voices in a single audio file via inference.sh CLI. Capabilities: multi-voice dialogue, script-based generation, voice direction, conversation audio. Use for: podcasts, audiobooks, explainers, tutorials, character dialogue, video scripts. Triggers: elevenlabs dialogue, eleven labs dialogue, multi speaker, conversation audio, dialogue generation, text to dialogue, multi voice, voice acting, podcast dialogue, character voices, script to audio, elevenlabs conversation, two speakers"
-allowed-tools: Bash(infsh *)
+allowed-tools: Bash(belt *)
 ---
 
 # ElevenLabs Dialogue
@@ -12,13 +12,13 @@ Generate multi-speaker dialogue audio via [inference.sh](https://inference.sh) C
 
 ## Quick Start
 
-> Requires inference.sh CLI (`infsh`). [Install instructions](https://raw.githubusercontent.com/inference-sh/skills/refs/heads/main/cli-install.md)
+> Requires inference.sh CLI (`belt`). [Install instructions](https://raw.githubusercontent.com/inference-sh/skills/refs/heads/main/cli-install.md)
 
 ```bash
-infsh login
+belt login
 
 # Generate dialogue
-infsh app run elevenlabs/text-to-dialogue --input '{
+belt app run elevenlabs/text-to-dialogue --input '{
   "segments": [
     {"text": "Have you tried the new feature?", "voice": "george"},
     {"text": "Not yet, but I heard it is amazing.", "voice": "aria"},
@@ -53,7 +53,7 @@ Male: `george`, `adam`, `bill`, `brian`, `callum`, `charlie`, `chris`, `daniel`,
 Add directions in square brackets to control delivery:
 
 ```bash
-infsh app run elevenlabs/text-to-dialogue --input '{
+belt app run elevenlabs/text-to-dialogue --input '{
   "segments": [
     {"text": "[excitedly] Guess what happened today!", "voice": "aria"},
     {"text": "[curiously] What? Tell me!", "voice": "george"},
@@ -82,7 +82,7 @@ infsh app run elevenlabs/text-to-dialogue --input '{
 ### Podcast Episode
 
 ```bash
-infsh app run elevenlabs/text-to-dialogue --input '{
+belt app run elevenlabs/text-to-dialogue --input '{
   "segments": [
     {"text": "Welcome back to Tech Talk! Today we are discussing the latest in AI.", "voice": "george"},
     {"text": "Thanks for having me. This is such an exciting topic right now.", "voice": "aria"},
@@ -97,7 +97,7 @@ infsh app run elevenlabs/text-to-dialogue --input '{
 ### Tutorial / Explainer
 
 ```bash
-infsh app run elevenlabs/text-to-dialogue --input '{
+belt app run elevenlabs/text-to-dialogue --input '{
   "segments": [
     {"text": "Can you walk me through the setup process?", "voice": "jessica"},
     {"text": "Sure. Step one, install the CLI. It takes about thirty seconds.", "voice": "daniel"},
@@ -112,7 +112,7 @@ infsh app run elevenlabs/text-to-dialogue --input '{
 ### Audiobook Dialogue
 
 ```bash
-infsh app run elevenlabs/text-to-dialogue --input '{
+belt app run elevenlabs/text-to-dialogue --input '{
   "segments": [
     {"text": "[whispering] Do you hear that?", "voice": "lily"},
     {"text": "[nervously] Hear what? I do not hear anything.", "voice": "harry"},
@@ -126,7 +126,7 @@ infsh app run elevenlabs/text-to-dialogue --input '{
 ### Product Demo
 
 ```bash
-infsh app run elevenlabs/text-to-dialogue --input '{
+belt app run elevenlabs/text-to-dialogue --input '{
   "segments": [
     {"text": "So what makes this different from other solutions?", "voice": "brian"},
     {"text": "Three things. Speed, quality, and simplicity.", "voice": "alice"},
@@ -139,7 +139,7 @@ infsh app run elevenlabs/text-to-dialogue --input '{
 ### Customer Support Training
 
 ```bash
-infsh app run elevenlabs/text-to-dialogue --input '{
+belt app run elevenlabs/text-to-dialogue --input '{
   "segments": [
     {"text": "[frustrated] I have been waiting for twenty minutes and my issue is still not resolved.", "voice": "adam"},
     {"text": "[empathetically] I completely understand your frustration, and I apologize for the wait. Let me look into this right away.", "voice": "sarah"},
@@ -164,7 +164,7 @@ infsh app run elevenlabs/text-to-dialogue --input '{
 
 ```bash
 # 1. Generate dialogue
-infsh app run elevenlabs/text-to-dialogue --input '{
+belt app run elevenlabs/text-to-dialogue --input '{
   "segments": [
     {"text": "Welcome to the show.", "voice": "george"},
     {"text": "Great to be here.", "voice": "aria"}
@@ -172,13 +172,13 @@ infsh app run elevenlabs/text-to-dialogue --input '{
 }' > dialogue.json
 
 # 2. Generate background music
-infsh app run elevenlabs/music --input '{
+belt app run elevenlabs/music --input '{
   "prompt": "Soft podcast background music, non-intrusive",
   "duration_seconds": 30
 }' > music.json
 
 # 3. Merge
-infsh app run infsh/media-merger --input '{
+belt app run infsh/media-merger --input '{
   "media": ["<dialogue-url>", "<music-url>"]
 }'
 ```
@@ -208,4 +208,4 @@ npx skills add inference-sh/skills@dialogue-audio
 npx skills add inference-sh/skills@infsh-cli
 ```
 
-Browse all audio apps: `infsh app list --category audio`
+Browse all audio apps: `belt app list --category audio`

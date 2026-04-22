@@ -1,7 +1,7 @@
 ---
 name: twitter-thread-creation
 description: "Twitter/X thread writing with hook tweets, thread structure, and engagement optimization. Covers tweet formatting, character limits, media attachments, and posting strategies. Use for: Twitter threads, X posts, tweet storms, Twitter content, social media writing. Triggers: twitter thread, tweet thread, x thread, twitter post, tweet writing, thread creation, tweet storm, twitter content, x post, twitter writing, twitter hook, tweet formatting, thread structure"
-allowed-tools: Bash(infsh *)
+allowed-tools: Bash(belt *)
 ---
 
 # Twitter/X Thread Creation
@@ -10,13 +10,13 @@ Write high-engagement Twitter/X threads via [inference.sh](https://inference.sh)
 
 ## Quick Start
 
-> Requires inference.sh CLI (`infsh`). [Install instructions](https://raw.githubusercontent.com/inference-sh/skills/refs/heads/main/cli-install.md)
+> Requires inference.sh CLI (`belt`). [Install instructions](https://raw.githubusercontent.com/inference-sh/skills/refs/heads/main/cli-install.md)
 
 ```bash
-infsh login
+belt login
 
 # Post a tweet
-infsh app run x/post-create --input '{
+belt app run x/post-create --input '{
   "text": "I analyzed 1,000 landing pages.\n\n90% make the same 5 mistakes.\n\nHere are the fixes (with examples):\n\n🧵👇"
 }'
 ```
@@ -60,7 +60,7 @@ This tweet lives or dies alone in the timeline. It must work WITHOUT the thread.
 
 ```bash
 # Post hook tweet
-infsh app run x/post-create --input '{
+belt app run x/post-create --input '{
   "text": "I spent 3 years building SaaS products.\n\nHere are 10 things I wish someone told me on day 1:\n\n🧵"
 }'
 ```
@@ -78,7 +78,7 @@ infsh app run x/post-create --input '{
 
 ```bash
 # Content tweet with visual
-infsh app run x/post-create --input '{
+belt app run x/post-create --input '{
   "text": "3/ Your pricing page is the second most visited page on your site.\n\nBut most founders treat it as an afterthought.\n\nThe fix:\n→ Show 3 tiers (not 2, not 5)\n→ Highlight the middle one\n→ Annual toggle defaulted ON\n→ Feature comparison below"
 }'
 ```
@@ -87,7 +87,7 @@ infsh app run x/post-create --input '{
 
 ```bash
 # CTA tweet
-infsh app run x/post-create --input '{
+belt app run x/post-create --input '{
   "text": "11/ That'\''s the full playbook.\n\nTL;DR:\n• Validate before building\n• Launch ugly, iterate fast\n• Pricing is positioning\n• Talk to users weekly\n\nIf this was useful:\n→ Retweet the first tweet\n→ Follow me @username for more\n→ Bookmark this thread"
 }'
 ```
@@ -147,12 +147,12 @@ Line breaks create **pacing**. Use them to control reading speed and emphasis.
 
 ```bash
 # Generate thread header image
-infsh app run infsh/html-to-image --input '{
+belt app run infsh/html-to-image --input '{
   "html": "<div style=\"width:1200px;height:675px;background:linear-gradient(135deg,#0f172a,#1e293b);display:flex;align-items:center;justify-content:center;padding:60px;font-family:system-ui;color:white;text-align:center\"><div><h1 style=\"font-size:48px;font-weight:900;line-height:1.2;margin:0\">10 SaaS Pricing Mistakes<br>That Cost You Revenue</h1><p style=\"font-size:22px;opacity:0.5;margin-top:20px\">A thread 🧵</p></div></div>"
 }'
 
 # Generate screenshots for evidence
-infsh app run infsh/agent-browser --input '{
+belt app run infsh/agent-browser --input '{
   "url": "https://example.com/pricing",
   "action": "screenshot"
 }'
@@ -227,12 +227,12 @@ infsh app run infsh/agent-browser --input '{
 
 ```bash
 # Research source material
-infsh app run tavily/search-assistant --input '{
+belt app run tavily/search-assistant --input '{
   "query": "latest statistics on remote work productivity 2024"
 }'
 
 # Generate visual for the thread
-infsh app run infsh/html-to-image --input '{
+belt app run infsh/html-to-image --input '{
   "html": "<div style=\"width:1200px;height:675px;background:#0f172a;display:flex;align-items:center;padding:60px;font-family:system-ui;color:white\"><div><p style=\"font-size:20px;color:#38bdf8;text-transform:uppercase;letter-spacing:2px\">Data Deep Dive</p><h1 style=\"font-size:52px;font-weight:900;margin:12px 0;line-height:1.2\">Remote Work in 2024:<br>What the Data Actually Says</h1></div></div>"
 }'
 ```
@@ -259,5 +259,5 @@ npx skills add inference-sh/skills@content-repurposing
 npx skills add inference-sh/skills@social-media-carousel
 ```
 
-Browse all apps: `infsh app list`
+Browse all apps: `belt app list`
 

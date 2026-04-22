@@ -1,7 +1,7 @@
 ---
 name: explainer-video-guide
 description: "Explainer video production guide: scripting, voiceover, visuals, and assembly. Covers script formulas, pacing rules, scene planning, and multi-tool pipelines. Use for: product demos, how-it-works videos, onboarding videos, social explainers. Triggers: explainer video, how to make explainer, product video, demo video, video production, video script, animated explainer, product demo video, tutorial video, onboarding video, walkthrough video, video pipeline"
-allowed-tools: Bash(infsh *)
+allowed-tools: Bash(belt *)
 ---
 
 # Explainer Video Guide
@@ -10,13 +10,13 @@ Create explainer videos from script to final cut via [inference.sh](https://infe
 
 ## Quick Start
 
-> Requires inference.sh CLI (`infsh`). [Install instructions](https://raw.githubusercontent.com/inference-sh/skills/refs/heads/main/cli-install.md)
+> Requires inference.sh CLI (`belt`). [Install instructions](https://raw.githubusercontent.com/inference-sh/skills/refs/heads/main/cli-install.md)
 
 ```bash
-infsh login
+belt login
 
 # Generate a scene for an explainer
-infsh app run google/veo-3-1-fast --input '{
+belt app run google/veo-3-1-fast --input '{
   "prompt": "Clean motion graphics style animation, abstract data flowing between connected nodes, blue and white color scheme, professional corporate aesthetic, smooth transitions"
 }'
 ```
@@ -78,22 +78,22 @@ infsh app run google/veo-3-1-fast --input '{
 
 ```bash
 # Product in context
-infsh app run google/veo-3-1-fast --input '{
+belt app run google/veo-3-1-fast --input '{
   "prompt": "Clean product demonstration video, hands typing on a laptop showing a dashboard interface, bright modern office, soft natural lighting, professional"
 }'
 
 # Abstract concept visualization
-infsh app run bytedance/seedance-1-5-pro --input '{
+belt app run bytedance/seedance-1-5-pro --input '{
   "prompt": "Abstract motion graphics, colorful data streams connecting floating geometric shapes, smooth fluid animation, dark background with glowing elements, tech aesthetic"
 }'
 
 # Lifestyle/outcome shot
-infsh app run google/veo-3-1-fast --input '{
+belt app run google/veo-3-1-fast --input '{
   "prompt": "Happy person relaxing on couch with laptop, smiling at screen, bright airy living room, warm afternoon light, satisfied customer feeling, lifestyle commercial style"
 }'
 
 # Before/after comparison
-infsh app run falai/flux-dev-lora --input '{
+belt app run falai/flux-dev-lora --input '{
   "prompt": "Split screen comparison, left side cluttered messy desk with papers and stress, right side clean organized minimalist workspace, dramatic difference, clean design"
 }'
 ```
@@ -102,12 +102,12 @@ infsh app run falai/flux-dev-lora --input '{
 
 ```bash
 # Generate a still frame first
-infsh app run falai/flux-dev-lora --input '{
+belt app run falai/flux-dev-lora --input '{
   "prompt": "Professional workspace with glowing holographic interface, futuristic but clean, blue accent lighting"
 }'
 
 # Animate it
-infsh app run falai/wan-2-5-i2v --input '{
+belt app run falai/wan-2-5-i2v --input '{
   "prompt": "Gentle camera push in, holographic elements subtly floating and rotating, soft ambient light shifts",
   "image": "path/to/workspace-still.png"
 }'
@@ -126,7 +126,7 @@ infsh app run falai/wan-2-5-i2v --input '{
 
 ```bash
 # Professional narration with Dia TTS
-infsh app run falai/dia-tts --input '{
+belt app run falai/dia-tts --input '{
   "prompt": "[S1] Tired of spending hours on reports that nobody reads? There is a better way. Meet DataFlow. It turns your raw data into visual stories... in seconds. Just connect your source, pick a template, and share. Try DataFlow free today."
 }'
 ```
@@ -152,7 +152,7 @@ infsh app run falai/dia-tts --input '{
 
 ```bash
 # Generate background music
-infsh app run <music-gen-app> --input '{
+belt app run <music-gen-app> --input '{
   "prompt": "upbeat corporate background music, modern electronic, 90 BPM, positive and professional, no vocals, suitable for product explainer video"
 }'
 ```
@@ -163,28 +163,28 @@ infsh app run <music-gen-app> --input '{
 
 ```bash
 # 1. Generate voiceover
-infsh app run falai/dia-tts --input '{
+belt app run falai/dia-tts --input '{
   "prompt": "[S1] Your script here..."
 }'
 
 # 2. Generate scene visuals (in parallel)
-infsh app run google/veo-3-1-fast --input '{"prompt": "scene 1 description"}' --no-wait
-infsh app run google/veo-3-1-fast --input '{"prompt": "scene 2 description"}' --no-wait
-infsh app run google/veo-3-1-fast --input '{"prompt": "scene 3 description"}' --no-wait
+belt app run google/veo-3-1-fast --input '{"prompt": "scene 1 description"}' --no-wait
+belt app run google/veo-3-1-fast --input '{"prompt": "scene 2 description"}' --no-wait
+belt app run google/veo-3-1-fast --input '{"prompt": "scene 3 description"}' --no-wait
 
 # 3. Merge scenes into sequence
-infsh app run infsh/media-merger --input '{
+belt app run infsh/media-merger --input '{
   "media": ["scene1.mp4", "scene2.mp4", "scene3.mp4"]
 }'
 
 # 4. Add voiceover to video
-infsh app run infsh/video-audio-merger --input '{
+belt app run infsh/video-audio-merger --input '{
   "video": "merged-scenes.mp4",
   "audio": "voiceover.mp3"
 }'
 
 # 5. Add captions
-infsh app run infsh/caption-videos --input '{
+belt app run infsh/caption-videos --input '{
   "video": "final-with-audio.mp4",
   "caption_file": "captions.srt"
 }'
@@ -230,5 +230,5 @@ npx skills add inference-sh/skills@text-to-speech
 npx skills add inference-sh/skills@prompt-engineering
 ```
 
-Browse all apps: `infsh app list`
+Browse all apps: `belt app list`
 

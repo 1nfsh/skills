@@ -1,7 +1,7 @@
 ---
 name: product-photography
 description: "AI product photography with studio lighting, lifestyle shots, and packshot conventions. Covers angles, backgrounds, shadow types, hero shots, and e-commerce image requirements. Use for: product photos, e-commerce images, Amazon listings, packshots, lifestyle photography. Triggers: product photography, product photo, packshot, e-commerce photography, product shot, product image, studio photography, lifestyle product, amazon product photo, product listing image, hero shot, product mockup, commercial photography"
-allowed-tools: Bash(infsh *)
+allowed-tools: Bash(belt *)
 ---
 
 # Product Photography
@@ -10,13 +10,13 @@ Create professional product images with AI via [inference.sh](https://inference.
 
 ## Quick Start
 
-> Requires inference.sh CLI (`infsh`). [Install instructions](https://raw.githubusercontent.com/inference-sh/skills/refs/heads/main/cli-install.md)
+> Requires inference.sh CLI (`belt`). [Install instructions](https://raw.githubusercontent.com/inference-sh/skills/refs/heads/main/cli-install.md)
 
 ```bash
-infsh login
+belt login
 
 # Clean studio packshot
-infsh app run bytedance/seedream-4-5 --input '{
+belt app run bytedance/seedream-4-5 --input '{
   "prompt": "professional product photography, single premium wireless headphone on clean white background, soft studio lighting with subtle shadow, commercial e-commerce style, sharp focus, 4K quality",
   "size": "2K"
 }'
@@ -30,7 +30,7 @@ infsh app run bytedance/seedream-4-5 --input '{
 The main image customers see first. Clean, focused, aspirational.
 
 ```bash
-infsh app run bytedance/seedream-4-5 --input '{
+belt app run bytedance/seedream-4-5 --input '{
   "prompt": "hero product shot, premium smartwatch floating at slight angle, clean gradient background transitioning from white to light grey, dramatic rim lighting, subtle reflection below, commercial photography, magazine quality, sharp details",
   "size": "2K"
 }'
@@ -49,7 +49,7 @@ Amazon, Shopify, and most marketplaces require pure white backgrounds.
 
 ```bash
 # Pure white background packshot
-infsh app run bytedance/seedream-4-5 --input '{
+belt app run bytedance/seedream-4-5 --input '{
   "prompt": "product packshot, leather wallet standing upright at slight angle on pure white background #FFFFFF, soft even studio lighting, no shadows, e-commerce product photography, Amazon listing style, clean sharp focus",
   "size": "2K"
 }'
@@ -67,7 +67,7 @@ infsh app run bytedance/seedream-4-5 --input '{
 Product in context — shows how it's used or where it belongs.
 
 ```bash
-infsh app run bytedance/seedream-4-5 --input '{
+belt app run bytedance/seedream-4-5 --input '{
   "prompt": "lifestyle product photography, premium coffee mug on rustic wooden table beside an open book and reading glasses, morning sunlight streaming through window, cozy home atmosphere, shallow depth of field, warm tones, editorial style",
   "size": "2K"
 }'
@@ -78,7 +78,7 @@ infsh app run bytedance/seedream-4-5 --input '{
 Shows product size relative to familiar objects or human hands.
 
 ```bash
-infsh app run falai/flux-dev-lora --input '{
+belt app run falai/flux-dev-lora --input '{
   "prompt": "product scale photography, compact portable speaker held in one hand, person showing how small and portable it is, clean blurred background, natural lighting, lifestyle tech photography",
   "width": 1024,
   "height": 1024
@@ -90,7 +90,7 @@ infsh app run falai/flux-dev-lora --input '{
 Highlights texture, material quality, or specific features.
 
 ```bash
-infsh app run bytedance/seedream-4-5 --input '{
+belt app run bytedance/seedream-4-5 --input '{
   "prompt": "extreme close-up product detail, premium leather bag stitching and grain texture, macro photography, shallow depth of field, soft directional lighting highlighting texture, luxury product photography, editorial quality",
   "size": "2K"
 }'
@@ -101,7 +101,7 @@ infsh app run bytedance/seedream-4-5 --input '{
 Multiple products or variants together.
 
 ```bash
-infsh app run bytedance/seedream-4-5 --input '{
+belt app run bytedance/seedream-4-5 --input '{
   "prompt": "product collection flat lay photography, three skincare bottles arranged in triangular composition on marble surface, minimal props, soft overhead lighting, beauty product photography, editorial style, coordinated brand aesthetic",
   "size": "2K"
 }'
@@ -178,25 +178,25 @@ A complete product listing needs 7-9 images in this order:
 ```bash
 # Generate a complete e-commerce set
 # 1. Hero packshot
-infsh app run bytedance/seedream-4-5 --input '{
+belt app run bytedance/seedream-4-5 --input '{
   "prompt": "product packshot, premium bluetooth speaker on pure white background, slight angle, soft studio lighting, subtle contact shadow, e-commerce photography, sharp, 4K",
   "size": "2K"
 }' --no-wait
 
 # 2. Lifestyle
-infsh app run bytedance/seedream-4-5 --input '{
+belt app run bytedance/seedream-4-5 --input '{
   "prompt": "lifestyle product photography, bluetooth speaker on poolside table, summer setting, sunglasses and drink nearby, warm natural light, vacation vibes, editorial style",
   "size": "2K"
 }' --no-wait
 
 # 3. Detail
-infsh app run bytedance/seedream-4-5 --input '{
+belt app run bytedance/seedream-4-5 --input '{
   "prompt": "extreme close-up of speaker grille texture and premium materials, macro product photography, soft lighting, showing build quality, sharp detail",
   "size": "2K"
 }' --no-wait
 
 # 4. Scale
-infsh app run falai/flux-dev-lora --input '{
+belt app run falai/flux-dev-lora --input '{
   "prompt": "person holding compact bluetooth speaker in one hand, showing portable size, clean blurred background, natural light, lifestyle tech photography",
   "width": 1024,
   "height": 1024
@@ -249,19 +249,19 @@ Avoid: pure white background for lifestyle (save for e-commerce only)
 
 ```bash
 # Generate base product image
-infsh app run bytedance/seedream-4-5 --input '{
+belt app run bytedance/seedream-4-5 --input '{
   "prompt": "premium headphones on white background, studio product photography",
   "size": "2K"
 }'
 
 # Edit: change background to lifestyle
-infsh app run bytedance/seededit-3-0-i2i --input '{
+belt app run bytedance/seededit-3-0-i2i --input '{
   "prompt": "change the background to a modern minimalist desk setup with warm afternoon light, keep the headphones exactly the same",
   "image": "headphones-white.png"
 }'
 
 # Upscale for print
-infsh app run falai/topaz-image-upscaler --input '{
+belt app run falai/topaz-image-upscaler --input '{
   "image": "headphones-lifestyle.png"
 }'
 ```
@@ -287,5 +287,5 @@ npx skills add inference-sh/skills@flux-image
 npx skills add inference-sh/skills@prompt-engineering
 ```
 
-Browse all apps: `infsh app list`
+Browse all apps: `belt app list`
 

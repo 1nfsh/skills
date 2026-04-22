@@ -1,7 +1,7 @@
 ---
 name: storyboard-creation
 description: "Film and video storyboarding with shot vocabulary, continuity rules, and panel layout. Covers shot types, camera angles, movement, 180-degree rule, and annotation format. Use for: video planning, film pre-production, ad storyboards, music video planning, animation. Triggers: storyboard, storyboarding, shot list, film planning, video planning, pre production, shot composition, camera angles, scene planning, visual script, animatic, storyboard panels, video storyboard"
-allowed-tools: Bash(infsh *)
+allowed-tools: Bash(belt *)
 ---
 
 # Storyboard Creation
@@ -10,20 +10,20 @@ Create visual storyboards with AI image generation via [inference.sh](https://in
 
 ## Quick Start
 
-> Requires inference.sh CLI (`infsh`). [Install instructions](https://raw.githubusercontent.com/inference-sh/skills/refs/heads/main/cli-install.md)
+> Requires inference.sh CLI (`belt`). [Install instructions](https://raw.githubusercontent.com/inference-sh/skills/refs/heads/main/cli-install.md)
 
 ```bash
-infsh login
+belt login
 
 # Generate a storyboard panel
-infsh app run falai/flux-dev-lora --input '{
+belt app run falai/flux-dev-lora --input '{
   "prompt": "storyboard panel, wide establishing shot of a modern city skyline at sunset, cinematic composition, slightly desaturated colors, film still style, 16:9 aspect ratio",
   "width": 1248,
   "height": 832
 }'
 
 # Stitch panels into a board
-infsh app run infsh/stitch-images --input '{
+belt app run infsh/stitch-images --input '{
   "images": ["panel1.png", "panel2.png", "panel3.png"],
   "direction": "horizontal"
 }'
@@ -47,21 +47,21 @@ infsh app run infsh/stitch-images --input '{
 
 ```bash
 # Close-Up — emotion focus
-infsh app run falai/flux-dev-lora --input '{
+belt app run falai/flux-dev-lora --input '{
   "prompt": "close-up shot of a woman face showing concern, soft dramatic lighting from the left, shallow depth of field, cinematic film still, slightly desaturated",
   "width": 1248,
   "height": 832
 }'
 
 # Medium Shot — dialogue scene
-infsh app run falai/flux-dev-lora --input '{
+belt app run falai/flux-dev-lora --input '{
   "prompt": "medium shot of two people talking across a table in a cafe, warm afternoon light through windows, natural composition, cinematic film still, 35mm lens look",
   "width": 1248,
   "height": 832
 }'
 
 # Wide Shot — establishing
-infsh app run falai/flux-dev-lora --input '{
+belt app run falai/flux-dev-lora --input '{
   "prompt": "wide establishing shot of a futuristic laboratory interior, dramatic overhead lighting, long corridor with glass walls, sci-fi atmosphere, cinematic composition, anamorphic lens style",
   "width": 1248,
   "height": 832
@@ -196,19 +196,19 @@ Use consistent style across all panels:
 STYLE="cinematic film still, slightly desaturated, warm color grade, 35mm lens, shallow depth of field"
 
 # Panel 1.1 — Wide establishing
-infsh app run falai/flux-dev-lora --input "{
+belt app run falai/flux-dev-lora --input "{
   \"prompt\": \"wide shot of a modern glass office building exterior, morning golden hour light, people entering, $STYLE\",
   \"width\": 1248, \"height\": 832
 }" --no-wait
 
 # Panel 1.2 — Medium shot
-infsh app run falai/flux-dev-lora --input "{
+belt app run falai/flux-dev-lora --input "{
   \"prompt\": \"medium shot of a professional woman walking through a modern open office, carrying coffee cup, morning light through windows, $STYLE\",
   \"width\": 1248, \"height\": 832
 }" --no-wait
 
 # Panel 1.3 — Close-up
-infsh app run falai/flux-dev-lora --input "{
+belt app run falai/flux-dev-lora --input "{
   \"prompt\": \"close-up of a woman face looking down at her desk with curious expression, soft office lighting, $STYLE\",
   \"width\": 1248, \"height\": 832
 }" --no-wait
@@ -218,18 +218,18 @@ infsh app run falai/flux-dev-lora --input "{
 
 ```bash
 # Stitch panels into rows
-infsh app run infsh/stitch-images --input '{
+belt app run infsh/stitch-images --input '{
   "images": ["panel_1_1.png", "panel_1_2.png", "panel_1_3.png"],
   "direction": "horizontal"
 }'
 
-infsh app run infsh/stitch-images --input '{
+belt app run infsh/stitch-images --input '{
   "images": ["panel_1_4.png", "panel_1_5.png", "panel_1_6.png"],
   "direction": "horizontal"
 }'
 
 # Then stitch rows vertically for full page
-infsh app run infsh/stitch-images --input '{
+belt app run infsh/stitch-images --input '{
   "images": ["row1.png", "row2.png"],
   "direction": "vertical"
 }'
@@ -263,5 +263,5 @@ npx skills add inference-sh/skills@video-prompting-guide
 npx skills add inference-sh/skills@prompt-engineering
 ```
 
-Browse all apps: `infsh app list`
+Browse all apps: `belt app list`
 

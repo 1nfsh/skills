@@ -1,7 +1,7 @@
 ---
 name: landing-page-design
 description: "Landing page conversion optimization with layout rules, hero section design, and CTA psychology. Covers above-the-fold formula, social proof placement, mobile design, and F-pattern reading. Use for: startup landing pages, product pages, SaaS marketing, conversion optimization. Triggers: landing page, hero section, above the fold, conversion optimization, landing page design, cta button, hero image, landing page layout, saas landing page, product page design, conversion rate, landing page best practices"
-allowed-tools: Bash(infsh *)
+allowed-tools: Bash(belt *)
 ---
 
 # Landing Page Design
@@ -10,20 +10,20 @@ Design high-converting landing pages with AI-generated visuals via [inference.sh
 
 ## Quick Start
 
-> Requires inference.sh CLI (`infsh`). [Install instructions](https://raw.githubusercontent.com/inference-sh/skills/refs/heads/main/cli-install.md)
+> Requires inference.sh CLI (`belt`). [Install instructions](https://raw.githubusercontent.com/inference-sh/skills/refs/heads/main/cli-install.md)
 
 ```bash
-infsh login
+belt login
 
 # Generate a hero image
-infsh app run falai/flux-dev-lora --input '{
+belt app run falai/flux-dev-lora --input '{
   "prompt": "professional person smiling while using a laptop showing a clean dashboard interface, bright modern office, natural lighting, warm and productive atmosphere, lifestyle marketing photography",
   "width": 1248,
   "height": 832
 }'
 
 # Research competitor landing pages
-infsh app run tavily/search-assistant --input '{
+belt app run tavily/search-assistant --input '{
   "query": "best SaaS landing page examples 2024 conversion rate"
 }'
 ```
@@ -100,14 +100,14 @@ Everything visible before scrolling must communicate value in 5 seconds.
 
 ```bash
 # Outcome-focused hero
-infsh app run falai/flux-dev-lora --input '{
+belt app run falai/flux-dev-lora --input '{
   "prompt": "happy professional team celebrating around a laptop showing positive growth charts, bright modern office, natural sunlight, authentic candid moment, marketing photography style, warm tones",
   "width": 1248,
   "height": 832
 }'
 
 # Product-in-context hero
-infsh app run bytedance/seedream-4-5 --input '{
+belt app run bytedance/seedream-4-5 --input '{
   "prompt": "clean modern laptop on a minimalist desk showing a beautiful analytics dashboard, floating UI elements emerging from the screen, soft gradient background, product marketing style, professional",
   "size": "2K"
 }'
@@ -166,7 +166,7 @@ The proven sequence for landing pages:
 
 ```bash
 # Research for social proof stats
-infsh app run exa/answer --input '{
+belt app run exa/answer --input '{
   "question": "What is the average conversion rate for SaaS landing pages with social proof vs without?"
 }'
 ```
@@ -198,14 +198,14 @@ infsh app run exa/answer --input '{
 
 ```bash
 # Generate an OG image for the landing page
-infsh app run falai/flux-dev-lora --input '{
+belt app run falai/flux-dev-lora --input '{
   "prompt": "clean professional social sharing card, product name and tagline on modern gradient background, minimal design, corporate tech aesthetic, 1200x630 aspect ratio equivalent",
   "width": 1200,
   "height": 630
 }'
 
 # Or use html-to-image for a template-based approach
-infsh app run infsh/html-to-image --input '{
+belt app run infsh/html-to-image --input '{
   "html": "<div style=\"width:1200px;height:630px;background:linear-gradient(135deg,#667eea,#764ba2);display:flex;align-items:center;justify-content:center;font-family:sans-serif;color:white\"><div style=\"text-align:center\"><h1 style=\"font-size:48px;margin:0\">DataFlow</h1><p style=\"font-size:24px;opacity:0.9\">Ship docs in minutes, not days</p></div></div>"
 }'
 ```
@@ -241,5 +241,5 @@ npx skills add inference-sh/skills@web-search
 npx skills add inference-sh/skills@prompt-engineering
 ```
 
-Browse all apps: `infsh app list`
+Browse all apps: `belt app list`
 

@@ -1,7 +1,7 @@
 ---
 name: background-removal
 description: "Remove backgrounds from images with BiRefNet via inference.sh CLI. Model: BiRefNet (high accuracy background removal). Use for: product photos, portraits, e-commerce, transparent PNGs, photo editing. Triggers: remove background, background removal, remove bg, transparent background, cut out image, background remover, rembg, product photo editing, cutout, transparent png, bg removal, photo cutout"
-allowed-tools: Bash(infsh *)
+allowed-tools: Bash(belt *)
 ---
 
 # Background Removal
@@ -12,12 +12,12 @@ Remove backgrounds from images via [inference.sh](https://inference.sh) CLI.
 
 ## Quick Start
 
-> Requires inference.sh CLI (`infsh`). [Install instructions](https://raw.githubusercontent.com/inference-sh/skills/refs/heads/main/cli-install.md)
+> Requires inference.sh CLI (`belt`). [Install instructions](https://raw.githubusercontent.com/inference-sh/skills/refs/heads/main/cli-install.md)
 
 ```bash
-infsh login
+belt login
 
-infsh app run infsh/birefnet --input '{"image_url": "https://your-photo.jpg"}'
+belt app run infsh/birefnet --input '{"image_url": "https://your-photo.jpg"}'
 ```
 
 
@@ -26,7 +26,7 @@ infsh app run infsh/birefnet --input '{"image_url": "https://your-photo.jpg"}'
 Use Reve for image editing including background changes:
 
 ```bash
-infsh app run falai/reve --input '{
+belt app run falai/reve --input '{
   "prompt": "remove the background, make it transparent",
   "image_url": "https://portrait.jpg"
 }'
@@ -35,7 +35,7 @@ infsh app run falai/reve --input '{
 Or change background directly:
 
 ```bash
-infsh app run falai/reve --input '{
+belt app run falai/reve --input '{
   "prompt": "change the background to a beach",
   "image_url": "https://product-photo.jpg"
 }'
@@ -45,10 +45,10 @@ infsh app run falai/reve --input '{
 
 ```bash
 # 1. Generate an image
-infsh app run falai/flux-dev-lora --input '{"prompt": "a cute robot mascot"}' > robot.json
+belt app run falai/flux-dev-lora --input '{"prompt": "a cute robot mascot"}' > robot.json
 
 # 2. Edit with Reve
-infsh app run falai/reve --input '{
+belt app run falai/reve --input '{
   "prompt": "remove background, transparent",
   "image_url": "<url-from-step-1>"
 }'
@@ -82,7 +82,7 @@ npx skills add inference-sh/skills@flux-image
 npx skills add inference-sh/skills@image-upscaling
 ```
 
-Browse all image apps: `infsh app list --category image`
+Browse all image apps: `belt app list --category image`
 
 ## Documentation
 

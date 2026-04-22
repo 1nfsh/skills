@@ -1,7 +1,7 @@
 ---
 name: ai-voice-cloning
 description: "AI voice generation, text-to-speech, and voice synthesis via inference.sh CLI. Models: ElevenLabs (22+ premium voices, 32 languages), Kokoro TTS, DIA, Chatterbox, Higgs, VibeVoice for natural speech. Capabilities: multiple voices, emotions, accents, long-form narration, conversation, voice transformation. Use for: voiceovers, audiobooks, podcasts, video narration, accessibility. Triggers: voice cloning, tts, text to speech, ai voice, voice generation, voice synthesis, voice over, narration, speech synthesis, ai narrator, elevenlabs, eleven labs, natural voice, realistic speech, voice ai, voice changer"
-allowed-tools: Bash(infsh *)
+allowed-tools: Bash(belt *)
 ---
 
 # AI Voice Generation
@@ -12,13 +12,13 @@ Generate natural AI voices via [inference.sh](https://inference.sh) CLI.
 
 ## Quick Start
 
-> Requires inference.sh CLI (`infsh`). [Install instructions](https://raw.githubusercontent.com/inference-sh/skills/refs/heads/main/cli-install.md)
+> Requires inference.sh CLI (`belt`). [Install instructions](https://raw.githubusercontent.com/inference-sh/skills/refs/heads/main/cli-install.md)
 
 ```bash
-infsh login
+belt login
 
 # Generate speech
-infsh app run infsh/kokoro-tts --input '{
+belt app run infsh/kokoro-tts --input '{
   "prompt": "Hello! This is an AI-generated voice that sounds natural and engaging.",
   "voice": "af_sarah"
 }'
@@ -64,7 +64,7 @@ infsh app run infsh/kokoro-tts --input '{
 ### Professional Narration
 
 ```bash
-infsh app run infsh/kokoro-tts --input '{
+belt app run infsh/kokoro-tts --input '{
   "prompt": "Welcome to our quarterly earnings call. Today we will discuss the financial performance and strategic initiatives for the past quarter.",
   "voice": "am_michael",
   "speed": 1.0
@@ -74,7 +74,7 @@ infsh app run infsh/kokoro-tts --input '{
 ### Conversational Style
 
 ```bash
-infsh app run infsh/dia-tts --input '{
+belt app run infsh/dia-tts --input '{
   "text": "Hey, so I was thinking about that project we discussed. What if we tried a different approach?",
   "voice": "conversational"
 }'
@@ -83,7 +83,7 @@ infsh app run infsh/dia-tts --input '{
 ### Audiobook Narration
 
 ```bash
-infsh app run infsh/kokoro-tts --input '{
+belt app run infsh/kokoro-tts --input '{
   "prompt": "Chapter One. The morning mist hung low over the valley as Sarah made her way down the winding path. She had been walking for hours.",
   "voice": "bf_emma",
   "speed": 0.9
@@ -93,7 +93,7 @@ infsh app run infsh/kokoro-tts --input '{
 ### Video Voiceover
 
 ```bash
-infsh app run infsh/kokoro-tts --input '{
+belt app run infsh/kokoro-tts --input '{
   "prompt": "Introducing the next generation of productivity. Work smarter, not harder.",
   "voice": "af_nicole",
   "speed": 1.1
@@ -103,7 +103,7 @@ infsh app run infsh/kokoro-tts --input '{
 ### Podcast Host
 
 ```bash
-infsh app run infsh/kokoro-tts --input '{
+belt app run infsh/kokoro-tts --input '{
   "prompt": "Welcome back to Tech Talk! Im your host, and today we are diving deep into the world of artificial intelligence.",
   "voice": "am_adam"
 }'
@@ -114,19 +114,19 @@ infsh app run infsh/kokoro-tts --input '{
 ```bash
 # Generate dialogue between two speakers
 # Speaker 1
-infsh app run infsh/kokoro-tts --input '{
+belt app run infsh/kokoro-tts --input '{
   "prompt": "Have you seen the latest AI developments? Its incredible how fast things are moving.",
   "voice": "am_michael"
 }' > speaker1.json
 
 # Speaker 2
-infsh app run infsh/kokoro-tts --input '{
+belt app run infsh/kokoro-tts --input '{
   "prompt": "I know, right? Just last week I tried that new image generator and was blown away.",
   "voice": "af_sarah"
 }' > speaker2.json
 
 # Merge conversation
-infsh app run infsh/media-merger --input '{
+belt app run infsh/media-merger --input '{
   "audio_files": ["<speaker1-url>", "<speaker2-url>"],
   "crossfade_ms": 300
 }'
@@ -144,19 +144,19 @@ TEXT="Your very long text here..."
 
 # Split and generate
 # Chunk 1
-infsh app run infsh/kokoro-tts --input '{
+belt app run infsh/kokoro-tts --input '{
   "prompt": "<chunk-1>",
   "voice": "bf_emma"
 }' > chunk1.json
 
 # Chunk 2
-infsh app run infsh/kokoro-tts --input '{
+belt app run infsh/kokoro-tts --input '{
   "prompt": "<chunk-2>",
   "voice": "bf_emma"
 }' > chunk2.json
 
 # Merge chunks
-infsh app run infsh/media-merger --input '{
+belt app run infsh/media-merger --input '{
   "audio_files": ["<chunk1-url>", "<chunk2-url>"],
   "crossfade_ms": 100
 }'
@@ -168,13 +168,13 @@ infsh app run infsh/media-merger --input '{
 
 ```bash
 # 1. Generate voiceover
-infsh app run infsh/kokoro-tts --input '{
+belt app run infsh/kokoro-tts --input '{
   "prompt": "This stunning footage shows the beauty of nature in its purest form.",
   "voice": "am_michael"
 }' > voiceover.json
 
 # 2. Merge with video
-infsh app run infsh/media-merger --input '{
+belt app run infsh/media-merger --input '{
   "video_url": "https://your-video.mp4",
   "audio_url": "<voiceover-url>"
 }'
@@ -184,13 +184,13 @@ infsh app run infsh/media-merger --input '{
 
 ```bash
 # 1. Generate speech
-infsh app run infsh/kokoro-tts --input '{
+belt app run infsh/kokoro-tts --input '{
   "prompt": "Hi, Im excited to share some updates with you today.",
   "voice": "af_sarah"
 }' > speech.json
 
 # 2. Animate with avatar
-infsh app run bytedance/omnihuman-1-5 --input '{
+belt app run bytedance/omnihuman-1-5 --input '{
   "image_url": "https://portrait.jpg",
   "audio_url": "<speech-url>"
 }'
@@ -208,7 +208,7 @@ infsh app run bytedance/omnihuman-1-5 --input '{
 
 ```bash
 # Slow narration
-infsh app run infsh/kokoro-tts --input '{
+belt app run infsh/kokoro-tts --input '{
   "prompt": "Take a deep breath. Let yourself relax.",
   "voice": "bf_emma",
   "speed": 0.8
@@ -229,7 +229,7 @@ Use punctuation to control speech rhythm:
 | `-` | Quick break |
 
 ```bash
-infsh app run infsh/kokoro-tts --input '{
+belt app run infsh/kokoro-tts --input '{
   "prompt": "Wait... Did you hear that? Something is coming. Something big!",
   "voice": "am_adam"
 }'
@@ -279,5 +279,5 @@ npx skills add inference-sh/skills@ai-video-generation
 npx skills add inference-sh/skills@infsh-cli
 ```
 
-Browse audio apps: `infsh app list --category audio`
+Browse audio apps: `belt app list --category audio`
 

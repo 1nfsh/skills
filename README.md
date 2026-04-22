@@ -62,13 +62,13 @@ cp -r tools/* ui/* sdk/* guides/* ~/.claude/skills/
 
 ## CLI Setup
 
-> Requires inference.sh CLI (`infsh`). [Install instructions](https://raw.githubusercontent.com/inference-sh/skills/refs/heads/main/cli-install.md)
+> Requires inference.sh CLI (`belt`). [Install instructions](https://raw.githubusercontent.com/inference-sh/skills/refs/heads/main/cli-install.md)
 
 ```bash
-infsh login
+belt login
 ```
 
-Browse apps: `infsh app list`
+Browse apps: `belt app list`
 
 ---
 

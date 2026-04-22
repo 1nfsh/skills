@@ -1,7 +1,7 @@
 ---
 name: ai-rag-pipeline
 description: "Build RAG (Retrieval Augmented Generation) pipelines with web search and LLMs. Tools: Tavily Search, Exa Search, Exa Answer, Claude, GPT-4, Gemini via OpenRouter. Capabilities: research, fact-checking, grounded responses, knowledge retrieval. Use for: AI agents, research assistants, fact-checkers, knowledge bases. Triggers: rag, retrieval augmented generation, grounded ai, search and answer, research agent, fact checking, knowledge retrieval, ai research, search + llm, web grounded, perplexity alternative, ai with sources, citation, research pipeline"
-allowed-tools: Bash(infsh *)
+allowed-tools: Bash(belt *)
 ---
 
 # AI RAG Pipeline
@@ -12,14 +12,14 @@ Build RAG (Retrieval Augmented Generation) pipelines via [inference.sh](https://
 
 ## Quick Start
 
-> Requires inference.sh CLI (`infsh`). [Install instructions](https://raw.githubusercontent.com/inference-sh/skills/refs/heads/main/cli-install.md)
+> Requires inference.sh CLI (`belt`). [Install instructions](https://raw.githubusercontent.com/inference-sh/skills/refs/heads/main/cli-install.md)
 
 ```bash
-infsh login
+belt login
 
 # Simple RAG: Search + LLM
-SEARCH=$(infsh app run tavily/search-assistant --input '{"query": "latest AI developments 2024"}')
-infsh app run openrouter/claude-sonnet-45 --input "{
+SEARCH=$(belt app run tavily/search-assistant --input '{"query": "latest AI developments 2024"}')
+belt app run openrouter/claude-sonnet-45 --input "{
   \"prompt\": \"Based on this research, summarize the key trends: $SEARCH\"
 }"
 ```
@@ -86,12 +86,12 @@ This produces more accurate, up-to-date, and verifiable AI responses.
 
 ```bash
 # 1. Search for information
-SEARCH_RESULT=$(infsh app run tavily/search-assistant --input '{
+SEARCH_RESULT=$(belt app run tavily/search-assistant --input '{
   "query": "What are the latest breakthroughs in quantum computing 2024?"
 }')
 
 # 2. Generate grounded response
-infsh app run openrouter/claude-sonnet-45 --input "{
+belt app run openrouter/claude-sonnet-45 --input "{
   \"prompt\": \"You are a research assistant. Based on the following search results, provide a comprehensive summary with citations.
 
 Search Results:
@@ -105,11 +105,11 @@ Provide a well-structured summary with source citations.\"
 
 ```bash
 # Search multiple sources
-TAVILY=$(infsh app run tavily/search-assistant --input '{"query": "electric vehicle market trends 2024"}')
-EXA=$(infsh app run exa/search --input '{"query": "EV market analysis latest reports"}')
+TAVILY=$(belt app run tavily/search-assistant --input '{"query": "electric vehicle market trends 2024"}')
+EXA=$(belt app run exa/search --input '{"query": "EV market analysis latest reports"}')
 
 # Combine and analyze
-infsh app run openrouter/claude-sonnet-45 --input "{
+belt app run openrouter/claude-sonnet-45 --input "{
   \"prompt\": \"Analyze these research results and identify common themes and contradictions.
 
 Source 1 (Tavily):
@@ -126,7 +126,7 @@ Provide a balanced analysis with sources.\"
 
 ```bash
 # 1. Extract content from specific URLs
-CONTENT=$(infsh app run tavily/extract --input '{
+CONTENT=$(belt app run tavily/extract --input '{
   "urls": [
     "https://example.com/research-paper",
     "https://example.com/industry-report"
@@ -134,7 +134,7 @@ CONTENT=$(infsh app run tavily/extract --input '{
 }')
 
 # 2. Analyze extracted content
-infsh app run openrouter/claude-sonnet-45 --input "{
+belt app run openrouter/claude-sonnet-45 --input "{
   \"prompt\": \"Analyze these documents and extract key insights:
 
 $CONTENT
@@ -153,12 +153,12 @@ Provide:
 CLAIM="AI will replace 50% of jobs by 2030"
 
 # 1. Search for evidence
-EVIDENCE=$(infsh app run tavily/search-assistant --input "{
+EVIDENCE=$(belt app run tavily/search-assistant --input "{
   \"query\": \"$CLAIM evidence studies research\"
 }")
 
 # 2. Verify claim
-infsh app run openrouter/claude-sonnet-45 --input "{
+belt app run openrouter/claude-sonnet-45 --input "{
   \"prompt\": \"Fact-check this claim: '$CLAIM'
 
 Based on the following evidence:
@@ -178,12 +178,12 @@ Provide:
 TOPIC="Impact of generative AI on creative industries"
 
 # 1. Initial research
-OVERVIEW=$(infsh app run tavily/search-assistant --input "{\"query\": \"$TOPIC overview\"}")
-STATISTICS=$(infsh app run exa/search --input "{\"query\": \"$TOPIC statistics data\"}")
-OPINIONS=$(infsh app run tavily/search-assistant --input "{\"query\": \"$TOPIC expert opinions\"}")
+OVERVIEW=$(belt app run tavily/search-assistant --input "{\"query\": \"$TOPIC overview\"}")
+STATISTICS=$(belt app run exa/search --input "{\"query\": \"$TOPIC statistics data\"}")
+OPINIONS=$(belt app run tavily/search-assistant --input "{\"query\": \"$TOPIC expert opinions\"}")
 
 # 2. Generate comprehensive report
-infsh app run openrouter/claude-sonnet-45 --input "{
+belt app run openrouter/claude-sonnet-45 --input "{
   \"prompt\": \"Generate a comprehensive research report on: $TOPIC
 
 Research Data:
@@ -210,7 +210,7 @@ Format as a professional report with:
 
 ```bash
 # Use Exa Answer for direct factual questions
-infsh app run exa/answer --input '{
+belt app run exa/answer --input '{
   "question": "What is the current market cap of NVIDIA?"
 }'
 ```
@@ -231,15 +231,15 @@ infsh app run exa/answer --input '{
 
 ```bash
 # Summarize long search results before sending to LLM
-SEARCH=$(infsh app run tavily/search-assistant --input '{"query": "..."}')
+SEARCH=$(belt app run tavily/search-assistant --input '{"query": "..."}')
 
 # If too long, summarize first
-SUMMARY=$(infsh app run openrouter/claude-haiku-45 --input "{
+SUMMARY=$(belt app run openrouter/claude-haiku-45 --input "{
   \"prompt\": \"Summarize these search results in bullet points: $SEARCH\"
 }")
 
 # Then use summary for analysis
-infsh app run openrouter/claude-sonnet-45 --input "{
+belt app run openrouter/claude-sonnet-45 --input "{
   \"prompt\": \"Based on this research summary, provide insights: $SUMMARY\"
 }"
 ```
@@ -249,7 +249,7 @@ infsh app run openrouter/claude-sonnet-45 --input "{
 Always ask the LLM to cite sources:
 
 ```bash
-infsh app run openrouter/claude-sonnet-45 --input '{
+belt app run openrouter/claude-sonnet-45 --input '{
   "prompt": "... Always cite sources in [Source Name](URL) format."
 }'
 ```
@@ -258,10 +258,10 @@ infsh app run openrouter/claude-sonnet-45 --input '{
 
 ```bash
 # First pass: broad search
-INITIAL=$(infsh app run tavily/search-assistant --input '{"query": "topic overview"}')
+INITIAL=$(belt app run tavily/search-assistant --input '{"query": "topic overview"}')
 
 # Second pass: dive deeper based on findings
-DEEP=$(infsh app run tavily/search-assistant --input '{"query": "specific aspect from initial search"}')
+DEEP=$(belt app run tavily/search-assistant --input '{"query": "specific aspect from initial search"}')
 ```
 
 ## Pipeline Templates
@@ -276,10 +276,10 @@ research() {
   local query="$1"
 
   # Search
-  local results=$(infsh app run tavily/search-assistant --input "{\"query\": \"$query\"}")
+  local results=$(belt app run tavily/search-assistant --input "{\"query\": \"$query\"}")
 
   # Analyze
-  infsh app run openrouter/claude-haiku-45 --input "{
+  belt app run openrouter/claude-haiku-45 --input "{
     \"prompt\": \"Summarize: $results\"
   }"
 }
@@ -303,7 +303,7 @@ npx skills add inference-sh/skills@ai-content-pipeline
 npx skills add inference-sh/skills@infsh-cli
 ```
 
-Browse all apps: `infsh app list`
+Browse all apps: `belt app list`
 
 ## Documentation
 

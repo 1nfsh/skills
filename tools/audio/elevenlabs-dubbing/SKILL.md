@@ -1,7 +1,7 @@
 ---
 name: elevenlabs-dubbing
 description: "ElevenLabs automatic dubbing - translate and dub audio/video into 29 languages while preserving speaker voice via inference.sh CLI. Capabilities: auto speaker detection, voice-preserving translation, video dubbing, audio localization. Use for: content localization, video translation, multilingual content, international distribution. Triggers: dubbing, dub video, translate audio, video translation, audio translation, localize content, elevenlabs dubbing, eleven labs dub, multilingual dub, voice translation, auto dub, language dub, content localization"
-allowed-tools: Bash(infsh *)
+allowed-tools: Bash(belt *)
 ---
 
 # ElevenLabs Dubbing
@@ -12,13 +12,13 @@ Automatically dub audio and video into 29 languages via [inference.sh](https://i
 
 ## Quick Start
 
-> Requires inference.sh CLI (`infsh`). [Install instructions](https://raw.githubusercontent.com/inference-sh/skills/refs/heads/main/cli-install.md)
+> Requires inference.sh CLI (`belt`). [Install instructions](https://raw.githubusercontent.com/inference-sh/skills/refs/heads/main/cli-install.md)
 
 ```bash
-infsh login
+belt login
 
 # Dub English video to Spanish
-infsh app run elevenlabs/dubbing --input '{
+belt app run elevenlabs/dubbing --input '{
   "audio": "https://video.mp4",
   "target_lang": "es"
 }'
@@ -54,7 +54,7 @@ infsh app run elevenlabs/dubbing --input '{
 ### Dub Video to Spanish
 
 ```bash
-infsh app run elevenlabs/dubbing --input '{
+belt app run elevenlabs/dubbing --input '{
   "audio": "https://english-video.mp4",
   "target_lang": "es"
 }'
@@ -63,7 +63,7 @@ infsh app run elevenlabs/dubbing --input '{
 ### Dub Audio to French
 
 ```bash
-infsh app run elevenlabs/dubbing --input '{
+belt app run elevenlabs/dubbing --input '{
   "audio": "https://podcast-episode.mp3",
   "target_lang": "fr"
 }'
@@ -73,7 +73,7 @@ infsh app run elevenlabs/dubbing --input '{
 
 ```bash
 # Skip auto-detection, specify source
-infsh app run elevenlabs/dubbing --input '{
+belt app run elevenlabs/dubbing --input '{
   "audio": "https://german-video.mp4",
   "source_lang": "de",
   "target_lang": "en"
@@ -85,7 +85,7 @@ infsh app run elevenlabs/dubbing --input '{
 ```bash
 # Dub to multiple languages
 for lang in es fr de ja ko; do
-  infsh app run elevenlabs/dubbing --input "{
+  belt app run elevenlabs/dubbing --input "{
     \"audio\": \"https://video.mp4\",
     \"target_lang\": \"$lang\"
   }" > "dubbed_${lang}.json"
@@ -105,19 +105,19 @@ done
 ```bash
 # 1. Start with original video
 # 2. Dub to target language
-infsh app run elevenlabs/dubbing --input '{
+belt app run elevenlabs/dubbing --input '{
   "audio": "https://original-video.mp4",
   "target_lang": "es"
 }' > dubbed.json
 
 # 3. Add subtitles in target language
-infsh app run elevenlabs/stt --input '{
+belt app run elevenlabs/stt --input '{
   "audio": "<dubbed-audio-url>",
   "language_code": "spa"
 }' > transcript.json
 
 # 4. Caption the dubbed video
-infsh app run infsh/caption-videos --input '{
+belt app run infsh/caption-videos --input '{
   "video_url": "<dubbed-video-url>",
   "captions": "<transcript>"
 }'
@@ -148,4 +148,4 @@ npx skills add inference-sh/skills@elevenlabs-voice-changer
 npx skills add inference-sh/skills@infsh-cli
 ```
 
-Browse all audio apps: `infsh app list --category audio`
+Browse all audio apps: `belt app list --category audio`

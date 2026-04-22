@@ -1,7 +1,7 @@
 ---
 name: elevenlabs-tts
 description: "ElevenLabs text-to-speech with 22+ premium voices, multilingual support, and voice tuning via inference.sh CLI. Models: eleven_multilingual_v2 (highest quality), eleven_turbo_v2_5 (low latency), eleven_flash_v2_5 (ultra-fast). Capabilities: text-to-speech, voice selection, stability/style control, 32 languages. Use for: voiceovers, audiobooks, video narration, podcasts, accessibility, IVR. Triggers: elevenlabs, eleven labs, elevenlabs tts, premium tts, professional voice, ai voice, high quality tts, multilingual tts, eleven labs voice, voice generation, natural speech, realistic voice, voice over, speech synthesis"
-allowed-tools: Bash(infsh *)
+allowed-tools: Bash(belt *)
 ---
 
 # ElevenLabs Text-to-Speech
@@ -12,13 +12,13 @@ Premium text-to-speech with 22+ voices via [inference.sh](https://inference.sh) 
 
 ## Quick Start
 
-> Requires inference.sh CLI (`infsh`). [Install instructions](https://raw.githubusercontent.com/inference-sh/skills/refs/heads/main/cli-install.md)
+> Requires inference.sh CLI (`belt`). [Install instructions](https://raw.githubusercontent.com/inference-sh/skills/refs/heads/main/cli-install.md)
 
 ```bash
-infsh login
+belt login
 
 # Generate speech with ElevenLabs
-infsh app run elevenlabs/tts --input '{"text": "Hello, welcome to our product demo.", "voice": "aria"}'
+belt app run elevenlabs/tts --input '{"text": "Hello, welcome to our product demo.", "voice": "aria"}'
 ```
 
 
@@ -69,21 +69,21 @@ infsh app run elevenlabs/tts --input '{"text": "Hello, welcome to our product de
 ### Basic Speech
 
 ```bash
-infsh app run elevenlabs/tts --input '{"text": "Welcome to our quarterly earnings presentation.", "voice": "george"}'
+belt app run elevenlabs/tts --input '{"text": "Welcome to our quarterly earnings presentation.", "voice": "george"}'
 ```
 
 ### Choose a Model
 
 ```bash
 # Highest quality
-infsh app run elevenlabs/tts --input '{
+belt app run elevenlabs/tts --input '{
   "text": "This is our premium multilingual model with the best quality.",
   "voice": "aria",
   "model": "eleven_multilingual_v2"
 }'
 
 # Ultra-fast for real-time applications
-infsh app run elevenlabs/tts --input '{
+belt app run elevenlabs/tts --input '{
   "text": "Flash model for low-latency applications.",
   "voice": "brian",
   "model": "eleven_flash_v2_5"
@@ -93,7 +93,7 @@ infsh app run elevenlabs/tts --input '{
 ### Voice Tuning
 
 ```bash
-infsh app run elevenlabs/tts --input '{
+belt app run elevenlabs/tts --input '{
   "text": "Fine-tune the voice characteristics for your use case.",
   "voice": "bella",
   "stability": 0.3,
@@ -113,7 +113,7 @@ infsh app run elevenlabs/tts --input '{
 
 ```bash
 # High-quality MP3
-infsh app run elevenlabs/tts --input '{
+belt app run elevenlabs/tts --input '{
   "text": "High quality audio output.",
   "voice": "daniel",
   "output_format": "mp3_44100_192"
@@ -135,14 +135,14 @@ ElevenLabs supports 32 languages including English, Spanish, French, German, Ita
 
 ```bash
 # Spanish
-infsh app run elevenlabs/tts --input '{
+belt app run elevenlabs/tts --input '{
   "text": "Hola, bienvenidos a nuestra presentación.",
   "voice": "aria",
   "model": "eleven_multilingual_v2"
 }'
 
 # French
-infsh app run elevenlabs/tts --input '{
+belt app run elevenlabs/tts --input '{
   "text": "Bonjour, bienvenue à notre démonstration.",
   "voice": "alice",
   "model": "eleven_multilingual_v2"
@@ -153,13 +153,13 @@ infsh app run elevenlabs/tts --input '{
 
 ```bash
 # 1. Generate voiceover
-infsh app run elevenlabs/tts --input '{
+belt app run elevenlabs/tts --input '{
   "text": "Introducing the future of AI-powered content creation.",
   "voice": "george"
 }' > voiceover.json
 
 # 2. Create talking head video
-infsh app run bytedance/omnihuman-1-5 --input '{
+belt app run bytedance/omnihuman-1-5 --input '{
   "image_url": "https://portrait.jpg",
   "audio_url": "<audio-url-from-step-1>"
 }'
@@ -194,4 +194,4 @@ npx skills add inference-sh/skills@text-to-speech
 npx skills add inference-sh/skills@infsh-cli
 ```
 
-Browse all audio apps: `infsh app list --category audio`
+Browse all audio apps: `belt app list --category audio`

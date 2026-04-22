@@ -1,7 +1,7 @@
 ---
 name: content-repurposing
 description: "Content atomization — turn one piece of content into many formats. Covers blog-to-thread, blog-to-carousel, podcast-to-blog, video-to-quotes, and more. Use for: content marketing, social media, multi-platform distribution, content strategy. Triggers: content repurposing, repurpose content, content atomization, content recycling, one to many content, multi platform content, cross post, adapt content, reformat content, blog to thread, blog to video, podcast to blog, content multiplication"
-allowed-tools: Bash(infsh *)
+allowed-tools: Bash(belt *)
 ---
 
 # Content Repurposing
@@ -10,13 +10,13 @@ Turn one piece of content into many formats via [inference.sh](https://inference
 
 ## Quick Start
 
-> Requires inference.sh CLI (`infsh`). [Install instructions](https://raw.githubusercontent.com/inference-sh/skills/refs/heads/main/cli-install.md)
+> Requires inference.sh CLI (`belt`). [Install instructions](https://raw.githubusercontent.com/inference-sh/skills/refs/heads/main/cli-install.md)
 
 ```bash
-infsh login
+belt login
 
 # Generate a quote card from a blog pull-quote
-infsh app run falai/flux-dev-lora --input '{
+belt app run falai/flux-dev-lora --input '{
   "prompt": "minimal quote card design, dark navy background, large white quotation marks, clean sans-serif typography space, modern professional design, social media post format",
   "width": 1024,
   "height": 1024
@@ -68,14 +68,14 @@ One source piece can generate 10+ derivative assets:
 
 ```bash
 # Generate a visual for the thread
-infsh app run falai/flux-dev-lora --input '{
+belt app run falai/flux-dev-lora --input '{
   "prompt": "clean infographic tile, single statistic 60% highlighted in large bold text, minimal dark background, data visualization style, professional",
   "width": 1024,
   "height": 1024
 }'
 
 # Post the thread
-infsh app run x/post-create --input '{
+belt app run x/post-create --input '{
   "text": "I analyzed 500 landing pages.\n\nHere are 7 patterns the top converters all share:\n\n🧵 Thread:"
 }'
 ```
@@ -96,7 +96,7 @@ infsh app run x/post-create --input '{
 ```bash
 # Generate carousel slides
 for i in {1..10}; do
-  infsh app run falai/flux-dev-lora --input "{
+  belt app run falai/flux-dev-lora --input "{
     \"prompt\": \"clean minimal presentation slide, dark gradient background, large text area, professional business design, slide $i of 10, consistent style\",
     \"width\": 1024,
     \"height\": 1024
@@ -132,12 +132,12 @@ done
 
 ```bash
 # Generate voiceover
-infsh app run falai/dia-tts --input '{
+belt app run falai/dia-tts --input '{
   "prompt": "[S1] Most landing pages make this mistake. They put the features above the fold instead of the outcome. Top converting pages show what life looks like AFTER using the product. Try it and watch your conversion rate climb."
 }'
 
 # Generate video
-infsh app run google/veo-3-1-fast --input '{
+belt app run google/veo-3-1-fast --input '{
   "prompt": "Screen recording style, scrolling through a well-designed landing page, clean modern UI, smooth scroll, professional website"
 }'
 ```
@@ -148,7 +148,7 @@ infsh app run google/veo-3-1-fast --input '{
 
 ```bash
 # Generate audio of the key quote
-infsh app run falai/dia-tts --input '{
+belt app run falai/dia-tts --input '{
   "prompt": "[S1] The number one mistake I see on landing pages... is putting features above the fold. The best pages show the outcome. Not what your product does, but what life looks like after."
 }'
 ```
@@ -157,7 +157,7 @@ infsh app run falai/dia-tts --input '{
 
 ```bash
 # 1. Transcribe the episode
-infsh app run <stt-app> --input '{
+belt app run <stt-app> --input '{
   "audio": "episode-42.mp3"
 }'
 
@@ -175,7 +175,7 @@ infsh app run <stt-app> --input '{
 
 ```bash
 # Generate quote card backgrounds
-infsh app run falai/flux-dev-lora --input '{
+belt app run falai/flux-dev-lora --input '{
   "prompt": "minimal quote card background, subtle gradient from dark blue to black, large quotation mark watermark, clean modern design, social media square format",
   "width": 1080,
   "height": 1080
@@ -248,5 +248,5 @@ npx skills add inference-sh/skills@text-to-speech
 npx skills add inference-sh/skills@twitter-automation
 ```
 
-Browse all apps: `infsh app list`
+Browse all apps: `belt app list`
 

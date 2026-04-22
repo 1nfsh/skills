@@ -1,7 +1,7 @@
 ---
 name: talking-head-production
 description: "Talking head video production with AI avatars, lipsync, and voiceover. Covers portrait requirements, audio quality, OmniHuman, PixVerse lipsync, Dia TTS. Use for: spokesperson videos, course content, social media, presentations, demos. Triggers: talking head, avatar video, lipsync, lip sync, ai spokesperson, virtual presenter, ai presenter, omnihuman, talking avatar, video presenter, ai talking head, presenter video, ai face video"
-allowed-tools: Bash(infsh *)
+allowed-tools: Bash(belt *)
 ---
 
 # Talking Head Production
@@ -10,18 +10,18 @@ Create talking head videos with AI avatars and lipsync via [inference.sh](https:
 
 ## Quick Start
 
-> Requires inference.sh CLI (`infsh`). [Install instructions](https://raw.githubusercontent.com/inference-sh/skills/refs/heads/main/cli-install.md)
+> Requires inference.sh CLI (`belt`). [Install instructions](https://raw.githubusercontent.com/inference-sh/skills/refs/heads/main/cli-install.md)
 
 ```bash
-infsh login
+belt login
 
 # Generate dialogue audio
-infsh app run falai/dia-tts --input '{
+belt app run falai/dia-tts --input '{
   "prompt": "[S1] Welcome to our product tour. Today I will show you three features that will save you hours every week."
 }'
 
 # Create talking head video with OmniHuman
-infsh app run bytedance/omnihuman-1-5 --input '{
+belt app run bytedance/omnihuman-1-5 --input '{
   "image": "path/to/portrait.png",
   "audio": "path/to/dialogue.mp3"
 }'
@@ -54,12 +54,12 @@ The source portrait image is critical. Poor portraits = poor video output.
 
 ```bash
 # Generate a professional portrait background
-infsh app run falai/flux-dev-lora --input '{
+belt app run falai/flux-dev-lora --input '{
   "prompt": "professional headshot photograph of a friendly business person, soft studio lighting, clean grey background, head and shoulders, direct eye contact, neutral pleasant expression, high quality portrait photography"
 }'
 
 # Or remove background from existing portrait
-infsh app run <bg-removal-app> --input '{
+belt app run <bg-removal-app> --input '{
   "image": "path/to/portrait-with-background.png"
 }'
 ```
@@ -81,12 +81,12 @@ Audio quality directly impacts lipsync accuracy. Clean audio = accurate lip move
 
 ```bash
 # Simple narration
-infsh app run falai/dia-tts --input '{
+belt app run falai/dia-tts --input '{
   "prompt": "[S1] Hi there! I am excited to share something with you today. We have been working on a feature that our users have been requesting for months... and it is finally here."
 }'
 
 # With emotion and pacing
-infsh app run falai/dia-tts --input '{
+belt app run falai/dia-tts --input '{
   "prompt": "[S1] You know what is frustrating? Spending hours on tasks that should take minutes. (sighs) We have all been there. But what if I told you... there is a better way?"
 }'
 ```
@@ -106,12 +106,12 @@ infsh app run falai/dia-tts --input '{
 
 ```bash
 # 1. Generate or prepare audio
-infsh app run falai/dia-tts --input '{
+belt app run falai/dia-tts --input '{
   "prompt": "[S1] Your narration script here."
 }'
 
 # 2. Generate talking head
-infsh app run bytedance/omnihuman-1-5 --input '{
+belt app run bytedance/omnihuman-1-5 --input '{
   "image": "portrait.png",
   "audio": "narration.mp3"
 }'
@@ -123,7 +123,7 @@ infsh app run bytedance/omnihuman-1-5 --input '{
 # 1-2. Same as above
 
 # 3. Add captions to the talking head video
-infsh app run infsh/caption-videos --input '{
+belt app run infsh/caption-videos --input '{
   "video": "talking-head.mp4",
   "caption_file": "captions.srt"
 }'
@@ -135,17 +135,17 @@ For content longer than 30 seconds, split into segments:
 
 ```bash
 # Generate audio segments
-infsh app run falai/dia-tts --input '{"prompt": "[S1] Segment one script."}' --no-wait
-infsh app run falai/dia-tts --input '{"prompt": "[S1] Segment two script."}' --no-wait
-infsh app run falai/dia-tts --input '{"prompt": "[S1] Segment three script."}' --no-wait
+belt app run falai/dia-tts --input '{"prompt": "[S1] Segment one script."}' --no-wait
+belt app run falai/dia-tts --input '{"prompt": "[S1] Segment two script."}' --no-wait
+belt app run falai/dia-tts --input '{"prompt": "[S1] Segment three script."}' --no-wait
 
 # Generate talking head for each segment (same portrait for consistency)
-infsh app run bytedance/omnihuman-1-5 --input '{"image": "portrait.png", "audio": "segment1.mp3"}' --no-wait
-infsh app run bytedance/omnihuman-1-5 --input '{"image": "portrait.png", "audio": "segment2.mp3"}' --no-wait
-infsh app run bytedance/omnihuman-1-5 --input '{"image": "portrait.png", "audio": "segment3.mp3"}' --no-wait
+belt app run bytedance/omnihuman-1-5 --input '{"image": "portrait.png", "audio": "segment1.mp3"}' --no-wait
+belt app run bytedance/omnihuman-1-5 --input '{"image": "portrait.png", "audio": "segment2.mp3"}' --no-wait
+belt app run bytedance/omnihuman-1-5 --input '{"image": "portrait.png", "audio": "segment3.mp3"}' --no-wait
 
 # Merge all segments
-infsh app run infsh/media-merger --input '{
+belt app run infsh/media-merger --input '{
   "media": ["segment1.mp4", "segment2.mp4", "segment3.mp4"]
 }'
 ```
@@ -156,12 +156,12 @@ OmniHuman 1.5 supports up to 2 characters:
 
 ```bash
 # 1. Generate dialogue with two speakers
-infsh app run falai/dia-tts --input '{
+belt app run falai/dia-tts --input '{
   "prompt": "[S1] So tell me about the new feature. [S2] Sure! We built a dashboard that shows real-time analytics. [S1] That sounds great. How long did it take? [S2] About two weeks from concept to launch."
 }'
 
 # 2. Create video with two characters
-infsh app run bytedance/omnihuman-1-5 --input '{
+belt app run bytedance/omnihuman-1-5 --input '{
   "image": "two-person-portrait.png",
   "audio": "dialogue.mp3"
 }'
@@ -204,5 +204,5 @@ npx skills add inference-sh/skills@ai-video-generation
 npx skills add inference-sh/skills@text-to-speech
 ```
 
-Browse all apps: `infsh app list`
+Browse all apps: `belt app list`
 

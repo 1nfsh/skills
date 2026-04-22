@@ -1,7 +1,7 @@
 ---
 name: newsletter-curation
 description: "Newsletter curation with content sourcing, editorial structure, and subscriber growth strategies. Covers issue formatting, link roundups, commentary style, and sending cadence. Use for: email newsletters, link roundups, weekly digests, curated content, creator newsletters. Triggers: newsletter, email newsletter, newsletter curation, weekly digest, link roundup, curated newsletter, newsletter writing, newsletter format, subscriber growth, newsletter strategy, content curation, newsletter template"
-allowed-tools: Bash(infsh *)
+allowed-tools: Bash(belt *)
 ---
 
 # Newsletter Curation
@@ -10,18 +10,18 @@ Create and curate high-quality newsletters via [inference.sh](https://inference.
 
 ## Quick Start
 
-> Requires inference.sh CLI (`infsh`). [Install instructions](https://raw.githubusercontent.com/inference-sh/skills/refs/heads/main/cli-install.md)
+> Requires inference.sh CLI (`belt`). [Install instructions](https://raw.githubusercontent.com/inference-sh/skills/refs/heads/main/cli-install.md)
 
 ```bash
-infsh login
+belt login
 
 # Find content to curate
-infsh app run tavily/search-assistant --input '{
+belt app run tavily/search-assistant --input '{
   "query": "most important AI developments this week 2024"
 }'
 
 # Generate newsletter header
-infsh app run infsh/html-to-image --input '{
+belt app run infsh/html-to-image --input '{
   "html": "<div style=\"width:600px;height:200px;background:linear-gradient(135deg,#1e293b,#334155);display:flex;align-items:center;padding:40px;font-family:system-ui;color:white\"><div><h1 style=\"font-size:32px;margin:0;font-weight:800\">The Weekly Signal</h1><p style=\"font-size:16px;opacity:0.7;margin-top:8px\">Issue #47 — January 15, 2025</p></div></div>"
 }'
 ```
@@ -140,22 +140,22 @@ it to a colleague who'd enjoy it.
 
 ```bash
 # Industry news
-infsh app run tavily/search-assistant --input '{
+belt app run tavily/search-assistant --input '{
   "query": "[your niche] news this week latest developments"
 }'
 
 # Research and data
-infsh app run exa/search --input '{
+belt app run exa/search --input '{
   "query": "[your niche] research report statistics 2024"
 }'
 
 # Trending discussions
-infsh app run tavily/search-assistant --input '{
+belt app run tavily/search-assistant --input '{
   "query": "site:reddit.com [your niche] discussion this week"
 }'
 
 # Academic/deep content
-infsh app run exa/search --input '{
+belt app run exa/search --input '{
   "query": "[your niche] analysis deep dive opinion"
 }'
 ```
@@ -253,7 +253,7 @@ For each piece of content, ask:
 
 ```bash
 # Create social teaser for newsletter
-infsh app run x/post-create --input '{
+belt app run x/post-create --input '{
   "text": "This week in The Weekly Signal:\n\n→ Why edge computing is eating the backend\n→ The database migration nobody talks about\n→ 5 tools I discovered this month\n\nJoin 2,000+ engineers: [link]\n\nIssue #47 drops tomorrow morning."
 }'
 ```
@@ -291,5 +291,5 @@ npx skills add inference-sh/skills@content-repurposing
 npx skills add inference-sh/skills@seo-content-brief
 ```
 
-Browse all apps: `infsh app list`
+Browse all apps: `belt app list`
 

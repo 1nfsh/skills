@@ -103,7 +103,7 @@ integrations:
 ### Available Integrations
 
 ```bash
-infsh integrations list
+belt integrations list
 ```
 
 | Key | Description |

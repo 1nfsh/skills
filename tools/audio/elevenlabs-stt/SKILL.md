@@ -1,7 +1,7 @@
 ---
 name: elevenlabs-stt
 description: "ElevenLabs speech-to-text with Scribe models and forced alignment via inference.sh CLI. Models: Scribe v1/v2 (98%+ accuracy, 90+ languages). Capabilities: transcription, speaker diarization, audio event tagging, word-level timestamps, forced alignment, subtitle generation. Use for: meeting transcription, subtitles, podcast transcripts, lip-sync timing, karaoke. Triggers: elevenlabs stt, elevenlabs transcription, scribe, elevenlabs speech to text, forced alignment, word alignment, subtitle timing, diarization, speaker identification, audio event detection, eleven labs transcribe"
-allowed-tools: Bash(infsh *)
+allowed-tools: Bash(belt *)
 ---
 
 # ElevenLabs Speech-to-Text
@@ -12,13 +12,13 @@ High-accuracy transcription with Scribe models via [inference.sh](https://infere
 
 ## Quick Start
 
-> Requires inference.sh CLI (`infsh`). [Install instructions](https://raw.githubusercontent.com/inference-sh/skills/refs/heads/main/cli-install.md)
+> Requires inference.sh CLI (`belt`). [Install instructions](https://raw.githubusercontent.com/inference-sh/skills/refs/heads/main/cli-install.md)
 
 ```bash
-infsh login
+belt login
 
 # Transcribe audio
-infsh app run elevenlabs/stt --input '{"audio": "https://audio.mp3"}'
+belt app run elevenlabs/stt --input '{"audio": "https://audio.mp3"}'
 ```
 
 
@@ -37,13 +37,13 @@ infsh app run elevenlabs/stt --input '{"audio": "https://audio.mp3"}'
 ### Basic Transcription
 
 ```bash
-infsh app run elevenlabs/stt --input '{"audio": "https://meeting-recording.mp3"}'
+belt app run elevenlabs/stt --input '{"audio": "https://meeting-recording.mp3"}'
 ```
 
 ### With Speaker Identification
 
 ```bash
-infsh app run elevenlabs/stt --input '{
+belt app run elevenlabs/stt --input '{
   "audio": "https://meeting.mp3",
   "diarize": true
 }'
@@ -54,7 +54,7 @@ infsh app run elevenlabs/stt --input '{
 Detect laughter, applause, music, and other non-speech events:
 
 ```bash
-infsh app run elevenlabs/stt --input '{
+belt app run elevenlabs/stt --input '{
   "audio": "https://podcast.mp3",
   "tag_audio_events": true
 }'
@@ -63,7 +63,7 @@ infsh app run elevenlabs/stt --input '{
 ### Specify Language
 
 ```bash
-infsh app run elevenlabs/stt --input '{
+belt app run elevenlabs/stt --input '{
   "audio": "https://spanish-audio.mp3",
   "language_code": "spa"
 }'
@@ -72,7 +72,7 @@ infsh app run elevenlabs/stt --input '{
 ### Full Options
 
 ```bash
-infsh app run elevenlabs/stt --input '{
+belt app run elevenlabs/stt --input '{
   "audio": "https://conference.mp3",
   "model": "scribe_v2",
   "diarize": true,
@@ -86,7 +86,7 @@ infsh app run elevenlabs/stt --input '{
 Get precise word-level and character-level timestamps by aligning known text to audio. Useful for subtitles, lip-sync, and karaoke.
 
 ```bash
-infsh app run elevenlabs/forced-alignment --input '{
+belt app run elevenlabs/forced-alignment --input '{
   "audio": "https://narration.mp3",
   "text": "This is the exact text spoken in the audio file."
 }'
@@ -116,13 +116,13 @@ infsh app run elevenlabs/forced-alignment --input '{
 
 ```bash
 # 1. Transcribe video audio
-infsh app run elevenlabs/stt --input '{
+belt app run elevenlabs/stt --input '{
   "audio": "https://video.mp4",
   "diarize": true
 }' > transcript.json
 
 # 2. Use transcript for captions
-infsh app run infsh/caption-videos --input '{
+belt app run infsh/caption-videos --input '{
   "video_url": "https://video.mp4",
   "captions": "<transcript-from-step-1>"
 }'
@@ -157,4 +157,4 @@ npx skills add inference-sh/skills@speech-to-text
 npx skills add inference-sh/skills@infsh-cli
 ```
 
-Browse all audio apps: `infsh app list --category audio`
+Browse all audio apps: `belt app list --category audio`

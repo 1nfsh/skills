@@ -1,7 +1,7 @@
 ---
 name: press-release-writing
 description: "Press release writing in AP style with inverted pyramid structure. Covers formatting, datelines, quotes, boilerplates, and fact-checking. Use for: product launches, funding announcements, partnerships, company news, events. Triggers: press release, pr writing, media release, news release, announcement, product launch announcement, funding announcement, company news, media advisory, ap style, press statement, news wire"
-allowed-tools: Bash(infsh *)
+allowed-tools: Bash(belt *)
 ---
 
 # Press Release Writing
@@ -10,13 +10,13 @@ Write professional press releases with research and fact-checking via [inference
 
 ## Quick Start
 
-> Requires inference.sh CLI (`infsh`). [Install instructions](https://raw.githubusercontent.com/inference-sh/skills/refs/heads/main/cli-install.md)
+> Requires inference.sh CLI (`belt`). [Install instructions](https://raw.githubusercontent.com/inference-sh/skills/refs/heads/main/cli-install.md)
 
 ```bash
-infsh login
+belt login
 
 # Research for fact-checking and context
-infsh app run tavily/search-assistant --input '{
+belt app run tavily/search-assistant --input '{
   "query": "SaaS funding rounds Q1 2024 average series A size"
 }'
 ```
@@ -175,17 +175,17 @@ Most important information first. Each paragraph is less critical than the one b
 
 ```bash
 # Check market size claims
-infsh app run tavily/search-assistant --input '{
+belt app run tavily/search-assistant --input '{
   "query": "enterprise analytics market size 2024 2025 forecast"
 }'
 
 # Verify competitor claims
-infsh app run exa/search --input '{
+belt app run exa/search --input '{
   "query": "Company X competitors enterprise analytics market share"
 }'
 
 # Get industry statistics
-infsh app run exa/answer --input '{
+belt app run exa/answer --input '{
   "question": "How much time do engineering teams spend on reporting weekly?"
 }'
 ```
@@ -194,7 +194,7 @@ infsh app run exa/answer --input '{
 
 ```bash
 # Industry trends for the "why now" angle
-infsh app run tavily/search-assistant --input '{
+belt app run tavily/search-assistant --input '{
   "query": "AI automation enterprise reporting trends 2024"
 }'
 ```
@@ -285,5 +285,5 @@ npx skills add inference-sh/skills@web-search
 npx skills add inference-sh/skills@prompt-engineering
 ```
 
-Browse all apps: `infsh app list`
+Browse all apps: `belt app list`
 

@@ -1,7 +1,7 @@
 ---
 name: ai-avatar-video
 description: "Create AI avatar and talking head videos with OmniHuman, Fabric, PixVerse via inference.sh CLI. Models: OmniHuman 1.5, OmniHuman 1.0, Fabric 1.0, PixVerse Lipsync. Capabilities: audio-driven avatars, lipsync videos, talking head generation, virtual presenters. Use for: AI presenters, explainer videos, virtual influencers, dubbing, marketing videos. Triggers: ai avatar, talking head, lipsync, avatar video, virtual presenter, ai spokesperson, audio driven video, heygen alternative, synthesia alternative, talking avatar, lip sync, video avatar, ai presenter, digital human"
-allowed-tools: Bash(infsh *)
+allowed-tools: Bash(belt *)
 ---
 
 # AI Avatar & Talking Head Videos
@@ -12,13 +12,13 @@ Create AI avatars and talking head videos via [inference.sh](https://inference.s
 
 ## Quick Start
 
-> Requires inference.sh CLI (`infsh`). [Install instructions](https://raw.githubusercontent.com/inference-sh/skills/refs/heads/main/cli-install.md)
+> Requires inference.sh CLI (`belt`). [Install instructions](https://raw.githubusercontent.com/inference-sh/skills/refs/heads/main/cli-install.md)
 
 ```bash
-infsh login
+belt login
 
 # Create avatar video from image + audio
-infsh app run bytedance/omnihuman-1-5 --input '{
+belt app run bytedance/omnihuman-1-5 --input '{
   "image_url": "https://portrait.jpg",
   "audio_url": "https://speech.mp3"
 }'
@@ -37,9 +37,9 @@ infsh app run bytedance/omnihuman-1-5 --input '{
 ## Search Avatar Apps
 
 ```bash
-infsh app list --search "omnihuman"
-infsh app list --search "lipsync"
-infsh app list --search "fabric"
+belt app list --search "omnihuman"
+belt app list --search "lipsync"
+belt app list --search "fabric"
 ```
 
 ## Examples
@@ -47,7 +47,7 @@ infsh app list --search "fabric"
 ### OmniHuman 1.5 (Multi-Character)
 
 ```bash
-infsh app run bytedance/omnihuman-1-5 --input '{
+belt app run bytedance/omnihuman-1-5 --input '{
   "image_url": "https://portrait.jpg",
   "audio_url": "https://speech.mp3"
 }'
@@ -58,7 +58,7 @@ Supports specifying which character to drive in multi-person images.
 ### Fabric 1.0 (Image Talks)
 
 ```bash
-infsh app run falai/fabric-1-0 --input '{
+belt app run falai/fabric-1-0 --input '{
   "image_url": "https://face.jpg",
   "audio_url": "https://audio.mp3"
 }'
@@ -67,7 +67,7 @@ infsh app run falai/fabric-1-0 --input '{
 ### PixVerse Lipsync
 
 ```bash
-infsh app run falai/pixverse-lipsync --input '{
+belt app run falai/pixverse-lipsync --input '{
   "image_url": "https://portrait.jpg",
   "audio_url": "https://speech.mp3"
 }'
@@ -79,12 +79,12 @@ Generates highly realistic lipsync from any audio.
 
 ```bash
 # 1. Generate speech from text
-infsh app run infsh/kokoro-tts --input '{
+belt app run infsh/kokoro-tts --input '{
   "prompt": "Welcome to our product demo. Today I will show you..."
 }' > speech.json
 
 # 2. Create avatar video with the speech
-infsh app run bytedance/omnihuman-1-5 --input '{
+belt app run bytedance/omnihuman-1-5 --input '{
   "image_url": "https://presenter-photo.jpg",
   "audio_url": "<audio-url-from-step-1>"
 }'
@@ -94,15 +94,15 @@ infsh app run bytedance/omnihuman-1-5 --input '{
 
 ```bash
 # 1. Transcribe original video
-infsh app run infsh/fast-whisper-large-v3 --input '{"audio_url": "https://video.mp4"}' > transcript.json
+belt app run infsh/fast-whisper-large-v3 --input '{"audio_url": "https://video.mp4"}' > transcript.json
 
 # 2. Translate text (manually or with an LLM)
 
 # 3. Generate speech in new language
-infsh app run infsh/kokoro-tts --input '{"text": "<translated-text>"}' > new_speech.json
+belt app run infsh/kokoro-tts --input '{"text": "<translated-text>"}' > new_speech.json
 
 # 4. Lipsync the original video with new audio
-infsh app run infsh/latentsync-1-6 --input '{
+belt app run infsh/latentsync-1-6 --input '{
   "video_url": "https://original-video.mp4",
   "audio_url": "<new-audio-url>"
 }'
@@ -142,7 +142,7 @@ npx skills add inference-sh/skills@ai-video-generation
 npx skills add inference-sh/skills@ai-image-generation
 ```
 
-Browse all video apps: `infsh app list --category video`
+Browse all video apps: `belt app list --category video`
 
 ## Documentation
 

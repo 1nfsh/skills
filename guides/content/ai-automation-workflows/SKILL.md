@@ -1,7 +1,7 @@
 ---
 name: ai-automation-workflows
 description: "Build automated AI workflows combining multiple models and services. Patterns: batch processing, scheduled tasks, event-driven pipelines, agent loops. Tools: inference.sh CLI, bash scripting, Python SDK, webhook integration. Use for: content automation, data processing, monitoring, scheduled generation. Triggers: ai automation, workflow automation, batch processing, ai pipeline, automated content, scheduled ai, ai cron, ai batch job, automated generation, ai workflow, content at scale, automation script, ai orchestration"
-allowed-tools: Bash(infsh *)
+allowed-tools: Bash(belt *)
 ---
 
 # AI Automation Workflows
@@ -12,13 +12,13 @@ Build automated AI workflows via [inference.sh](https://inference.sh) CLI.
 
 ## Quick Start
 
-> Requires inference.sh CLI (`infsh`). [Install instructions](https://raw.githubusercontent.com/inference-sh/skills/refs/heads/main/cli-install.md)
+> Requires inference.sh CLI (`belt`). [Install instructions](https://raw.githubusercontent.com/inference-sh/skills/refs/heads/main/cli-install.md)
 
 ```bash
-infsh login
+belt login
 
 # Simple automation: Generate daily image
-infsh app run falai/flux-dev --input '{
+belt app run falai/flux-dev --input '{
   "prompt": "Inspirational quote background, minimalist design, date: '"$(date +%Y-%m-%d)"'"
 }'
 ```
@@ -43,7 +43,7 @@ PROMPTS=(
 
 for prompt in "${PROMPTS[@]}"; do
   echo "Generating: $prompt"
-  infsh app run falai/flux-dev --input "{
+  belt app run falai/flux-dev --input "{
     \"prompt\": \"$prompt, professional photography, 4K\"
   }" > "output_${prompt// /_}.json"
   sleep 2  # Rate limiting
@@ -62,25 +62,25 @@ TOPIC="AI in healthcare"
 
 # Step 1: Research
 echo "Researching..."
-RESEARCH=$(infsh app run tavily/search-assistant --input "{
+RESEARCH=$(belt app run tavily/search-assistant --input "{
   \"query\": \"$TOPIC latest developments\"
 }")
 
 # Step 2: Write article
 echo "Writing article..."
-ARTICLE=$(infsh app run openrouter/claude-sonnet-45 --input "{
+ARTICLE=$(belt app run openrouter/claude-sonnet-45 --input "{
   \"prompt\": \"Write a 500-word blog post about $TOPIC based on: $RESEARCH\"
 }")
 
 # Step 3: Generate image
 echo "Generating image..."
-IMAGE=$(infsh app run falai/flux-dev --input "{
+IMAGE=$(belt app run falai/flux-dev --input "{
   \"prompt\": \"Blog header image for article about $TOPIC, modern, professional\"
 }")
 
 # Step 4: Generate social post
 echo "Creating social post..."
-SOCIAL=$(infsh app run openrouter/claude-haiku-45 --input "{
+SOCIAL=$(belt app run openrouter/claude-haiku-45 --input "{
   \"prompt\": \"Write a Twitter thread (5 tweets) summarizing: $ARTICLE\"
 }")
 
@@ -96,13 +96,13 @@ Run multiple operations simultaneously.
 # parallel_generation.sh - Generate multiple assets in parallel
 
 # Start all jobs in background
-infsh app run falai/flux-dev --input '{"prompt": "Hero image..."}' > hero.json &
+belt app run falai/flux-dev --input '{"prompt": "Hero image..."}' > hero.json &
 PID1=$!
 
-infsh app run falai/flux-dev --input '{"prompt": "Feature image 1..."}' > feature1.json &
+belt app run falai/flux-dev --input '{"prompt": "Feature image 1..."}' > feature1.json &
 PID2=$!
 
-infsh app run falai/flux-dev --input '{"prompt": "Feature image 2..."}' > feature2.json &
+belt app run falai/flux-dev --input '{"prompt": "Feature image 2..."}' > feature2.json &
 PID3=$!
 
 # Wait for all to complete
@@ -121,7 +121,7 @@ Branch based on results.
 INPUT_TEXT="$1"
 
 # Analyze content
-ANALYSIS=$(infsh app run openrouter/claude-haiku-45 --input "{
+ANALYSIS=$(belt app run openrouter/claude-haiku-45 --input "{
   \"prompt\": \"Classify this text as: positive, negative, or neutral. Return only the classification.\n\n$INPUT_TEXT\"
 }")
 
@@ -129,11 +129,11 @@ ANALYSIS=$(infsh app run openrouter/claude-haiku-45 --input "{
 case "$ANALYSIS" in
   *positive*)
     echo "Generating celebration image..."
-    infsh app run falai/flux-dev --input '{"prompt": "Celebration, success, happy"}'
+    belt app run falai/flux-dev --input '{"prompt": "Celebration, success, happy"}'
     ;;
   *negative*)
     echo "Generating supportive message..."
-    infsh app run openrouter/claude-sonnet-45 --input "{
+    belt app run openrouter/claude-sonnet-45 --input "{
       \"prompt\": \"Write a supportive, encouraging response to: $INPUT_TEXT\"
     }"
     ;;
@@ -159,7 +159,7 @@ generate_with_retry() {
   while [ $attempt -le $max_attempts ]; do
     echo "Attempt $attempt..."
 
-    result=$(infsh app run falai/flux-dev --input "{\"prompt\": \"$prompt\"}" 2>&1)
+    result=$(belt app run falai/flux-dev --input "{\"prompt\": \"$prompt\"}" 2>&1)
 
     if [ $? -eq 0 ]; then
       echo "$result"
@@ -173,7 +173,7 @@ generate_with_retry() {
 
   # Fallback to different model
   echo "Falling back to alternative model..."
-  infsh app run google/imagen-3 --input "{\"prompt\": \"$prompt\"}"
+  belt app run google/imagen-3 --input "{\"prompt\": \"$prompt\"}"
 }
 
 generate_with_retry "A beautiful sunset over mountains"
@@ -208,17 +208,17 @@ OUTPUT_DIR="/output/$DATE"
 mkdir -p "$OUTPUT_DIR"
 
 # Generate daily quote image
-infsh app run falai/flux-dev --input '{
+belt app run falai/flux-dev --input '{
   "prompt": "Motivational quote background, minimalist, morning vibes"
 }' > "$OUTPUT_DIR/quote_image.json"
 
 # Generate daily tip
-infsh app run openrouter/claude-haiku-45 --input '{
+belt app run openrouter/claude-haiku-45 --input '{
   "prompt": "Give me one actionable productivity tip for today. Be concise."
 }' > "$OUTPUT_DIR/daily_tip.json"
 
 # Post to social (optional)
-# infsh app run twitter/post-tweet --input "{...}"
+# belt app run twitter/post-tweet --input "{...}"
 
 echo "Daily content generated: $DATE"
 ```
@@ -244,7 +244,7 @@ START_TIME=$(date +%s)
 
 # Run workflow
 log "Generating image..."
-RESULT=$(infsh app run falai/flux-dev --input '{"prompt": "test"}' 2>&1)
+RESULT=$(belt app run falai/flux-dev --input '{"prompt": "test"}' 2>&1)
 STATUS=$?
 
 if [ $STATUS -eq 0 ]; then
@@ -280,7 +280,7 @@ run_with_alert() {
   return $status
 }
 
-run_with_alert infsh app run falai/flux-dev --input '{"prompt": "test"}'
+run_with_alert belt app run falai/flux-dev --input '{"prompt": "test"}'
 ```
 
 ## Python SDK Automation
@@ -297,7 +297,7 @@ from pathlib import Path
 def run_infsh(app_id: str, input_data: dict) -> dict:
     """Run inference.sh app and return result."""
     result = subprocess.run(
-        ["infsh", "app", "run", app_id, "--input", json.dumps(input_data)],
+        ["belt", "app", "run", app_id, "--input", json.dumps(input_data)],
         capture_output=True,
         text=True
     )
@@ -345,12 +345,12 @@ for i in "${!DAYS[@]}"; do
   echo "Generating $DAY content about $TOPIC..."
 
   # Image
-  infsh app run falai/flux-dev --input "{
+  belt app run falai/flux-dev --input "{
     \"prompt\": \"$TOPIC theme, $DAY motivation, social media style\"
   }" > "content/${DAY}_image.json"
 
   # Caption
-  infsh app run openrouter/claude-haiku-45 --input "{
+  belt app run openrouter/claude-haiku-45 --input "{
     \"prompt\": \"Write a $DAY motivation post about $TOPIC. Include hashtags.\"
   }" > "content/${DAY}_caption.json"
 done
@@ -369,7 +369,7 @@ for file in "$INPUT_DIR"/*.txt; do
   filename=$(basename "$file" .txt)
 
   # Analyze content
-  infsh app run openrouter/claude-haiku-45 --input "{
+  belt app run openrouter/claude-haiku-45 --input "{
     \"prompt\": \"Analyze this data and provide key insights in JSON format: $(cat $file)\"
   }" > "$OUTPUT_DIR/${filename}_analysis.json"
 
@@ -402,5 +402,5 @@ npx skills add inference-sh/skills@ai-social-media-content
 npx skills add inference-sh/skills@infsh-cli
 ```
 
-Browse all apps: `infsh app list`
+Browse all apps: `belt app list`
 

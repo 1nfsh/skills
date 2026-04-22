@@ -1,7 +1,7 @@
 ---
 name: flux-image
 description: "Generate images with FLUX models (Black Forest Labs) via inference.sh CLI. Models: FLUX Dev LoRA, FLUX.2 Klein LoRA with custom style adaptation. Capabilities: text-to-image, image-to-image, LoRA fine-tuning, custom styles. Triggers: flux, flux.2, flux dev, flux schnell, flux pro, black forest labs, flux image, flux ai, flux model, flux lora"
-allowed-tools: Bash(infsh *)
+allowed-tools: Bash(belt *)
 ---
 
 # FLUX Image Generation
@@ -12,12 +12,12 @@ Generate images with FLUX models via [inference.sh](https://inference.sh) CLI.
 
 ## Quick Start
 
-> Requires inference.sh CLI (`infsh`). [Install instructions](https://raw.githubusercontent.com/inference-sh/skills/refs/heads/main/cli-install.md)
+> Requires inference.sh CLI (`belt`). [Install instructions](https://raw.githubusercontent.com/inference-sh/skills/refs/heads/main/cli-install.md)
 
 ```bash
-infsh login
+belt login
 
-infsh app run falai/flux-dev-lora --input '{"prompt": "a futuristic city at night"}'
+belt app run falai/flux-dev-lora --input '{"prompt": "a futuristic city at night"}'
 ```
 
 
@@ -36,7 +36,7 @@ infsh app run falai/flux-dev-lora --input '{"prompt": "a futuristic city at nigh
 ### High-Quality Generation
 
 ```bash
-infsh app run falai/flux-dev-lora --input '{
+belt app run falai/flux-dev-lora --input '{
   "prompt": "professional product photo of headphones, studio lighting, white background"
 }'
 ```
@@ -44,22 +44,22 @@ infsh app run falai/flux-dev-lora --input '{
 ### Fast Generation (Klein)
 
 ```bash
-infsh app run falai/flux-2-klein-lora --input '{"prompt": "abstract art, colorful"}'
+belt app run falai/flux-2-klein-lora --input '{"prompt": "abstract art, colorful"}'
 ```
 
 ### With LoRA Custom Styles
 
 ```bash
-infsh app sample falai/flux-dev-lora --save input.json
+belt app sample falai/flux-dev-lora --save input.json
 
 # Edit to add lora_url for custom style
-infsh app run falai/flux-dev-lora --input input.json
+belt app run falai/flux-dev-lora --input input.json
 ```
 
 ### Image-to-Image
 
 ```bash
-infsh app run falai/flux-dev-lora --input '{
+belt app run falai/flux-dev-lora --input '{
   "prompt": "transform to watercolor style",
   "image_url": "https://your-image.jpg"
 }'
@@ -69,10 +69,10 @@ infsh app run falai/flux-dev-lora --input '{
 
 ```bash
 # Image editing with natural language
-infsh app run falai/reve --input '{"prompt": "change background to beach"}'
+belt app run falai/reve --input '{"prompt": "change background to beach"}'
 
 # Upscaling
-infsh app run falai/topaz-image-upscaler --input '{"image_url": "https://..."}'
+belt app run falai/topaz-image-upscaler --input '{"image_url": "https://..."}'
 ```
 
 ## Related Skills
@@ -91,7 +91,7 @@ npx skills add inference-sh/skills@ai-image-generation
 npx skills add inference-sh/skills@image-upscaling
 ```
 
-Browse all apps: `infsh app list`
+Browse all apps: `belt app list`
 
 ## Documentation
 

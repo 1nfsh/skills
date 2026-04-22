@@ -1,7 +1,7 @@
 ---
 name: elevenlabs-music
 description: "ElevenLabs AI music generation - create original music from text prompts via inference.sh CLI. Capabilities: text-to-music, custom duration up to 10 minutes, genre/mood/instrument control, royalty-free commercial use. Use for: background music, soundtracks, jingles, podcasts, video scores, game audio. Triggers: elevenlabs music, eleven labs music, ai music, generate music, music generation, compose music, ai composer, create song, soundtrack, background music, jingle, elevenlabs compose, music ai"
-allowed-tools: Bash(infsh *)
+allowed-tools: Bash(belt *)
 ---
 
 # ElevenLabs Music Generation
@@ -12,13 +12,13 @@ Generate original music from text prompts via [inference.sh](https://inference.s
 
 ## Quick Start
 
-> Requires inference.sh CLI (`infsh`). [Install instructions](https://raw.githubusercontent.com/inference-sh/skills/refs/heads/main/cli-install.md)
+> Requires inference.sh CLI (`belt`). [Install instructions](https://raw.githubusercontent.com/inference-sh/skills/refs/heads/main/cli-install.md)
 
 ```bash
-infsh login
+belt login
 
 # Generate music
-infsh app run elevenlabs/music --input '{"prompt": "Upbeat electronic dance track with driving synths"}'
+belt app run elevenlabs/music --input '{"prompt": "Upbeat electronic dance track with driving synths"}'
 ```
 
 
@@ -35,13 +35,13 @@ infsh app run elevenlabs/music --input '{"prompt": "Upbeat electronic dance trac
 
 ```bash
 # Lo-fi study beats
-infsh app run elevenlabs/music --input '{
+belt app run elevenlabs/music --input '{
   "prompt": "Lo-fi hip hop beat, chill study music, vinyl crackle, mellow piano",
   "duration_seconds": 120
 }'
 
 # Corporate background
-infsh app run elevenlabs/music --input '{
+belt app run elevenlabs/music --input '{
   "prompt": "Light corporate background music, positive, motivational, clean",
   "duration_seconds": 60
 }'
@@ -51,13 +51,13 @@ infsh app run elevenlabs/music --input '{
 
 ```bash
 # Epic trailer
-infsh app run elevenlabs/music --input '{
+belt app run elevenlabs/music --input '{
   "prompt": "Epic cinematic orchestral score, dramatic build-up, brass and strings, trailer music",
   "duration_seconds": 45
 }'
 
 # Suspense
-infsh app run elevenlabs/music --input '{
+belt app run elevenlabs/music --input '{
   "prompt": "Dark suspenseful score, tension building, minimal piano, horror atmosphere",
   "duration_seconds": 60
 }'
@@ -67,19 +67,19 @@ infsh app run elevenlabs/music --input '{
 
 ```bash
 # Jazz
-infsh app run elevenlabs/music --input '{
+belt app run elevenlabs/music --input '{
   "prompt": "Smooth jazz quartet, saxophone lead, walking bass, brushed drums",
   "duration_seconds": 90
 }'
 
 # Electronic
-infsh app run elevenlabs/music --input '{
+belt app run elevenlabs/music --input '{
   "prompt": "Techno beat, 128 BPM, driving bass, atmospheric synths, club music",
   "duration_seconds": 120
 }'
 
 # Acoustic
-infsh app run elevenlabs/music --input '{
+belt app run elevenlabs/music --input '{
   "prompt": "Acoustic guitar folk song, fingerpicking, warm and intimate",
   "duration_seconds": 60
 }'
@@ -89,19 +89,19 @@ infsh app run elevenlabs/music --input '{
 
 ```bash
 # Podcast intro (10 seconds)
-infsh app run elevenlabs/music --input '{
+belt app run elevenlabs/music --input '{
   "prompt": "Podcast intro jingle, professional, tech-themed, catchy",
   "duration_seconds": 10
 }'
 
 # Social media clip
-infsh app run elevenlabs/music --input '{
+belt app run elevenlabs/music --input '{
   "prompt": "Trendy upbeat pop, social media vibe, energetic, youthful",
   "duration_seconds": 15
 }'
 
 # Notification sound
-infsh app run elevenlabs/music --input '{
+belt app run elevenlabs/music --input '{
   "prompt": "Short positive notification melody, clean, satisfying",
   "duration_seconds": 5
 }'
@@ -111,19 +111,19 @@ infsh app run elevenlabs/music --input '{
 
 ```bash
 # Battle theme
-infsh app run elevenlabs/music --input '{
+belt app run elevenlabs/music --input '{
   "prompt": "Intense battle music, fast tempo, orchestral with electric guitar, boss fight",
   "duration_seconds": 120
 }'
 
 # Exploration theme
-infsh app run elevenlabs/music --input '{
+belt app run elevenlabs/music --input '{
   "prompt": "Peaceful exploration music, fantasy RPG, harp and flute, magical atmosphere",
   "duration_seconds": 180
 }'
 
 # Menu music
-infsh app run elevenlabs/music --input '{
+belt app run elevenlabs/music --input '{
   "prompt": "Ambient menu screen music, sci-fi, ethereal synths, space theme",
   "duration_seconds": 60
 }'
@@ -145,19 +145,19 @@ infsh app run elevenlabs/music --input '{
 
 ```bash
 # 1. Generate background music
-infsh app run elevenlabs/music --input '{
+belt app run elevenlabs/music --input '{
   "prompt": "Soft ambient background music for narration, non-intrusive",
   "duration_seconds": 60
 }' > music.json
 
 # 2. Generate voiceover
-infsh app run elevenlabs/tts --input '{
+belt app run elevenlabs/tts --input '{
   "text": "Welcome to our product tour. Let me show you what we have built.",
   "voice": "george"
 }' > voice.json
 
 # 3. Merge together
-infsh app run infsh/media-merger --input '{
+belt app run infsh/media-merger --input '{
   "media": ["<music-url>", "<voice-url>"]
 }'
 ```
@@ -188,4 +188,4 @@ npx skills add inference-sh/skills@ai-music-generation
 npx skills add inference-sh/skills@infsh-cli
 ```
 
-Browse all audio apps: `infsh app list --category audio`
+Browse all audio apps: `belt app list --category audio`

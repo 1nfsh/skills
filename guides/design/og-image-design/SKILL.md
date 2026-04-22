@@ -1,7 +1,7 @@
 ---
 name: og-image-design
 description: "Open Graph and social sharing image design with platform specs, text placement, and branding. Covers OG meta tags, Twitter cards, LinkedIn previews, and dynamic generation. Use for: social sharing images, blog thumbnails, link previews, social cards. Triggers: og image, open graph, social sharing image, twitter card, social card, link preview image, og meta, sharing preview, social thumbnail, meta image, og:image, twitter:image, linkedin preview"
-allowed-tools: Bash(infsh *)
+allowed-tools: Bash(belt *)
 ---
 
 # OG Image Design
@@ -10,13 +10,13 @@ Create social sharing images (Open Graph) via [inference.sh](https://inference.s
 
 ## Quick Start
 
-> Requires inference.sh CLI (`infsh`). [Install instructions](https://raw.githubusercontent.com/inference-sh/skills/refs/heads/main/cli-install.md)
+> Requires inference.sh CLI (`belt`). [Install instructions](https://raw.githubusercontent.com/inference-sh/skills/refs/heads/main/cli-install.md)
 
 ```bash
-infsh login
+belt login
 
 # Generate an OG image with HTML-to-image
-infsh app run infsh/html-to-image --input '{
+belt app run infsh/html-to-image --input '{
   "html": "<div style=\"width:1200px;height:630px;background:linear-gradient(135deg,#1a1a2e,#16213e);display:flex;align-items:center;padding:60px;font-family:system-ui;color:white\"><div><h1 style=\"font-size:56px;margin:0;line-height:1.2\">How We Reduced Build Times by 80%</h1><p style=\"font-size:24px;opacity:0.8;margin-top:20px\">engineering.yourcompany.com</p></div></div>"
 }'
 ```
@@ -102,7 +102,7 @@ infsh app run infsh/html-to-image --input '{
 ### Blog Post
 
 ```bash
-infsh app run infsh/html-to-image --input '{
+belt app run infsh/html-to-image --input '{
   "html": "<div style=\"width:1200px;height:630px;background:linear-gradient(135deg,#667eea,#764ba2);display:flex;align-items:center;padding:60px;font-family:system-ui,sans-serif;color:white\"><div style=\"flex:1\"><p style=\"font-size:18px;text-transform:uppercase;letter-spacing:2px;opacity:0.8;margin:0\">Engineering Blog</p><h1 style=\"font-size:52px;margin:16px 0 0;line-height:1.2;font-weight:800\">How We Reduced Build Times by 80%</h1><p style=\"font-size:22px;opacity:0.9;margin-top:16px\">A deep dive into our CI/CD optimization</p></div></div>"
 }'
 ```
@@ -110,7 +110,7 @@ infsh app run infsh/html-to-image --input '{
 ### Product/Launch Announcement
 
 ```bash
-infsh app run infsh/html-to-image --input '{
+belt app run infsh/html-to-image --input '{
   "html": "<div style=\"width:1200px;height:630px;background:#0f0f0f;display:flex;align-items:center;justify-content:center;font-family:system-ui;color:white;text-align:center\"><div><p style=\"font-size:20px;color:#22c55e;text-transform:uppercase;letter-spacing:3px\">Now Available</p><h1 style=\"font-size:64px;margin:12px 0;font-weight:900\">DataFlow 2.0</h1><p style=\"font-size:24px;opacity:0.7\">Automated reports. Zero configuration.</p></div></div>"
 }'
 ```
@@ -118,7 +118,7 @@ infsh app run infsh/html-to-image --input '{
 ### Tutorial/How-To
 
 ```bash
-infsh app run infsh/html-to-image --input '{
+belt app run infsh/html-to-image --input '{
   "html": "<div style=\"width:1200px;height:630px;background:linear-gradient(to right,#1a1a2e,#16213e);display:flex;align-items:center;padding:60px;font-family:system-ui;color:white\"><div><div style=\"display:inline-block;background:#e74c3c;color:white;padding:8px 16px;border-radius:4px;font-size:16px;font-weight:bold;margin-bottom:16px\">TUTORIAL</div><h1 style=\"font-size:48px;margin:0;line-height:1.2\">Build a REST API in 10 Minutes with Node.js</h1><p style=\"font-size:20px;opacity:0.7;margin-top:16px\">Step-by-step guide with code examples</p></div></div>"
 }'
 ```
@@ -127,7 +127,7 @@ infsh app run infsh/html-to-image --input '{
 
 ```bash
 # When you want a striking visual instead of text-based
-infsh app run falai/flux-dev-lora --input '{
+belt app run falai/flux-dev-lora --input '{
   "prompt": "clean professional social sharing card, dark gradient background, abstract geometric shapes, modern tech aesthetic, minimal, no text, 1200x630 equivalent aspect ratio",
   "width": 1200,
   "height": 630
@@ -188,7 +188,7 @@ For a blog or site with many pages, create a template system:
 
 ```bash
 # Research OG debugging tools
-infsh app run tavily/search-assistant --input '{
+belt app run tavily/search-assistant --input '{
   "query": "open graph image debugger preview tool test og:image"
 }'
 ```
@@ -215,5 +215,5 @@ npx skills add inference-sh/skills@landing-page-design
 npx skills add inference-sh/skills@prompt-engineering
 ```
 
-Browse all apps: `infsh app list`
+Browse all apps: `belt app list`
 

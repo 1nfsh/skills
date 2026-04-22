@@ -1,7 +1,7 @@
 ---
 name: pitch-deck-visuals
 description: "Investor pitch deck structure with slide-by-slide framework, visual design rules, and data presentation. Covers the 12-slide framework, chart types, team slides, and common investor turn-offs. Use for: fundraising decks, investor presentations, startup pitch, demo day, grant proposals. Triggers: pitch deck, investor deck, startup pitch, fundraising deck, demo day, pitch presentation, investor presentation, seed deck, series a deck, pitch slides, startup presentation, vc pitch, investor meeting"
-allowed-tools: Bash(infsh *)
+allowed-tools: Bash(belt *)
 ---
 
 # Pitch Deck Visuals
@@ -10,13 +10,13 @@ Create investor-ready pitch deck visuals via [inference.sh](https://inference.sh
 
 ## Quick Start
 
-> Requires inference.sh CLI (`infsh`). [Install instructions](https://raw.githubusercontent.com/inference-sh/skills/refs/heads/main/cli-install.md)
+> Requires inference.sh CLI (`belt`). [Install instructions](https://raw.githubusercontent.com/inference-sh/skills/refs/heads/main/cli-install.md)
 
 ```bash
-infsh login
+belt login
 
 # Generate a slide background
-infsh app run infsh/html-to-image --input '{
+belt app run infsh/html-to-image --input '{
   "html": "<div style=\"width:1920px;height:1080px;background:linear-gradient(135deg,#0f0f23,#1a1a3e);display:flex;align-items:center;padding:100px;font-family:system-ui;color:white\"><div><p style=\"font-size:24px;color:#818cf8;text-transform:uppercase;letter-spacing:3px\">The Problem</p><h1 style=\"font-size:72px;margin:16px 0;font-weight:800;line-height:1.1\">Teams waste 12 hours/week on manual reporting</h1><p style=\"font-size:28px;opacity:0.7\">Source: Forrester Research, 2024</p></div></div>"
 }'
 ```
@@ -86,7 +86,7 @@ If you need more text, you need more slides.
 ### 1. Title Slide
 
 ```bash
-infsh app run infsh/html-to-image --input '{
+belt app run infsh/html-to-image --input '{
   "html": "<div style=\"width:1920px;height:1080px;background:#0f0f23;display:flex;align-items:center;justify-content:center;font-family:system-ui;color:white;text-align:center\"><div><h1 style=\"font-size:80px;font-weight:900;margin:0\">DataFlow</h1><p style=\"font-size:32px;opacity:0.7;margin-top:16px\">Automated reporting for data teams</p><p style=\"font-size:22px;opacity:0.5;margin-top:40px\">Seed Round — Q1 2025</p></div></div>"
 }'
 ```
@@ -96,7 +96,7 @@ infsh app run infsh/html-to-image --input '{
 **One big number + one sentence.**
 
 ```bash
-infsh app run infsh/html-to-image --input '{
+belt app run infsh/html-to-image --input '{
   "html": "<div style=\"width:1920px;height:1080px;background:#0f0f23;display:flex;align-items:center;padding:100px;font-family:system-ui;color:white\"><div><p style=\"font-size:24px;color:#f59e0b;text-transform:uppercase;letter-spacing:3px;margin:0\">The Problem</p><h1 style=\"font-size:144px;margin:20px 0;font-weight:900;color:#f59e0b\">12 hrs/week</h1><p style=\"font-size:36px;opacity:0.8;line-height:1.4\">The average data analyst spends 12 hours per week<br>building reports manually</p><p style=\"font-size:20px;opacity:0.4;margin-top:30px\">Source: Forrester Research, 2024</p></div></div>"
 }'
 ```
@@ -106,7 +106,7 @@ infsh app run infsh/html-to-image --input '{
 Use concentric circles, not pie charts:
 
 ```bash
-infsh app run infsh/python-executor --input '{
+belt app run infsh/python-executor --input '{
   "code": "import matplotlib.pyplot as plt\nimport matplotlib\nmatplotlib.use(\"Agg\")\n\nfig, ax = plt.subplots(figsize=(19.2, 10.8))\nfig.patch.set_facecolor(\"#0f0f23\")\nax.set_facecolor(\"#0f0f23\")\n\ncircles = [\n    (0, 0, 4.0, \"#1e1e4a\", \"TAM\\n$50B\", 40),\n    (0, 0, 2.8, \"#2a2a5a\", \"SAM\\n$8B\", 32),\n    (0, 0, 1.4, \"#818cf8\", \"SOM\\n$800M\", 28)\n]\n\nfor x, y, r, color, label, fontsize in circles:\n    circle = plt.Circle((x, y), r, color=color, ec=\"#333366\", linewidth=2)\n    ax.add_patch(circle)\n    ax.text(x, y, label, ha=\"center\", va=\"center\", fontsize=fontsize, color=\"white\", fontweight=\"bold\")\n\nax.set_xlim(-5, 5)\nax.set_ylim(-5, 5)\nax.set_aspect(\"equal\")\nax.axis(\"off\")\nax.text(0, 4.8, \"Market Opportunity\", ha=\"center\", fontsize=36, color=\"white\", fontweight=\"bold\")\nplt.tight_layout()\nplt.savefig(\"market-size.png\", dpi=100, facecolor=\"#0f0f23\")\nprint(\"Saved\")"
 }'
 ```
@@ -116,7 +116,7 @@ infsh app run infsh/python-executor --input '{
 **Show growth, not just numbers.** Up-and-to-the-right chart.
 
 ```bash
-infsh app run infsh/python-executor --input '{
+belt app run infsh/python-executor --input '{
   "code": "import matplotlib.pyplot as plt\nimport matplotlib\nmatplotlib.use(\"Agg\")\n\nfig, ax = plt.subplots(figsize=(19.2, 10.8))\nfig.patch.set_facecolor(\"#0f0f23\")\nax.set_facecolor(\"#0f0f23\")\n\nmonths = [\"Jan\", \"Feb\", \"Mar\", \"Apr\", \"May\", \"Jun\", \"Jul\", \"Aug\"]\nrevenue = [8, 12, 18, 28, 42, 58, 82, 120]\n\nax.fill_between(range(len(months)), revenue, alpha=0.3, color=\"#818cf8\")\nax.plot(range(len(months)), revenue, color=\"#818cf8\", linewidth=4, marker=\"o\", markersize=10)\nax.set_xticks(range(len(months)))\nax.set_xticklabels(months, color=\"white\", fontsize=18)\nax.tick_params(colors=\"white\", labelsize=16)\nax.set_ylabel(\"MRR ($K)\", color=\"white\", fontsize=20)\nax.spines[\"top\"].set_visible(False)\nax.spines[\"right\"].set_visible(False)\nax.spines[\"bottom\"].set_color(\"#333\")\nax.spines[\"left\"].set_color(\"#333\")\nax.set_title(\"Monthly Recurring Revenue\", color=\"white\", fontsize=32, fontweight=\"bold\", pad=20)\nax.text(7, 120, \"$120K MRR\", color=\"#22c55e\", fontsize=28, fontweight=\"bold\", ha=\"center\", va=\"bottom\")\nax.text(7, 112, \"15x growth in 8 months\", color=\"#22c55e\", fontsize=18, ha=\"center\")\nplt.tight_layout()\nplt.savefig(\"traction.png\", dpi=100, facecolor=\"#0f0f23\")\nprint(\"Saved\")"
 }'
 ```
@@ -127,7 +127,7 @@ infsh app run infsh/python-executor --input '{
 
 ```bash
 # See the competitor-teardown skill for positioning map generation
-infsh app run infsh/python-executor --input '{
+belt app run infsh/python-executor --input '{
   "code": "import matplotlib.pyplot as plt\nimport matplotlib\nmatplotlib.use(\"Agg\")\n\nfig, ax = plt.subplots(figsize=(19.2, 10.8))\nfig.patch.set_facecolor(\"#0f0f23\")\nax.set_facecolor(\"#0f0f23\")\n\ncompetitors = {\n    \"Us\": (0.6, 0.7, \"#22c55e\", 300),\n    \"Legacy Tool\": (-0.5, 0.5, \"#6366f1\", 200),\n    \"Startup X\": (0.3, -0.4, \"#6366f1\", 200),\n    \"Manual Process\": (-0.6, -0.6, \"#475569\", 150)\n}\n\nfor name, (x, y, color, size) in competitors.items():\n    ax.scatter(x, y, s=size*5, c=color, zorder=5, alpha=0.8)\n    weight = \"bold\" if name == \"Us\" else \"normal\"\n    ax.annotate(name, (x, y), textcoords=\"offset points\", xytext=(15, 15), fontsize=22, color=\"white\", fontweight=weight)\n\nax.axhline(y=0, color=\"#333\", linewidth=1)\nax.axvline(x=0, color=\"#333\", linewidth=1)\nax.set_xlim(-1, 1)\nax.set_ylim(-1, 1)\nax.set_xlabel(\"Manual ← → Automated\", fontsize=22, color=\"white\", labelpad=15)\nax.set_ylabel(\"Basic ← → Advanced\", fontsize=22, color=\"white\", labelpad=15)\nax.set_title(\"Competitive Landscape\", fontsize=32, color=\"white\", fontweight=\"bold\", pad=20)\nax.tick_params(colors=\"#0f0f23\")\nfor spine in ax.spines.values():\n    spine.set_visible(False)\nplt.tight_layout()\nplt.savefig(\"competition.png\", dpi=100, facecolor=\"#0f0f23\")\nprint(\"Saved\")"
 }'
 ```
@@ -136,7 +136,7 @@ infsh app run infsh/python-executor --input '{
 
 ```bash
 # Generate professional team headshots/avatars
-infsh app run falai/flux-dev-lora --input '{
+belt app run falai/flux-dev-lora --input '{
   "prompt": "professional headshot portrait, person in business casual attire, clean neutral background, warm studio lighting, confident friendly expression, corporate photography style",
   "width": 512,
   "height": 512
@@ -209,5 +209,5 @@ npx skills add inference-sh/skills@data-visualization
 npx skills add inference-sh/skills@ai-image-generation
 ```
 
-Browse all apps: `infsh app list`
+Browse all apps: `belt app list`
 

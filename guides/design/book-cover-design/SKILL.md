@@ -1,7 +1,7 @@
 ---
 name: book-cover-design
 description: "Book cover design with genre-specific conventions, typography rules, and AI image generation. Covers fiction and non-fiction genres, sizing, thumbnail testing, and iteration workflows. Use for: self-publishing, ebook covers, print covers, audiobook covers, cover mockups. Triggers: book cover, cover design, ebook cover, book art, novel cover, self publishing cover, kindle cover, audiobook cover, book jacket, cover illustration, fiction cover, nonfiction cover"
-allowed-tools: Bash(infsh *)
+allowed-tools: Bash(belt *)
 ---
 
 # Book Cover Design
@@ -10,13 +10,13 @@ Create genre-appropriate book covers with AI image generation via [inference.sh]
 
 ## Quick Start
 
-> Requires inference.sh CLI (`infsh`). [Install instructions](https://raw.githubusercontent.com/inference-sh/skills/refs/heads/main/cli-install.md)
+> Requires inference.sh CLI (`belt`). [Install instructions](https://raw.githubusercontent.com/inference-sh/skills/refs/heads/main/cli-install.md)
 
 ```bash
-infsh login
+belt login
 
 # Generate a thriller cover concept
-infsh app run falai/flux-dev-lora --input '{
+belt app run falai/flux-dev-lora --input '{
   "prompt": "dark moody book cover art, lone figure standing at end of a rain-soaked alley, dramatic chiaroscuro lighting, noir atmosphere, cinematic, high contrast shadows",
   "width": 832,
   "height": 1248
@@ -107,7 +107,7 @@ Your cover will be seen at **80x120px** on Amazon, 60x90px in search results, an
 
 ### Thriller
 ```bash
-infsh app run falai/flux-dev-lora --input '{
+belt app run falai/flux-dev-lora --input '{
   "prompt": "dark cinematic book cover scene, silhouette of a person standing before a foggy bridge at night, single streetlamp casting long shadows, noir atmosphere, high contrast, desaturated blue tint, dramatic tension",
   "width": 832,
   "height": 1248
@@ -116,7 +116,7 @@ infsh app run falai/flux-dev-lora --input '{
 
 ### Romance
 ```bash
-infsh app run bytedance/seedream-4-5 --input '{
+belt app run bytedance/seedream-4-5 --input '{
   "prompt": "romantic soft-focus scene, couple silhouetted against golden sunset on a beach, warm pink and gold tones, bokeh lights, dreamy atmosphere, soft pastel sky, intimate mood",
   "size": "2K"
 }'
@@ -124,7 +124,7 @@ infsh app run bytedance/seedream-4-5 --input '{
 
 ### Sci-Fi
 ```bash
-infsh app run falai/flux-dev-lora --input '{
+belt app run falai/flux-dev-lora --input '{
   "prompt": "science fiction book cover art, massive space station orbiting a ringed planet, deep blue and teal color palette, stars and nebula background, hard sci-fi aesthetic, cinematic scale, clean geometric architecture",
   "width": 832,
   "height": 1248
@@ -133,7 +133,7 @@ infsh app run falai/flux-dev-lora --input '{
 
 ### Fantasy
 ```bash
-infsh app run xai/grok-imagine-image-pro --input '{
+belt app run xai/grok-imagine-image-pro --input '{
   "prompt": "epic fantasy book cover illustration, ancient stone castle on a cliff overlooking a misty valley, magical aurora in the sky, rich emerald and gold colors, detailed environment, sense of wonder and adventure",
   "aspect_ratio": "2:3"
 }'
@@ -141,7 +141,7 @@ infsh app run xai/grok-imagine-image-pro --input '{
 
 ### Non-Fiction / Business
 ```bash
-infsh app run falai/flux-dev-lora --input '{
+belt app run falai/flux-dev-lora --input '{
   "prompt": "minimal abstract book cover background, clean gradient from deep navy to white, subtle geometric pattern, professional and modern, negative space, corporate aesthetic",
   "width": 832,
   "height": 1248
@@ -168,18 +168,18 @@ infsh app run falai/flux-dev-lora --input '{
 
 ```bash
 # 1. Generate 5+ concepts across different models
-infsh app run falai/flux-dev-lora --input '{"prompt": "...", "width": 832, "height": 1248}' --no-wait
-infsh app run bytedance/seedream-4-5 --input '{"prompt": "..."}' --no-wait
-infsh app run xai/grok-imagine-image-pro --input '{"prompt": "...", "aspect_ratio": "2:3"}' --no-wait
+belt app run falai/flux-dev-lora --input '{"prompt": "...", "width": 832, "height": 1248}' --no-wait
+belt app run bytedance/seedream-4-5 --input '{"prompt": "..."}' --no-wait
+belt app run xai/grok-imagine-image-pro --input '{"prompt": "...", "aspect_ratio": "2:3"}' --no-wait
 
 # 2. Refine best concept with image-to-image editing
-infsh app run bytedance/seededit-3-0-i2i --input '{
+belt app run bytedance/seededit-3-0-i2i --input '{
   "prompt": "make the sky more dramatic with storm clouds, increase contrast",
   "image": "path/to/best-concept.png"
 }'
 
 # 3. Upscale for print quality
-infsh app run falai/topaz-image-upscaler --input '{
+belt app run falai/topaz-image-upscaler --input '{
   "image": "path/to/final-cover.png",
   "scale": 4
 }'
@@ -215,5 +215,5 @@ npx skills add inference-sh/skills@prompt-engineering
 npx skills add inference-sh/skills@image-upscaling
 ```
 
-Browse all apps: `infsh app list`
+Browse all apps: `belt app list`
 

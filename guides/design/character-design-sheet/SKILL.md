@@ -1,7 +1,7 @@
 ---
 name: character-design-sheet
 description: "Character consistency across AI-generated images with reference sheets and LoRA techniques. Covers turnaround views, expression sheets, color palettes, and style consistency tricks. Use for: character design, game art, illustration, animation, comics, visual novels. Triggers: character design, character sheet, character consistency, character reference, turnaround sheet, expression sheet, character art, consistent character, character concept, reference sheet, character creation, oc design, character bible"
-allowed-tools: Bash(infsh *)
+allowed-tools: Bash(belt *)
 ---
 
 # Character Design Sheet
@@ -10,13 +10,13 @@ Create consistent characters across multiple AI-generated images via [inference.
 
 ## Quick Start
 
-> Requires inference.sh CLI (`infsh`). [Install instructions](https://raw.githubusercontent.com/inference-sh/skills/refs/heads/main/cli-install.md)
+> Requires inference.sh CLI (`belt`). [Install instructions](https://raw.githubusercontent.com/inference-sh/skills/refs/heads/main/cli-install.md)
 
 ```bash
-infsh login
+belt login
 
 # Generate a character concept
-infsh app run falai/flux-dev-lora --input '{
+belt app run falai/flux-dev-lora --input '{
   "prompt": "character design reference sheet, front view of a young woman with short red hair, green eyes, wearing a blue jacket and white t-shirt, full body, white background, clean lines, concept art style, character turnaround",
   "width": 1024,
   "height": 1024
@@ -55,35 +55,35 @@ Shows the character from multiple angles:
 
 ```bash
 # Generate front view
-infsh app run falai/flux-dev-lora --input '{
+belt app run falai/flux-dev-lora --input '{
   "prompt": "character design, front view, young woman with short asymmetric red hair, bright green eyes, wearing navy blue bomber jacket over white graphic tee, dark jeans, red sneakers, standing in neutral pose, full body, clean white background, concept art, sharp details",
   "width": 768,
   "height": 1024
 }' --no-wait
 
 # Generate 3/4 view (same description)
-infsh app run falai/flux-dev-lora --input '{
+belt app run falai/flux-dev-lora --input '{
   "prompt": "character design, three-quarter view, young woman with short asymmetric red hair, bright green eyes, wearing navy blue bomber jacket over white graphic tee, dark jeans, red sneakers, standing, full body, clean white background, concept art, sharp details",
   "width": 768,
   "height": 1024
 }' --no-wait
 
 # Generate side view
-infsh app run falai/flux-dev-lora --input '{
+belt app run falai/flux-dev-lora --input '{
   "prompt": "character design, side profile view, young woman with short asymmetric red hair, bright green eyes, wearing navy blue bomber jacket over white graphic tee, dark jeans, red sneakers, standing, full body, clean white background, concept art, sharp details",
   "width": 768,
   "height": 1024
 }' --no-wait
 
 # Generate back view
-infsh app run falai/flux-dev-lora --input '{
+belt app run falai/flux-dev-lora --input '{
   "prompt": "character design, back view, young woman with short asymmetric red hair, wearing navy blue bomber jacket over white graphic tee, dark jeans, red sneakers, standing, full body, clean white background, concept art, sharp details",
   "width": 768,
   "height": 1024
 }' --no-wait
 
 # Stitch into reference sheet
-infsh app run infsh/stitch-images --input '{
+belt app run infsh/stitch-images --input '{
   "images": ["front.png", "three-quarter.png", "side.png", "back.png"],
   "direction": "horizontal"
 }'
@@ -107,21 +107,21 @@ Minimum 6 expressions: neutral, happy, angry, sad, surprised, thinking.
 
 ```bash
 # Neutral
-infsh app run falai/flux-dev-lora --input '{
+belt app run falai/flux-dev-lora --input '{
   "prompt": "character portrait, close-up face, young woman with short red hair and green eyes, neutral calm expression, clean white background, concept art, consistent character design",
   "width": 512,
   "height": 512
 }' --no-wait
 
 # Happy
-infsh app run falai/flux-dev-lora --input '{
+belt app run falai/flux-dev-lora --input '{
   "prompt": "character portrait, close-up face, young woman with short red hair and green eyes, warm genuine smile, happy expression, clean white background, concept art, consistent character design",
   "width": 512,
   "height": 512
 }' --no-wait
 
 # Angry
-infsh app run falai/flux-dev-lora --input '{
+belt app run falai/flux-dev-lora --input '{
   "prompt": "character portrait, close-up face, young woman with short red hair and green eyes, furrowed brows, angry determined expression, clean white background, concept art, consistent character design",
   "width": 512,
   "height": 512
@@ -201,7 +201,7 @@ For projects requiring many images of the same character, train a LoRA:
 
 ```bash
 # Use FLUX with a character LoRA
-infsh app run falai/flux-dev-lora --input '{
+belt app run falai/flux-dev-lora --input '{
   "prompt": "maya_chen character, sitting at a cafe reading a book, warm afternoon light, candid photography style",
   "loras": [{"path": "path/to/maya-chen-lora.safetensors", "scale": 0.8}]
 }'
@@ -275,5 +275,5 @@ npx skills add inference-sh/skills@flux-image
 npx skills add inference-sh/skills@prompt-engineering
 ```
 
-Browse all apps: `infsh app list`
+Browse all apps: `belt app list`
 

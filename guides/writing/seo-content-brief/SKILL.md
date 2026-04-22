@@ -1,7 +1,7 @@
 ---
 name: seo-content-brief
 description: "SEO content brief creation with keyword research, search intent analysis, and content structure. Covers SERP analysis, heading hierarchy, word count targets, and internal linking strategy. Use for: content briefs, SEO writing, blog strategy, content planning, keyword targeting. Triggers: seo content brief, content brief, seo brief, keyword research, search intent, content strategy, blog brief, seo writing, content planning, keyword targeting, serp analysis, content outline, seo article, blog seo"
-allowed-tools: Bash(infsh *)
+allowed-tools: Bash(belt *)
 ---
 
 # SEO Content Brief
@@ -10,18 +10,18 @@ Create data-driven content briefs via [inference.sh](https://inference.sh) CLI.
 
 ## Quick Start
 
-> Requires inference.sh CLI (`infsh`). [Install instructions](https://raw.githubusercontent.com/inference-sh/skills/refs/heads/main/cli-install.md)
+> Requires inference.sh CLI (`belt`). [Install instructions](https://raw.githubusercontent.com/inference-sh/skills/refs/heads/main/cli-install.md)
 
 ```bash
-infsh login
+belt login
 
 # Research target keyword
-infsh app run tavily/search-assistant --input '{
+belt app run tavily/search-assistant --input '{
   "query": "best project management tools for small teams 2024"
 }'
 
 # Analyze top-ranking content
-infsh app run exa/search --input '{
+belt app run exa/search --input '{
   "query": "project management tools small teams comparison guide"
 }'
 ```
@@ -81,22 +81,22 @@ What makes this piece different/better than what already ranks?
 
 ```bash
 # Step 1: See what currently ranks
-infsh app run tavily/search-assistant --input '{
+belt app run tavily/search-assistant --input '{
   "query": "[your target keyword]"
 }'
 
 # Step 2: Analyze top-ranking content
-infsh app run tavily/extract --input '{
+belt app run tavily/extract --input '{
   "urls": ["https://top-result-1.com/article", "https://top-result-2.com/article"]
 }'
 
 # Step 3: Find related questions (People Also Ask)
-infsh app run tavily/search-assistant --input '{
+belt app run tavily/search-assistant --input '{
   "query": "[keyword] questions people ask FAQ"
 }'
 
 # Step 4: Find content gaps
-infsh app run exa/search --input '{
+belt app run exa/search --input '{
   "query": "[keyword] [subtopic competitors miss]"
 }'
 ```
@@ -128,17 +128,17 @@ infsh app run exa/search --input '{
 
 ```bash
 # Seed keyword research
-infsh app run tavily/search-assistant --input '{
+belt app run tavily/search-assistant --input '{
   "query": "project management software long tail keywords related searches"
 }'
 
 # Find question-based keywords
-infsh app run exa/search --input '{
+belt app run exa/search --input '{
   "query": "questions about project management tools for startups"
 }'
 
 # Competitor keyword analysis
-infsh app run tavily/search-assistant --input '{
+belt app run tavily/search-assistant --input '{
   "query": "site:competitor.com/blog top performing pages topics"
 }'
 ```
@@ -233,7 +233,7 @@ H1: Best Project Management Tools for Small Teams (2025)
 
 ```bash
 # Generate comparison infographic
-infsh app run infsh/html-to-image --input '{
+belt app run infsh/html-to-image --input '{
   "html": "<div style=\"width:1200px;height:800px;background:white;padding:40px;font-family:system-ui\"><h2 style=\"font-size:28px;color:#1e293b;text-align:center;margin-bottom:30px\">Project Management Tools Comparison</h2><table style=\"width:100%;border-collapse:collapse;font-size:16px\"><tr style=\"background:#f1f5f9\"><th style=\"padding:12px;text-align:left;border-bottom:2px solid #cbd5e1\">Feature</th><th style=\"padding:12px;text-align:center;border-bottom:2px solid #cbd5e1\">Tool A</th><th style=\"padding:12px;text-align:center;border-bottom:2px solid #cbd5e1\">Tool B</th><th style=\"padding:12px;text-align:center;border-bottom:2px solid #cbd5e1\">Tool C</th></tr><tr><td style=\"padding:12px;border-bottom:1px solid #e2e8f0\">Free tier</td><td style=\"padding:12px;text-align:center;border-bottom:1px solid #e2e8f0\">✅</td><td style=\"padding:12px;text-align:center;border-bottom:1px solid #e2e8f0\">✅</td><td style=\"padding:12px;text-align:center;border-bottom:1px solid #e2e8f0\">❌</td></tr></table></div>"
 }'
 ```
@@ -277,5 +277,5 @@ npx skills add inference-sh/skills@technical-blog-writing
 npx skills add inference-sh/skills@web-search
 ```
 
-Browse all apps: `infsh app list`
+Browse all apps: `belt app list`
 

@@ -1,7 +1,7 @@
 ---
 name: dialogue-audio
 description: "Multi-speaker dialogue audio creation with ElevenLabs and Dia TTS. Covers speaker tags, emotion control, pacing, conversation flow, and post-production. Use for: podcasts, audiobooks, explainers, character dialogue, conversational content. Triggers: dialogue audio, multi speaker, conversation audio, dia tts, two speakers, podcast audio, character voices, voice acting, dialogue generation, conversation tts, multi voice, speaker tags, dialogue recording, elevenlabs dialogue, eleven labs conversation"
-allowed-tools: Bash(infsh *)
+allowed-tools: Bash(belt *)
 ---
 
 # Dialogue Audio
@@ -10,13 +10,13 @@ Create realistic multi-speaker dialogue with Dia TTS via [inference.sh](https://
 
 ## Quick Start
 
-> Requires inference.sh CLI (`infsh`). [Install instructions](https://raw.githubusercontent.com/inference-sh/skills/refs/heads/main/cli-install.md)
+> Requires inference.sh CLI (`belt`). [Install instructions](https://raw.githubusercontent.com/inference-sh/skills/refs/heads/main/cli-install.md)
 
 ```bash
-infsh login
+belt login
 
 # Two-speaker conversation
-infsh app run falai/dia-tts --input '{
+belt app run falai/dia-tts --input '{
   "prompt": "[S1] Have you tried the new feature yet? [S2] Not yet, but I heard it saves a ton of time. [S1] It really does. I cut my workflow in half. [S2] Okay, I am definitely trying it today."
 }'
 ```
@@ -68,17 +68,17 @@ Dia TTS supports parenthetical sound descriptions:
 
 ```bash
 # Excited conversation
-infsh app run falai/dia-tts --input '{
+belt app run falai/dia-tts --input '{
   "prompt": "[S1] Guess what happened today! [S2] What? Tell me! [S1] We hit ten thousand users! [S2] (gasps) No way! That is incredible! [S1] I know... I still cannot believe it."
 }'
 
 # Serious/thoughtful dialogue
-infsh app run falai/dia-tts --input '{
+belt app run falai/dia-tts --input '{
   "prompt": "[S1] We need to talk about the timeline. [S2] (sighs) I know. It is tight. [S1] Can we cut anything from the scope? [S2] Maybe... but it would mean dropping the analytics dashboard. [S1] That is a tough trade-off."
 }'
 
 # Teaching/explaining
-infsh app run falai/dia-tts --input '{
+belt app run falai/dia-tts --input '{
   "prompt": "[S1] So how does it actually work? [S2] Great question. Think of it like a pipeline. Data comes in on one end, gets processed in the middle, and comes out transformed on the other side. [S1] Like an assembly line? [S2] Exactly! Each step adds something."
 }'
 ```
@@ -102,12 +102,12 @@ infsh app run falai/dia-tts --input '{
 
 ```bash
 # Fast-paced, energetic
-infsh app run falai/dia-tts --input '{
+belt app run falai/dia-tts --input '{
   "prompt": "[S1] Ready? [S2] Ready. [S1] Let us go! Three features. Five minutes. [S2] Hit it! [S1] Feature one: real-time sync."
 }'
 
 # Slow, contemplative
-infsh app run falai/dia-tts --input '{
+belt app run falai/dia-tts --input '{
   "prompt": "[S1] I have been thinking about this for a while... and I think we need to change direction. [S2] What do you mean? [S1] The market has shifted. What worked last year... is not working now."
 }'
 ```
@@ -117,7 +117,7 @@ infsh app run falai/dia-tts --input '{
 ### Interview Format
 
 ```bash
-infsh app run falai/dia-tts --input '{
+belt app run falai/dia-tts --input '{
   "prompt": "[S1] Welcome to the show. Today we have a special guest. Tell us about yourself. [S2] Thanks for having me! I am a product designer, and I have been building tools for creators for about ten years. [S1] What got you started in design? [S2] Honestly? I was terrible at coding but loved making things look good. (laughs) So design was the natural path."
 }'
 ```
@@ -125,7 +125,7 @@ infsh app run falai/dia-tts --input '{
 ### Tutorial / Explainer
 
 ```bash
-infsh app run falai/dia-tts --input '{
+belt app run falai/dia-tts --input '{
   "prompt": "[S1] Can you walk me through the setup process? [S2] Sure. Step one, install the CLI. It takes about thirty seconds. [S1] And then? [S2] Step two, run the login command. It will open your browser for authentication. [S1] That sounds simple. [S2] It is! Step three, you are ready to run your first app."
 }'
 ```
@@ -133,7 +133,7 @@ infsh app run falai/dia-tts --input '{
 ### Debate / Discussion
 
 ```bash
-infsh app run falai/dia-tts --input '{
+belt app run falai/dia-tts --input '{
   "prompt": "[S1] I think we should go with option A. It is faster to implement. [S2] But option B scales better long-term. [S1] Sure, but we need something shipping this quarter. [S2] Fair point... what if we do A now with a migration path to B? [S1] That could work. Let us prototype it."
 }'
 ```
@@ -146,7 +146,7 @@ Both speakers should be at consistent volume. If one is louder:
 
 ```bash
 # Merge with balanced audio
-infsh app run infsh/video-audio-merger --input '{
+belt app run infsh/video-audio-merger --input '{
   "video": "talking-head.mp4",
   "audio": "dialogue.mp3",
   "audio_volume": 1.0
@@ -157,7 +157,7 @@ infsh app run infsh/video-audio-merger --input '{
 
 ```bash
 # Merge dialogue with background music
-infsh app run infsh/media-merger --input '{
+belt app run infsh/media-merger --input '{
   "media": ["dialogue.mp3", "background-music.mp3"]
 }'
 ```
@@ -168,22 +168,22 @@ For conversations longer than ~30 seconds, generate in segments:
 
 ```bash
 # Segment 1: Introduction
-infsh app run falai/dia-tts --input '{
+belt app run falai/dia-tts --input '{
   "prompt": "[S1] Welcome back to another episode..."
 }'
 
 # Segment 2: Main content
-infsh app run falai/dia-tts --input '{
+belt app run falai/dia-tts --input '{
   "prompt": "[S1] So let us dive into today s topic..."
 }'
 
 # Segment 3: Wrap-up
-infsh app run falai/dia-tts --input '{
+belt app run falai/dia-tts --input '{
   "prompt": "[S1] Great conversation today..."
 }'
 
 # Merge all segments
-infsh app run infsh/media-merger --input '{
+belt app run infsh/media-merger --input '{
   "media": ["segment1.mp3", "segment2.mp3", "segment3.mp3"]
 }'
 ```
@@ -222,5 +222,5 @@ npx skills add inference-sh/skills@ai-podcast-creation
 npx skills add inference-sh/skills@ai-avatar-video
 ```
 
-Browse all apps: `infsh app list`
+Browse all apps: `belt app list`
 

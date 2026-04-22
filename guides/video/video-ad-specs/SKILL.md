@@ -1,7 +1,7 @@
 ---
 name: video-ad-specs
 description: "Video ad creation with exact platform-specific specs for TikTok, Instagram, YouTube, Facebook, LinkedIn. Covers dimensions, duration limits, AIDA framework, and caption requirements. Use for: video ads, social media ads, paid media creative, video marketing, ad production. Triggers: video ad, social media ad, tiktok ad, instagram ad, youtube ad, facebook ad, linkedin ad, video creative, ad specs, paid media, video marketing, ad production, reels ad, stories ad, pre roll, bumper ad"
-allowed-tools: Bash(infsh *)
+allowed-tools: Bash(belt *)
 ---
 
 # Video Ad Specs
@@ -10,13 +10,13 @@ Create platform-specific video ads via [inference.sh](https://inference.sh) CLI.
 
 ## Quick Start
 
-> Requires inference.sh CLI (`infsh`). [Install instructions](https://raw.githubusercontent.com/inference-sh/skills/refs/heads/main/cli-install.md)
+> Requires inference.sh CLI (`belt`). [Install instructions](https://raw.githubusercontent.com/inference-sh/skills/refs/heads/main/cli-install.md)
 
 ```bash
-infsh login
+belt login
 
 # Generate a vertical video ad scene
-infsh app run bytedance/seedance-1-5-pro --input '{
+belt app run bytedance/seedance-1-5-pro --input '{
   "prompt": "vertical video, person excitedly unboxing a product, clean modern room, bright natural lighting, social media ad style, authentic feeling, 9:16 format"
 }'
 ```
@@ -115,28 +115,28 @@ Resolution: 1920 x 1080 (16:9) or 1080 x 1920 (Shorts)
 
 ```bash
 # Hook scene (0-3s)
-infsh app run google/veo-3-1-fast --input '{
+belt app run google/veo-3-1-fast --input '{
   "prompt": "vertical 9:16 video, close-up of hands struggling with tangled cables and messy desk, frustrated energy, shaky handheld camera, authentic social media style, bright lighting"
 }'
 
 # Solution reveal (3-15s)
-infsh app run bytedance/seedance-1-5-pro --input '{
+belt app run bytedance/seedance-1-5-pro --input '{
   "prompt": "vertical video, smooth product reveal, clean wireless charging station on minimalist desk, satisfying organization transformation, bright modern room, social media ad aesthetic"
 }'
 
 # Add voiceover
-infsh app run falai/dia-tts --input '{
+belt app run falai/dia-tts --input '{
   "prompt": "[S1] Stop wasting time with this mess. This one product changed my entire setup. Everything charges. Everything is organized. Link in bio."
 }'
 
 # Merge video + audio
-infsh app run infsh/video-audio-merger --input '{
+belt app run infsh/video-audio-merger --input '{
   "video": "solution-reveal.mp4",
   "audio": "voiceover.mp3"
 }'
 
 # Add captions (critical for silent autoplay)
-infsh app run infsh/caption-videos --input '{
+belt app run infsh/caption-videos --input '{
   "video": "ad-with-audio.mp4",
   "caption_file": "captions.srt"
 }'
@@ -145,7 +145,7 @@ infsh app run infsh/caption-videos --input '{
 ### Square (Facebook, LinkedIn Feed)
 
 ```bash
-infsh app run google/veo-3-1-fast --input '{
+belt app run google/veo-3-1-fast --input '{
   "prompt": "square 1:1 video, professional person at desk discovering a new software tool, laptop screen showing clean dashboard, natural office lighting, corporate commercial style, satisfied expression"
 }'
 ```
@@ -154,12 +154,12 @@ infsh app run google/veo-3-1-fast --input '{
 
 ```bash
 # 6-second bumper: one message, one visual, one CTA
-infsh app run google/veo-3-1-fast --input '{
+belt app run google/veo-3-1-fast --input '{
   "prompt": "6 second product ad, quick montage of a sleek app being used on phone, fast cuts, modern, energetic, brand logo reveal at end, punchy and dynamic, wide 16:9"
 }'
 
 # Keep it tight
-infsh app run falai/dia-tts --input '{
+belt app run falai/dia-tts --input '{
   "prompt": "[S1] Your reports. Automated. Try DataFlow free."
 }'
 ```
@@ -182,7 +182,7 @@ infsh app run falai/dia-tts --input '{
 ```bash
 # Generate captions from audio
 # (create SRT file from your script, then burn in)
-infsh app run infsh/caption-videos --input '{
+belt app run infsh/caption-videos --input '{
   "video": "ad-video.mp4",
   "caption_file": "ad-captions.srt"
 }'
@@ -250,5 +250,5 @@ npx skills add inference-sh/skills@text-to-speech
 npx skills add inference-sh/skills@prompt-engineering
 ```
 
-Browse all apps: `infsh app list`
+Browse all apps: `belt app list`
 

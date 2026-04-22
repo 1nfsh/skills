@@ -1,7 +1,7 @@
 ---
 name: speech-to-text
 description: "Transcribe audio to text with ElevenLabs Scribe and Whisper models via inference.sh CLI. Models: ElevenLabs Scribe v2 (98%+ accuracy, diarization), Fast Whisper Large V3, Whisper V3 Large. Capabilities: transcription, translation, multi-language, timestamps, speaker diarization, audio event tagging. Use for: meeting transcription, subtitles, podcast transcripts, voice notes. Triggers: speech to text, transcription, whisper, audio to text, transcribe audio, voice to text, stt, automatic transcription, subtitles generation, transcribe meeting, audio transcription, whisper ai, elevenlabs stt, scribe, eleven labs transcribe"
-allowed-tools: Bash(infsh *)
+allowed-tools: Bash(belt *)
 ---
 
 # Speech-to-Text
@@ -12,12 +12,12 @@ Transcribe audio to text via [inference.sh](https://inference.sh) CLI.
 
 ## Quick Start
 
-> Requires inference.sh CLI (`infsh`). [Install instructions](https://raw.githubusercontent.com/inference-sh/skills/refs/heads/main/cli-install.md)
+> Requires inference.sh CLI (`belt`). [Install instructions](https://raw.githubusercontent.com/inference-sh/skills/refs/heads/main/cli-install.md)
 
 ```bash
-infsh login
+belt login
 
-infsh app run infsh/fast-whisper-large-v3 --input '{"audio_url": "https://audio.mp3"}'
+belt app run infsh/fast-whisper-large-v3 --input '{"audio_url": "https://audio.mp3"}'
 ```
 
 
@@ -34,26 +34,26 @@ infsh app run infsh/fast-whisper-large-v3 --input '{"audio_url": "https://audio.
 ### Basic Transcription
 
 ```bash
-infsh app run infsh/fast-whisper-large-v3 --input '{"audio_url": "https://meeting.mp3"}'
+belt app run infsh/fast-whisper-large-v3 --input '{"audio_url": "https://meeting.mp3"}'
 ```
 
 ### With Timestamps
 
 ```bash
-infsh app sample infsh/fast-whisper-large-v3 --save input.json
+belt app sample infsh/fast-whisper-large-v3 --save input.json
 
 # {
 #   "audio_url": "https://podcast.mp3",
 #   "timestamps": true
 # }
 
-infsh app run infsh/fast-whisper-large-v3 --input input.json
+belt app run infsh/fast-whisper-large-v3 --input input.json
 ```
 
 ### Translation (to English)
 
 ```bash
-infsh app run infsh/whisper-v3-large --input '{
+belt app run infsh/whisper-v3-large --input '{
   "audio_url": "https://french-audio.mp3",
   "task": "translate"
 }'
@@ -63,23 +63,23 @@ infsh app run infsh/whisper-v3-large --input '{
 
 ```bash
 # Extract audio from video first
-infsh app run infsh/video-audio-extractor --input '{"video_url": "https://video.mp4"}' > audio.json
+belt app run infsh/video-audio-extractor --input '{"video_url": "https://video.mp4"}' > audio.json
 
 # Transcribe the extracted audio
-infsh app run infsh/fast-whisper-large-v3 --input '{"audio_url": "<audio-url>"}'
+belt app run infsh/fast-whisper-large-v3 --input '{"audio_url": "<audio-url>"}'
 ```
 
 ## Workflow: Video Subtitles
 
 ```bash
 # 1. Transcribe video audio
-infsh app run infsh/fast-whisper-large-v3 --input '{
+belt app run infsh/fast-whisper-large-v3 --input '{
   "audio_url": "https://video.mp4",
   "timestamps": true
 }' > transcript.json
 
 # 2. Use transcript for captions
-infsh app run infsh/caption-videos --input '{
+belt app run infsh/caption-videos --input '{
   "video_url": "https://video.mp4",
   "captions": "<transcript-from-step-1>"
 }'
@@ -128,7 +128,7 @@ npx skills add inference-sh/skills@ai-video-generation
 npx skills add inference-sh/skills@ai-avatar-video
 ```
 
-Browse all audio apps: `infsh app list --category audio`
+Browse all audio apps: `belt app list --category audio`
 
 ## Documentation
 

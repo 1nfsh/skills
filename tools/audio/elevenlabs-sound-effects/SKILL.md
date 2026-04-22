@@ -1,7 +1,7 @@
 ---
 name: elevenlabs-sound-effects
 description: "Generate AI sound effects from text descriptions with ElevenLabs via inference.sh CLI. Capabilities: text-to-sound-effect, custom duration, royalty-free audio. Use for: video production, game audio, podcasts, films, presentations, social media. Triggers: sound effects, sfx, sound generation, ai sound effects, generate sound, foley, audio effects, sound design, text to sound, elevenlabs sound, eleven labs sfx, ambient sound, cinematic sound, game sound effects"
-allowed-tools: Bash(infsh *)
+allowed-tools: Bash(belt *)
 ---
 
 # ElevenLabs Sound Effects
@@ -12,13 +12,13 @@ Generate sound effects from text descriptions via [inference.sh](https://inferen
 
 ## Quick Start
 
-> Requires inference.sh CLI (`infsh`). [Install instructions](https://raw.githubusercontent.com/inference-sh/skills/refs/heads/main/cli-install.md)
+> Requires inference.sh CLI (`belt`). [Install instructions](https://raw.githubusercontent.com/inference-sh/skills/refs/heads/main/cli-install.md)
 
 ```bash
-infsh login
+belt login
 
 # Generate a sound effect
-infsh app run elevenlabs/sound-effects --input '{"text": "Thunder rumbling in the distance"}'
+belt app run elevenlabs/sound-effects --input '{"text": "Thunder rumbling in the distance"}'
 ```
 
 
@@ -36,16 +36,16 @@ infsh app run elevenlabs/sound-effects --input '{"text": "Thunder rumbling in th
 
 ```bash
 # Epic trailer hit
-infsh app run elevenlabs/sound-effects --input '{"text": "Cinematic braam, deep bass impact"}'
+belt app run elevenlabs/sound-effects --input '{"text": "Cinematic braam, deep bass impact"}'
 
 # Suspense drone
-infsh app run elevenlabs/sound-effects --input '{
+belt app run elevenlabs/sound-effects --input '{
   "text": "Dark atmospheric drone, tension building, horror",
   "duration_seconds": 10
 }'
 
 # Whoosh transition
-infsh app run elevenlabs/sound-effects --input '{
+belt app run elevenlabs/sound-effects --input '{
   "text": "Fast cinematic whoosh transition",
   "duration_seconds": 1.5
 }'
@@ -55,19 +55,19 @@ infsh app run elevenlabs/sound-effects --input '{
 
 ```bash
 # Rain
-infsh app run elevenlabs/sound-effects --input '{
+belt app run elevenlabs/sound-effects --input '{
   "text": "Heavy rain on a tin roof with occasional thunder",
   "duration_seconds": 15
 }'
 
 # Forest ambience
-infsh app run elevenlabs/sound-effects --input '{
+belt app run elevenlabs/sound-effects --input '{
   "text": "Forest ambience with birds chirping and gentle wind",
   "duration_seconds": 20
 }'
 
 # Ocean waves
-infsh app run elevenlabs/sound-effects --input '{
+belt app run elevenlabs/sound-effects --input '{
   "text": "Ocean waves crashing on a beach, calming",
   "duration_seconds": 15
 }'
@@ -77,19 +77,19 @@ infsh app run elevenlabs/sound-effects --input '{
 
 ```bash
 # Power-up
-infsh app run elevenlabs/sound-effects --input '{
+belt app run elevenlabs/sound-effects --input '{
   "text": "Retro game power-up sound, ascending tones",
   "duration_seconds": 1
 }'
 
 # Explosion
-infsh app run elevenlabs/sound-effects --input '{
+belt app run elevenlabs/sound-effects --input '{
   "text": "Sci-fi laser explosion, futuristic",
   "duration_seconds": 3
 }'
 
 # UI click
-infsh app run elevenlabs/sound-effects --input '{
+belt app run elevenlabs/sound-effects --input '{
   "text": "Soft UI button click, subtle and clean",
   "duration_seconds": 0.5
 }'
@@ -99,16 +99,16 @@ infsh app run elevenlabs/sound-effects --input '{
 
 ```bash
 # Doorbell
-infsh app run elevenlabs/sound-effects --input '{"text": "Classic doorbell ring"}'
+belt app run elevenlabs/sound-effects --input '{"text": "Classic doorbell ring"}'
 
 # Typing
-infsh app run elevenlabs/sound-effects --input '{
+belt app run elevenlabs/sound-effects --input '{
   "text": "Mechanical keyboard typing, fast, clicky",
   "duration_seconds": 5
 }'
 
 # Notification
-infsh app run elevenlabs/sound-effects --input '{
+belt app run elevenlabs/sound-effects --input '{
   "text": "Pleasant notification chime, positive",
   "duration_seconds": 1
 }'
@@ -127,13 +127,13 @@ Control how literally the model interprets your description:
 
 ```bash
 # Loose interpretation - creative result
-infsh app run elevenlabs/sound-effects --input '{
+belt app run elevenlabs/sound-effects --input '{
   "text": "Magical fairy dust sparkle",
   "prompt_influence": 0.1
 }'
 
 # Literal interpretation - precise result
-infsh app run elevenlabs/sound-effects --input '{
+belt app run elevenlabs/sound-effects --input '{
   "text": "Single gunshot, pistol, indoor range",
   "prompt_influence": 0.8
 }'
@@ -153,13 +153,13 @@ infsh app run elevenlabs/sound-effects --input '{
 
 ```bash
 # 1. Generate sound effect
-infsh app run elevenlabs/sound-effects --input '{
+belt app run elevenlabs/sound-effects --input '{
   "text": "Dramatic reveal swoosh with bass drop",
   "duration_seconds": 2
 }' > sfx.json
 
 # 2. Merge with video
-infsh app run infsh/media-merger --input '{
+belt app run infsh/media-merger --input '{
   "media": ["video.mp4", "<sfx-url>"]
 }'
 ```
@@ -189,4 +189,4 @@ npx skills add inference-sh/skills@ai-music-generation
 npx skills add inference-sh/skills@infsh-cli
 ```
 
-Browse all audio apps: `infsh app list --category audio`
+Browse all audio apps: `belt app list --category audio`

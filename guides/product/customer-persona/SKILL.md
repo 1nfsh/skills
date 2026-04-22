@@ -1,7 +1,7 @@
 ---
 name: customer-persona
 description: "Research-backed customer persona creation with market data and avatar generation. Covers demographics, psychographics, jobs-to-be-done, journey mapping, and anti-personas. Use for: marketing strategy, product development, UX research, sales enablement, content strategy. Triggers: customer persona, buyer persona, user persona, target audience, ideal customer, customer profile, audience research, user research, icp, ideal customer profile, target market, customer avatar, audience persona"
-allowed-tools: Bash(infsh *)
+allowed-tools: Bash(belt *)
 ---
 
 # Customer Persona
@@ -10,18 +10,18 @@ Create data-backed customer personas with research and visuals via [inference.sh
 
 ## Quick Start
 
-> Requires inference.sh CLI (`infsh`). [Install instructions](https://raw.githubusercontent.com/inference-sh/skills/refs/heads/main/cli-install.md)
+> Requires inference.sh CLI (`belt`). [Install instructions](https://raw.githubusercontent.com/inference-sh/skills/refs/heads/main/cli-install.md)
 
 ```bash
-infsh login
+belt login
 
 # Research your target market
-infsh app run tavily/search-assistant --input '{
+belt app run tavily/search-assistant --input '{
   "query": "SaaS product manager demographics pain points 2024 survey"
 }'
 
 # Generate a persona avatar
-infsh app run falai/flux-dev-lora --input '{
+belt app run falai/flux-dev-lora --input '{
   "prompt": "professional headshot photograph of a 35-year-old woman, product manager, friendly confident expression, modern office background, natural lighting, business casual attire, realistic portrait",
   "width": 1024,
   "height": 1024
@@ -76,22 +76,22 @@ Start with data, not assumptions.
 
 ```bash
 # Market demographics
-infsh app run tavily/search-assistant --input '{
+belt app run tavily/search-assistant --input '{
   "query": "product manager salary demographics 2024 survey report"
 }'
 
 # Pain points and challenges
-infsh app run exa/search --input '{
+belt app run exa/search --input '{
   "query": "biggest challenges facing product managers SaaS companies"
 }'
 
 # Tool usage patterns
-infsh app run tavily/search-assistant --input '{
+belt app run tavily/search-assistant --input '{
   "query": "most popular tools product managers use 2024 survey"
 }'
 
 # Content consumption habits
-infsh app run exa/answer --input '{
+belt app run exa/answer --input '{
   "question": "Where do product managers get their industry news and professional development?"
 }'
 ```
@@ -180,7 +180,7 @@ Three types of jobs:
 
 ```bash
 # Match demographics: age, gender, ethnicity, professional context
-infsh app run falai/flux-dev-lora --input '{
+belt app run falai/flux-dev-lora --input '{
   "prompt": "professional headshot photograph of a 34-year-old Asian American woman, product manager, warm confident smile, modern tech office background, natural lighting, wearing smart casual blouse, realistic portrait photography, sharp focus",
   "width": 1024,
   "height": 1024
@@ -252,5 +252,5 @@ npx skills add inference-sh/skills@ai-image-generation
 npx skills add inference-sh/skills@prompt-engineering
 ```
 
-Browse all apps: `infsh app list`
+Browse all apps: `belt app list`
 

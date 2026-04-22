@@ -1,7 +1,7 @@
 ---
 name: text-to-speech
 description: "Convert text to natural speech with ElevenLabs, DIA TTS, Kokoro, Chatterbox, and more via inference.sh CLI. Models: ElevenLabs (premium, 22+ voices, 32 languages), DIA TTS (conversational), Kokoro TTS, Chatterbox, Higgs Audio, VibeVoice (podcasts). Capabilities: text-to-speech, voice cloning, multi-speaker dialogue, podcast generation, expressive speech. Use for: voiceovers, audiobooks, podcasts, accessibility, video narration, IVR, voice assistants. Triggers: text to speech, tts, voice generation, ai voice, speech synthesis, voice over, generate speech, ai narrator, voice cloning, text to audio, elevenlabs, eleven labs, voice ai, ai voiceover, speech generator, natural voice"
-allowed-tools: Bash(infsh *)
+allowed-tools: Bash(belt *)
 ---
 
 # Text-to-Speech
@@ -12,13 +12,13 @@ Convert text to natural speech via [inference.sh](https://inference.sh) CLI.
 
 ## Quick Start
 
-> Requires inference.sh CLI (`infsh`). [Install instructions](https://raw.githubusercontent.com/inference-sh/skills/refs/heads/main/cli-install.md)
+> Requires inference.sh CLI (`belt`). [Install instructions](https://raw.githubusercontent.com/inference-sh/skills/refs/heads/main/cli-install.md)
 
 ```bash
-infsh login
+belt login
 
 # Generate speech
-infsh app run infsh/kokoro-tts --input '{"text": "Hello, welcome to our product demo."}'
+belt app run infsh/kokoro-tts --input '{"text": "Hello, welcome to our product demo."}'
 ```
 
 
@@ -36,7 +36,7 @@ infsh app run infsh/kokoro-tts --input '{"text": "Hello, welcome to our product 
 ## Browse All Audio Apps
 
 ```bash
-infsh app list --category audio
+belt app list --category audio
 ```
 
 ## Examples
@@ -44,13 +44,13 @@ infsh app list --category audio
 ### Basic Text-to-Speech
 
 ```bash
-infsh app run infsh/kokoro-tts --input '{"text": "Welcome to our tutorial."}'
+belt app run infsh/kokoro-tts --input '{"text": "Welcome to our tutorial."}'
 ```
 
 ### Conversational TTS with DIA
 
 ```bash
-infsh app sample infsh/dia-tts --save input.json
+belt app sample infsh/dia-tts --save input.json
 
 # Edit input.json:
 # {
@@ -58,29 +58,29 @@ infsh app sample infsh/dia-tts --save input.json
 #   "voice": "conversational"
 # }
 
-infsh app run infsh/dia-tts --input input.json
+belt app run infsh/dia-tts --input input.json
 ```
 
 ### Long-form Audio (Podcasts)
 
 ```bash
-infsh app sample infsh/vibevoice --save input.json
+belt app sample infsh/vibevoice --save input.json
 
 # Edit input.json with your podcast script
-infsh app run infsh/vibevoice --input input.json
+belt app run infsh/vibevoice --input input.json
 ```
 
 ### Expressive Speech with Higgs
 
 ```bash
-infsh app sample infsh/higgs-audio --save input.json
+belt app sample infsh/higgs-audio --save input.json
 
 # {
 #   "text": "This is absolutely incredible!",
 #   "emotion": "excited"
 # }
 
-infsh app run infsh/higgs-audio --input input.json
+belt app run infsh/higgs-audio --input input.json
 ```
 
 ## Use Cases
@@ -98,10 +98,10 @@ Generate speech, then create a talking head video:
 
 ```bash
 # 1. Generate speech
-infsh app run infsh/kokoro-tts --input '{"text": "Your script here"}' > speech.json
+belt app run infsh/kokoro-tts --input '{"text": "Your script here"}' > speech.json
 
 # 2. Use the audio URL with OmniHuman for avatar video
-infsh app run bytedance/omnihuman-1-5 --input '{
+belt app run bytedance/omnihuman-1-5 --input '{
   "image_url": "https://portrait.jpg",
   "audio_url": "<audio-url-from-step-1>"
 }'
@@ -132,7 +132,7 @@ npx skills add inference-sh/skills@speech-to-text
 npx skills add inference-sh/skills@ai-video-generation
 ```
 
-Browse all apps: `infsh app list`
+Browse all apps: `belt app list`
 
 ## Documentation
 

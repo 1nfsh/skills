@@ -1,7 +1,7 @@
 ---
 name: youtube-thumbnail-design
 description: "YouTube thumbnail design with specific dimensions, contrast rules, and mobile preview optimization. Covers safe zones, text placement, face expression psychology, and A/B testing. Use for: YouTube thumbnails, video cover images, click-through optimization. Triggers: youtube thumbnail, thumbnail design, video thumbnail, click through rate, ctr optimization, youtube cover, video cover image, thumbnail maker, thumbnail tips, youtube design, video preview image"
-allowed-tools: Bash(infsh *)
+allowed-tools: Bash(belt *)
 ---
 
 # YouTube Thumbnail Design
@@ -10,13 +10,13 @@ Create high-CTR YouTube thumbnails with AI image generation via [inference.sh](h
 
 ## Quick Start
 
-> Requires inference.sh CLI (`infsh`). [Install instructions](https://raw.githubusercontent.com/inference-sh/skills/refs/heads/main/cli-install.md)
+> Requires inference.sh CLI (`belt`). [Install instructions](https://raw.githubusercontent.com/inference-sh/skills/refs/heads/main/cli-install.md)
 
 ```bash
-infsh login
+belt login
 
 # Generate a thumbnail
-infsh app run falai/flux-dev-lora --input '{
+belt app run falai/flux-dev-lora --input '{
   "prompt": "YouTube thumbnail style, close-up of a person with surprised excited expression looking at a glowing laptop screen, vibrant blue and orange color scheme, dramatic studio lighting, shallow depth of field, high contrast, cinematic",
   "width": 1280,
   "height": 720
@@ -136,14 +136,14 @@ Thumbnails with faces get **higher CTR** than faceless thumbnails. Expression ma
 
 ```bash
 # Generate a face-forward thumbnail
-infsh app run falai/flux-dev-lora --input '{
+belt app run falai/flux-dev-lora --input '{
   "prompt": "close-up portrait of a man with genuinely surprised expression, mouth slightly open, raised eyebrows, looking at camera, left side of frame, vibrant teal background, dramatic rim lighting, YouTube thumbnail style, high contrast, cinematic",
   "width": 1280,
   "height": 720
 }'
 
 # Generate a face-looking-at-subject thumbnail
-infsh app run bytedance/seedream-4-5 --input '{
+belt app run bytedance/seedream-4-5 --input '{
   "prompt": "person looking amazed at a glowing holographic chart showing upward growth, dramatic blue and green lighting, right side profile view, dark background, tech aesthetic, high energy",
   "size": "2K"
 }'
@@ -153,7 +153,7 @@ infsh app run bytedance/seedream-4-5 --input '{
 
 ### Tutorial / How-To
 ```bash
-infsh app run falai/flux-dev-lora --input '{
+belt app run falai/flux-dev-lora --input '{
   "prompt": "overhead flat lay of organized workspace with laptop showing code editor, colorful sticky notes, coffee cup, clean bright background, professional setup, tutorial style composition, warm lighting",
   "width": 1280,
   "height": 720
@@ -162,7 +162,7 @@ infsh app run falai/flux-dev-lora --input '{
 
 ### Before/After
 ```bash
-infsh app run falai/flux-dev-lora --input '{
+belt app run falai/flux-dev-lora --input '{
   "prompt": "split composition, left side dark and messy disorganized desk, right side bright clean organized minimalist workspace, dramatic contrast between chaos and order, clear dividing line in center, high contrast",
   "width": 1280,
   "height": 720
@@ -171,7 +171,7 @@ infsh app run falai/flux-dev-lora --input '{
 
 ### Product Review / Comparison
 ```bash
-infsh app run falai/flux-dev-lora --input '{
+belt app run falai/flux-dev-lora --input '{
   "prompt": "two products facing each other with dramatic lighting and sparks between them, competition battle concept, dark background with colorful rim lighting, versus comparison style, high energy, product photography",
   "width": 1280,
   "height": 720
@@ -180,7 +180,7 @@ infsh app run falai/flux-dev-lora --input '{
 
 ### Listicle / Number
 ```bash
-infsh app run falai/flux-dev-lora --input '{
+belt app run falai/flux-dev-lora --input '{
   "prompt": "dynamic arrangement of 7 different colorful objects floating in space against dark gradient background, each item distinct and clearly separated, energetic composition, vibrant saturated colors, studio lighting",
   "width": 1280,
   "height": 720
@@ -202,13 +202,13 @@ Test one variable at a time:
 
 ```bash
 # Generate variant A
-infsh app run falai/flux-dev-lora --input '{
+belt app run falai/flux-dev-lora --input '{
   "prompt": "..., bright yellow background, ...",
   "width": 1280, "height": 720
 }' --no-wait
 
 # Generate variant B (same prompt, different background)
-infsh app run falai/flux-dev-lora --input '{
+belt app run falai/flux-dev-lora --input '{
   "prompt": "..., dark navy background, ...",
   "width": 1280, "height": 720
 }' --no-wait
@@ -247,5 +247,5 @@ npx skills add inference-sh/skills@image-upscaling
 npx skills add inference-sh/skills@prompt-engineering
 ```
 
-Browse all apps: `infsh app list`
+Browse all apps: `belt app list`
 

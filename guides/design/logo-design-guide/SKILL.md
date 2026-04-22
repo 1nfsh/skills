@@ -1,7 +1,7 @@
 ---
 name: logo-design-guide
 description: "Logo design principles and AI image generation best practices for creating logos. Covers logo types, prompting techniques, scalability rules, and iteration workflows. Use for: brand identity, startup logos, app icons, favicons, logo concepts. Triggers: logo design, create logo, brand logo, logo generation, ai logo, logo maker, icon design, brand mark, logo concept, startup logo, app icon logo"
-allowed-tools: Bash(infsh *)
+allowed-tools: Bash(belt *)
 ---
 
 # Logo Design Guide
@@ -10,13 +10,13 @@ Design effective logos with AI image generation via [inference.sh](https://infer
 
 ## Quick Start
 
-> Requires inference.sh CLI (`infsh`). [Install instructions](https://raw.githubusercontent.com/inference-sh/skills/refs/heads/main/cli-install.md)
+> Requires inference.sh CLI (`belt`). [Install instructions](https://raw.githubusercontent.com/inference-sh/skills/refs/heads/main/cli-install.md)
 
 ```bash
-infsh login
+belt login
 
 # Generate a logo concept
-infsh app run falai/flux-dev-lora --input '{
+belt app run falai/flux-dev-lora --input '{
   "prompt": "flat vector logo of a mountain peak with a sunrise, minimal geometric style, single color, clean lines, white background",
   "width": 1024,
   "height": 1024
@@ -73,22 +73,22 @@ flat vector logo of [subject], [style], [color constraint], [background], [addit
 
 ```bash
 # Abstract geometric
-infsh app run falai/flux-dev-lora --input '{
+belt app run falai/flux-dev-lora --input '{
   "prompt": "flat vector abstract logo, interlocking hexagonal shapes forming a letter S, minimal geometric style, single navy blue color, white background, clean sharp edges"
 }'
 
 # Pictorial nature
-infsh app run falai/flux-dev-lora --input '{
+belt app run falai/flux-dev-lora --input '{
   "prompt": "flat vector logo of a fox head in profile, geometric faceted style, orange and white, minimal clean lines, white background, negative space design"
 }'
 
 # Mascot style
-infsh app run bytedance/seedream-4-5 --input '{
+belt app run bytedance/seedream-4-5 --input '{
   "prompt": "friendly cartoon owl mascot logo, simple flat illustration, wearing graduation cap, purple and gold colors, white background, clean vector style"
 }'
 
 # Tech abstract
-infsh app run xai/grok-imagine-image-pro --input '{
+belt app run xai/grok-imagine-image-pro --input '{
   "prompt": "minimal abstract logo mark, interconnected nodes forming a brain shape, line art style, single teal color, white background, tech startup aesthetic"
 }'
 ```
@@ -132,24 +132,24 @@ A logo must work at every size:
 ```bash
 # Step 1: Generate 5-10 broad concepts
 for i in {1..5}; do
-  infsh app run falai/flux-dev-lora --input '{
+  belt app run falai/flux-dev-lora --input '{
     "prompt": "flat vector logo of a lighthouse, minimal geometric, single color, white background"
   }' --no-wait
 done
 
 # Step 2: Refine the best concept with variations
-infsh app run falai/flux-dev-lora --input '{
+belt app run falai/flux-dev-lora --input '{
   "prompt": "flat vector logo of a geometric lighthouse with light beam rays, minimal line art, navy blue, white background, negative space design"
 }'
 
 # Step 3: Generate at high resolution for final
-infsh app run bytedance/seedream-4-5 --input '{
+belt app run bytedance/seedream-4-5 --input '{
   "prompt": "flat vector logo of a geometric lighthouse with radiating light beams, minimal clean design, navy blue single color, pure white background",
   "size": "2K"
 }'
 
 # Step 4: Upscale for production use
-infsh app run falai/topaz-image-upscaler --input '{
+belt app run falai/topaz-image-upscaler --input '{
   "image": "path/to/best-logo.png",
   "scale": 4
 }'
@@ -185,5 +185,5 @@ npx skills add inference-sh/skills@ai-image-generation
 npx skills add inference-sh/skills@prompt-engineering
 ```
 
-Browse all apps: `infsh app list`
+Browse all apps: `belt app list`
 

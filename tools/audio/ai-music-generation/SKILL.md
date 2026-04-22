@@ -1,7 +1,7 @@
 ---
 name: ai-music-generation
 description: "Generate AI music and songs with ElevenLabs, Diffrythm, Tencent Song Generation via inference.sh CLI. Models: ElevenLabs Music (up to 10 min, commercial license), Diffrythm (fast song generation), Tencent Song Generation (full songs with vocals). Capabilities: text-to-music, song generation, instrumental, lyrics to song, soundtrack creation. Use for: background music, social media content, game soundtracks, podcasts, royalty-free music. Triggers: music generation, ai music, generate song, ai composer, text to music, song generator, create music with ai, suno alternative, udio alternative, ai song, ai soundtrack, generate soundtrack, ai jingle, music ai, beat generator, elevenlabs music, eleven labs music"
-allowed-tools: Bash(infsh *)
+allowed-tools: Bash(belt *)
 ---
 
 # AI Music Generation
@@ -12,13 +12,13 @@ Generate music and songs via [inference.sh](https://inference.sh) CLI.
 
 ## Quick Start
 
-> Requires inference.sh CLI (`infsh`). [Install instructions](https://raw.githubusercontent.com/inference-sh/skills/refs/heads/main/cli-install.md)
+> Requires inference.sh CLI (`belt`). [Install instructions](https://raw.githubusercontent.com/inference-sh/skills/refs/heads/main/cli-install.md)
 
 ```bash
-infsh login
+belt login
 
 # Generate a song
-infsh app run infsh/diffrythm --input '{"prompt": "upbeat electronic dance track"}'
+belt app run infsh/diffrythm --input '{"prompt": "upbeat electronic dance track"}'
 ```
 
 
@@ -33,7 +33,7 @@ infsh app run infsh/diffrythm --input '{"prompt": "upbeat electronic dance track
 ## Browse Audio Apps
 
 ```bash
-infsh app list --category audio
+belt app list --category audio
 ```
 
 ## Examples
@@ -41,7 +41,7 @@ infsh app list --category audio
 ### Instrumental Track
 
 ```bash
-infsh app run infsh/diffrythm --input '{
+belt app run infsh/diffrythm --input '{
   "prompt": "cinematic orchestral soundtrack, epic and dramatic"
 }'
 ```
@@ -49,7 +49,7 @@ infsh app run infsh/diffrythm --input '{
 ### Song with Vocals
 
 ```bash
-infsh app sample infsh/tencent-song-generation --save input.json
+belt app sample infsh/tencent-song-generation --save input.json
 
 # Edit input.json:
 # {
@@ -57,13 +57,13 @@ infsh app sample infsh/tencent-song-generation --save input.json
 #   "lyrics": "Walking on the beach with you..."
 # }
 
-infsh app run infsh/tencent-song-generation --input input.json
+belt app run infsh/tencent-song-generation --input input.json
 ```
 
 ### Background Music for Video
 
 ```bash
-infsh app run infsh/diffrythm --input '{
+belt app run infsh/diffrythm --input '{
   "prompt": "calm lo-fi hip hop beat, study music, relaxing"
 }'
 ```
@@ -71,7 +71,7 @@ infsh app run infsh/diffrythm --input '{
 ### Podcast Intro
 
 ```bash
-infsh app run infsh/diffrythm --input '{
+belt app run infsh/diffrythm --input '{
   "prompt": "short podcast intro jingle, professional, tech themed, 10 seconds"
 }'
 ```
@@ -79,7 +79,7 @@ infsh app run infsh/diffrythm --input '{
 ### Game Soundtrack
 
 ```bash
-infsh app run infsh/diffrythm --input '{
+belt app run infsh/diffrythm --input '{
   "prompt": "retro 8-bit video game music, adventure theme, chiptune"
 }'
 ```
@@ -125,7 +125,7 @@ npx skills add inference-sh/skills@ai-video-generation
 npx skills add inference-sh/skills@speech-to-text
 ```
 
-Browse all apps: `infsh app list`
+Browse all apps: `belt app list`
 
 ## Documentation
 
