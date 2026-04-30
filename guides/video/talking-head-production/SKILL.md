@@ -1,6 +1,6 @@
 ---
 name: talking-head-production
-description: "Talking head video production with AI avatars, lipsync, and voiceover. Covers portrait requirements, audio quality, OmniHuman, PixVerse lipsync, Dia TTS. Use for: spokesperson videos, course content, social media, presentations, demos. Triggers: talking head, avatar video, lipsync, lip sync, ai spokesperson, virtual presenter, ai presenter, omnihuman, talking avatar, video presenter, ai talking head, presenter video, ai face video"
+description: "Talking head video production with AI avatars, lipsync, and voiceover. Recommended: P-Video-Avatar (fastest, cheapest, built-in TTS). Also covers OmniHuman, PixVerse, Fabric. Portrait requirements, audio quality, production workflows. Use for: spokesperson videos, course content, social media, presentations, demos. Triggers: talking head, avatar video, lipsync, lip sync, ai spokesperson, virtual presenter, ai presenter, omnihuman, talking avatar, video presenter, ai talking head, presenter video, ai face video, p-video-avatar"
 allowed-tools: Bash(belt *)
 ---
 
@@ -15,15 +15,11 @@ Create talking head videos with AI avatars and lipsync via [inference.sh](https:
 ```bash
 belt login
 
-# Generate dialogue audio
-belt app run falai/dia-tts --input '{
-  "prompt": "[S1] Welcome to our product tour. Today I will show you three features that will save you hours every week."
-}'
-
-# Create talking head video with OmniHuman
-belt app run bytedance/omnihuman-1-5 --input '{
-  "image": "path/to/portrait.png",
-  "audio": "path/to/dialogue.mp3"
+# Recommended: P-Video-Avatar (built-in TTS, fastest, cheapest)
+belt app run pruna/p-video-avatar --input '{
+  "image": "https://portrait.jpg",
+  "voice_script": "Welcome to our product tour. Today I will show you three features that will save you hours every week.",
+  "voice": "Zephyr (Female)"
 }'
 ```
 
@@ -43,110 +39,121 @@ The source portrait image is critical. Poor portraits = poor video output.
 | **Clear face** | Model needs to detect features | No sunglasses, heavy shadows, or obstructions |
 | **High resolution** | Detail preservation | Min 512x512 face region, ideally 1024x1024+ |
 
-### Background
+### Generate a Portrait
+
+```bash
+# Generate a professional portrait with P-Image
+belt app run pruna/p-image --input '{
+  "prompt": "professional headshot portrait of a friendly business person, soft studio lighting, clean grey background, head and shoulders, direct eye contact, neutral pleasant expression, photorealistic",
+  "aspect_ratio": "9:16"
+}'
+```
+
+### Background Options
 
 | Type | When to Use |
 |------|-------------|
 | Solid color | Professional, clean, easy to composite |
 | Soft bokeh | Natural, lifestyle feel |
 | Office/studio | Business context |
-| Transparent (via bg removal) | Compositing into other scenes |
-
-```bash
-# Generate a professional portrait background
-belt app run falai/flux-dev-lora --input '{
-  "prompt": "professional headshot photograph of a friendly business person, soft studio lighting, clean grey background, head and shoulders, direct eye contact, neutral pleasant expression, high quality portrait photography"
-}'
-
-# Or remove background from existing portrait
-belt app run <bg-removal-app> --input '{
-  "image": "path/to/portrait-with-background.png"
-}'
-```
-
-## Audio Quality
-
-Audio quality directly impacts lipsync accuracy. Clean audio = accurate lip movement.
-
-### Requirements
-
-| Parameter | Target | Why |
-|-----------|--------|-----|
-| Background noise | None/minimal | Noise confuses lipsync timing |
-| Volume | Consistent throughout | Prevents sync drift |
-| Sample rate | 44.1kHz or 48kHz | Standard quality |
-| Format | MP3 128kbps+ or WAV | Compatible with all tools |
-
-### Generating Audio
-
-```bash
-# Simple narration
-belt app run falai/dia-tts --input '{
-  "prompt": "[S1] Hi there! I am excited to share something with you today. We have been working on a feature that our users have been requesting for months... and it is finally here."
-}'
-
-# With emotion and pacing
-belt app run falai/dia-tts --input '{
-  "prompt": "[S1] You know what is frustrating? Spending hours on tasks that should take minutes. (sighs) We have all been there. But what if I told you... there is a better way?"
-}'
-```
+| Dynamic (P-Video-Avatar) | Use `video_prompt` to set background |
 
 ## Model Selection
 
-| Model | App ID | Best For | Max Duration |
-|-------|--------|----------|-------------|
-| OmniHuman 1.5 | `bytedance/omnihuman-1-5` | Multi-character, gestures, high quality | ~30s per clip |
-| OmniHuman 1.0 | `bytedance/omnihuman-1-0` | Single character, simpler | ~30s per clip |
-| PixVerse Lipsync | `falai/pixverse-lipsync` | Quick lipsync on existing video | Short clips |
-| Fabric | `falai/fabric-1-0` | Cloth/fabric animation on portraits | Short clips |
+**Start with P-Video-Avatar** — it's 18x faster and 6x cheaper than alternatives, with built-in TTS.
+
+| Model | App ID | Built-in TTS | Best For |
+|-------|--------|-------------|----------|
+| **P-Video-Avatar** | `pruna/p-video-avatar` | **Yes (30 voices, 10 langs)** | **Best overall: speed, cost, quality** |
+| OmniHuman 1.5 | `bytedance/omnihuman-1-5` | No | Multi-character, gestures |
+| OmniHuman 1.0 | `bytedance/omnihuman-1-0` | No | Single character |
+| Fabric 1.0 | `falai/fabric-1-0` | Yes | Image talks with lipsync |
+| PixVerse Lipsync | `falai/pixverse-lipsync` | No | Realistic lipsync |
+
+### Cost & Speed Comparison
+
+| Model | Speed (per sec of video) | Cost per second |
+|-------|-------------------------|----------------|
+| **P-Video-Avatar** | **~1.83s/s** | **$0.025** |
+| OmniHuman 1.5 | ~28s/s (15x slower) | $0.16 (6.4x more) |
+| Fabric 1.0 | ~34s/s (18x slower) | $0.14 (5.6x more) |
 
 ## Production Workflows
 
-### Basic: Portrait + Audio -> Video
+### Simple: Text Script -> Video (P-Video-Avatar)
+
+No separate TTS step needed — P-Video-Avatar has built-in voices:
 
 ```bash
-# 1. Generate or prepare audio
+belt app run pruna/p-video-avatar --input '{
+  "image": "https://portrait.jpg",
+  "voice_script": "Hi there! I am excited to share something with you today.",
+  "voice": "Puck (Male)",
+  "voice_language": "English (US)",
+  "resolution": "720p"
+}'
+```
+
+### With Style Control
+
+```bash
+belt app run pruna/p-video-avatar --input '{
+  "image": "https://portrait.jpg",
+  "voice_script": "This is exciting news for our community!",
+  "voice": "Aoede (Female)",
+  "voice_prompt": "Enthusiastic and energetic tone, slightly faster pace",
+  "video_prompt": "The person is presenting on stage with dramatic lighting",
+  "resolution": "1080p"
+}'
+```
+
+### Audio-Driven (Any Model)
+
+Provide your own audio file:
+
+```bash
+# P-Video-Avatar with custom audio
+belt app run pruna/p-video-avatar --input '{
+  "image": "https://portrait.jpg",
+  "audio": "https://speech.mp3"
+}'
+
+# OmniHuman with custom audio
+belt app run bytedance/omnihuman-1-5 --input '{
+  "image_url": "https://portrait.jpg",
+  "audio_url": "https://speech.mp3"
+}'
+```
+
+### Full Workflow: Generate Portrait + Avatar
+
+```bash
+# 1. Generate a portrait image
+belt app run pruna/p-image --input '{
+  "prompt": "professional headshot portrait of a young woman, neutral background, looking at camera, studio lighting, photorealistic",
+  "aspect_ratio": "9:16"
+}'
+
+# 2. Create avatar video with built-in TTS
+belt app run pruna/p-video-avatar --input '{
+  "image": "<image-url-from-step-1>",
+  "voice_script": "Hi there! Let me walk you through our latest features.",
+  "voice": "Zephyr (Female)"
+}'
+```
+
+### With Separate TTS (for non-TTS models)
+
+```bash
+# 1. Generate speech
 belt app run falai/dia-tts --input '{
   "prompt": "[S1] Your narration script here."
 }'
 
-# 2. Generate talking head
+# 2. Create talking head
 belt app run bytedance/omnihuman-1-5 --input '{
-  "image": "portrait.png",
-  "audio": "narration.mp3"
-}'
-```
-
-### With Captions
-
-```bash
-# 1-2. Same as above
-
-# 3. Add captions to the talking head video
-belt app run infsh/caption-videos --input '{
-  "video": "talking-head.mp4",
-  "caption_file": "captions.srt"
-}'
-```
-
-### Long-Form (Stitched Clips)
-
-For content longer than 30 seconds, split into segments:
-
-```bash
-# Generate audio segments
-belt app run falai/dia-tts --input '{"prompt": "[S1] Segment one script."}' --no-wait
-belt app run falai/dia-tts --input '{"prompt": "[S1] Segment two script."}' --no-wait
-belt app run falai/dia-tts --input '{"prompt": "[S1] Segment three script."}' --no-wait
-
-# Generate talking head for each segment (same portrait for consistency)
-belt app run bytedance/omnihuman-1-5 --input '{"image": "portrait.png", "audio": "segment1.mp3"}' --no-wait
-belt app run bytedance/omnihuman-1-5 --input '{"image": "portrait.png", "audio": "segment2.mp3"}' --no-wait
-belt app run bytedance/omnihuman-1-5 --input '{"image": "portrait.png", "audio": "segment3.mp3"}' --no-wait
-
-# Merge all segments
-belt app run infsh/media-merger --input '{
-  "media": ["segment1.mp4", "segment2.mp4", "segment3.mp4"]
+  "image_url": "https://portrait.jpg",
+  "audio_url": "<audio-url-from-step-1>"
 }'
 ```
 
@@ -162,10 +169,85 @@ belt app run falai/dia-tts --input '{
 
 # 2. Create video with two characters
 belt app run bytedance/omnihuman-1-5 --input '{
-  "image": "two-person-portrait.png",
-  "audio": "dialogue.mp3"
+  "image_url": "https://two-person-portrait.png",
+  "audio_url": "<audio-url>"
 }'
 ```
+
+### Long-Form (Stitched Clips)
+
+For content longer than ~60 seconds, split into segments:
+
+```bash
+# Generate clips with same portrait for consistency
+belt app run pruna/p-video-avatar --input '{"image": "https://portrait.jpg", "voice_script": "Segment one..."}' --no-wait
+belt app run pruna/p-video-avatar --input '{"image": "https://portrait.jpg", "voice_script": "Segment two..."}' --no-wait
+belt app run pruna/p-video-avatar --input '{"image": "https://portrait.jpg", "voice_script": "Segment three..."}' --no-wait
+
+# Merge all segments
+belt app run infsh/media-merger --input '{
+  "media": ["segment1.mp4", "segment2.mp4", "segment3.mp4"]
+}'
+```
+
+### Multilingual Content
+
+P-Video-Avatar supports 10 languages with built-in TTS:
+
+```bash
+# Spanish
+belt app run pruna/p-video-avatar --input '{
+  "image": "https://portrait.jpg",
+  "voice_script": "Bienvenidos a nuestra demostración de producto.",
+  "voice": "Kore (Female)",
+  "voice_language": "Spanish"
+}'
+
+# Japanese
+belt app run pruna/p-video-avatar --input '{
+  "image": "https://portrait.jpg",
+  "voice_script": "こんにちは、製品デモへようこそ。",
+  "voice": "Leda (Female)",
+  "voice_language": "Japanese"
+}'
+```
+
+### Dub Existing Video
+
+```bash
+# 1. Transcribe original video
+belt app run infsh/fast-whisper-large-v3 --input '{"audio_url": "https://video.mp4"}'
+
+# 2. Translate text (manually or with LLM)
+
+# 3. Generate speech in new language
+belt app run infsh/kokoro-tts --input '{"text": "<translated-text>"}'
+
+# 4. Lipsync original video with new audio
+belt app run infsh/latentsync-1-6 --input '{
+  "video_url": "https://original-video.mp4",
+  "audio_url": "<new-audio-url>"
+}'
+```
+
+## Audio Quality (for non-TTS workflows)
+
+When providing your own audio, quality directly impacts lipsync accuracy.
+
+| Parameter | Target | Why |
+|-----------|--------|-----|
+| Background noise | None/minimal | Noise confuses lipsync timing |
+| Volume | Consistent throughout | Prevents sync drift |
+| Sample rate | 44.1kHz or 48kHz | Standard quality |
+| Format | MP3 128kbps+ or WAV | Compatible with all tools |
+
+## Available Voices (P-Video-Avatar)
+
+**Female:** Zephyr, Kore, Leda, Aoede, Callirrhoe, Autonoe, Despina, Erinome, Laomedeia, Achernar, Gacrux, Pulcherrima, Vindemiatrix, Sulafat
+
+**Male:** Puck, Charon, Fenrir, Orus, Enceladus, Iapetus, Umbriel, Algenib, Algieba, Schedar, Achird, Zubenelgenubi, Sadachbia, Sadaltager, Alnilam, Rasalgethi
+
+**Languages:** English (US), English (UK), Spanish, French, German, Italian, Portuguese (Brazil), Japanese, Korean, Hindi
 
 ## Framing Guidelines
 
@@ -190,19 +272,28 @@ belt app run bytedance/omnihuman-1-5 --input '{
 |---------|---------|-----|
 | Low-res portrait | Blurry face, poor lipsync | Use 1024x1024+ face region |
 | Profile/side angle | Lipsync can't track mouth well | Use frontal or near-frontal |
-| Noisy audio | Lipsync drifts, looks unnatural | Record clean or use TTS |
-| Too-long clips | Quality degrades after 30s | Split into segments, stitch |
+| Noisy audio | Lipsync drifts, looks unnatural | Use built-in TTS or record clean |
+| Too-long clips | Quality degrades | Split into segments, stitch |
 | Sunglasses/obstruction | Face features hidden | Clear face required |
 | Inconsistent lighting | Uncanny when animated | Even, soft lighting |
-| No captions | Loses silent/mobile viewers | Always add captions |
 
 ## Related Skills
 
 ```bash
+# Dedicated P-Video-Avatar skill
+npx skills add inference-sh/skills@p-video-avatar
+
+# All avatar models
 npx skills add inference-sh/skills@ai-avatar-video
+
+# All video generation models
 npx skills add inference-sh/skills@ai-video-generation
+
+# Text-to-speech
 npx skills add inference-sh/skills@text-to-speech
+
+# Image generation (for portraits)
+npx skills add inference-sh/skills@ai-image-generation
 ```
 
 Browse all apps: `belt app list`
-
