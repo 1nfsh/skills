@@ -144,8 +144,9 @@ belt app run google/veo-3 --input '{
 ### Food Content
 
 ```bash
-belt app run bytedance/seedance-1-5-pro --input '{
-  "prompt": "Close-up of chocolate sauce being drizzled over ice cream, slow motion, steam rising, soft lighting, food photography style, appetizing, commercial quality"
+belt app run bytedance/seedance-2-0 --input '{
+  "prompt": "Close-up of chocolate sauce being drizzled over ice cream, slow motion, steam rising, soft lighting, food photography style, appetizing, commercial quality",
+  "generate_audio": true
 }'
 ```
 

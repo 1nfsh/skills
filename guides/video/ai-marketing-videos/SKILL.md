@@ -58,8 +58,9 @@ belt app run google/veo-3-1 --input '{
 
 ```bash
 # Focus on specific feature
-belt app run bytedance/seedance-1-5-pro --input '{
-  "prompt": "Close-up product feature demonstration, hands interacting with device, clean background, informative, tech commercial style"
+belt app run bytedance/seedance-2-0 --input '{
+  "prompt": "Close-up product feature demonstration, hands interacting with device, clean background, informative, tech commercial style",
+  "generate_audio": true
 }'
 ```
 

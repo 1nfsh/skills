@@ -91,7 +91,8 @@ Apps use the format `namespace/app-name`:
 - `falai/flux-dev-lora` - fal.ai's FLUX 2 Dev
 - `google/veo-3` - Google's Veo 3
 - `infsh/sdxl` - inference.sh's SDXL
-- `bytedance/seedance-1-5-pro` - ByteDance's Seedance
+- `bytedance/seedance-2-0` - ByteDance's Seedance 2.0
+- `bytedance/seedance-2-0-fast` - ByteDance's Seedance 2.0 Fast
 - `xai/grok-imagine-image` - xAI's Grok
 
 Version pinning: `namespace/app-name@version`

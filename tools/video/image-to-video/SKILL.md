@@ -36,8 +36,8 @@ belt app run falai/wan-2-5-i2v --input '{
 |-------|--------|----------|-------------|
 | **Wan 2.5 i2v** | `falai/wan-2-5-i2v` | Realistic motion, natural movement | Photorealistic, subtle |
 | **WAN-I2V (Pruna)** | `pruna/wan-i2v` | Economical, fast, 480p/720p | Natural, efficient |
-| **Seedance 1.5 Pro** | `bytedance/seedance-1-5-pro` | Stylized, creative, animation-like | Artistic, expressive |
-| **Seedance 1.0 Pro** | `bytedance/seedance-1-0-pro` | General purpose, good quality | Balanced |
+| **Seedance 2.0** | `bytedance/seedance-2-0` | Up to 1080p, sync audio, all input types | Versatile, high quality |
+| **Seedance 2.0 Fast** | `bytedance/seedance-2-0-fast` | Fast variant, same capabilities | Versatile, fast |
 | **Fabric 1.0** | `falai/fabric-1-0` | Cloth, fabric, liquid, flowing materials | Physics-based flow |
 | **Grok Imagine Video** | `xai/grok-imagine-video` | General animation, text-guided | Versatile |
 
@@ -49,9 +49,9 @@ belt app run falai/wan-2-5-i2v --input '{
 | Portrait with subtle expression | **Wan 2.5 i2v** | Maintains face fidelity |
 | Product with fabric/cloth | **Fabric 1.0** | Specialized in material physics |
 | Flag waving, curtain flowing | **Fabric 1.0** | Cloth simulation |
-| Illustrated/artistic image | **Seedance** | Matches stylized content |
-| General "bring to life" | **Seedance 1.5 Pro** | Good all-rounder |
-| Quick test/iteration | **Seedance 1.0 Lite** | Fastest, 720p |
+| Illustrated/artistic image | **Seedance 2.0** | Matches stylized content |
+| General "bring to life" | **Seedance 2.0** | Good all-rounder, up to 1080p |
+| Quick test/iteration | **Seedance 2.0 Fast** | Faster generation |
 
 ## Motion Types
 
@@ -117,9 +117,10 @@ belt app run falai/wan-2-5-i2v --input '{
 }'
 
 # Product shot animation
-belt app run bytedance/seedance-1-5-pro --input '{
+belt app run bytedance/seedance-2-0 --input '{
   "prompt": "slow 360 degree orbit around the product, gentle spotlight movement, subtle reflections shifting, premium product showcase, smooth motion",
-  "image": "product.png"
+  "image": "product.png",
+  "generate_audio": true
 }'
 
 # Fabric/cloth animation

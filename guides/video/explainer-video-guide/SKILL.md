@@ -83,8 +83,9 @@ belt app run google/veo-3-1-fast --input '{
 }'
 
 # Abstract concept visualization
-belt app run bytedance/seedance-1-5-pro --input '{
-  "prompt": "Abstract motion graphics, colorful data streams connecting floating geometric shapes, smooth fluid animation, dark background with glowing elements, tech aesthetic"
+belt app run bytedance/seedance-2-0 --input '{
+  "prompt": "Abstract motion graphics, colorful data streams connecting floating geometric shapes, smooth fluid animation, dark background with glowing elements, tech aesthetic",
+  "generate_audio": true
 }'
 
 # Lifestyle/outcome shot

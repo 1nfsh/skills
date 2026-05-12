@@ -16,8 +16,10 @@ Create platform-specific video ads via [inference.sh](https://inference.sh) CLI.
 belt login
 
 # Generate a vertical video ad scene
-belt app run bytedance/seedance-1-5-pro --input '{
-  "prompt": "vertical video, person excitedly unboxing a product, clean modern room, bright natural lighting, social media ad style, authentic feeling, 9:16 format"
+belt app run bytedance/seedance-2-0 --input '{
+  "prompt": "vertical video, person excitedly unboxing a product, clean modern room, bright natural lighting, social media ad style, authentic feeling",
+  "ratio": "9:16",
+  "generate_audio": true
 }'
 ```
 
@@ -120,8 +122,10 @@ belt app run google/veo-3-1-fast --input '{
 }'
 
 # Solution reveal (3-15s)
-belt app run bytedance/seedance-1-5-pro --input '{
-  "prompt": "vertical video, smooth product reveal, clean wireless charging station on minimalist desk, satisfying organization transformation, bright modern room, social media ad aesthetic"
+belt app run bytedance/seedance-2-0 --input '{
+  "prompt": "vertical video, smooth product reveal, clean wireless charging station on minimalist desk, satisfying organization transformation, bright modern room, social media ad aesthetic",
+  "ratio": "9:16",
+  "generate_audio": true
 }'
 
 # Add voiceover
